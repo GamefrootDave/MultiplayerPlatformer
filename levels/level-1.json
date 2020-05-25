@@ -1,0 +1,108 @@
+{
+	"name": "Level 1",
+	"color": {
+		"r": 141,
+		"g": 114,
+		"b": 159,
+		"a": 1
+	},
+	"loader": {},
+	"systems": {},
+	"gameObjects": [
+		{
+			"type": "text",
+			"id": "373",
+			"x": 479,
+			"y": 74,
+			"textAlignment": "center",
+			"textColor": "#ffffffff",
+			"textFontFamily": "'Arial Black', sans-serif",
+			"textLineHeight": 1,
+			"textLineWidth": 900,
+			"textSize": 36,
+			"textText": "SHOOT 'EM UP!",
+			"textWeight": "bold",
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "text",
+			"id": "374",
+			"x": 477,
+			"y": 167,
+			"textAlignment": "center",
+			"textColor": "#ffffffff",
+			"textFontFamily": "'Arial Black', sans-serif",
+			"textLineHeight": 1,
+			"textLineWidth": 900,
+			"textSize": 24,
+			"textText": "Room name goes here | 1/2 players | 👉 JOIN 👈\n\nAnother cool room name | 1/2 players | 👉 JOIN 👈\n\nEpic room | 1/2 players | 👉 JOIN 👈\n\nRoom name goes here | 1/2 players | 👉 JOIN 👈",
+			"textWeight": "bold",
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"RoomList": {
+					"music": 1,
+					"click sound effect": 2,
+					"server list button": "undefined",
+					"textfield": "undefined"
+				}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "text",
+			"id": "375",
+			"x": 479,
+			"y": 432,
+			"textAlignment": "center",
+			"textColor": "#fee761ff",
+			"textFontFamily": "'Arial Black', sans-serif",
+			"textLineHeight": 1,
+			"textLineWidth": 900,
+			"textSize": 36,
+			"textText": "HOST GAME",
+			"textWeight": "bold",
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"HostButton": {
+					"click sound effect": 3,
+					"rectangle": "undefined"
+				}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "text",
+			"id": "376",
+			"x": 15,
+			"y": 16,
+			"textColor": "#ffffffff",
+			"textFontFamily": "'Arial Black', sans-serif",
+			"textLineHeight": 1,
+			"textLineWidth": 512,
+			"textSize": 18,
+			"textText": " SOUND OFF 🔈",
+			"textWeight": "bold",
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"SoundButton": {
+					"sound on": false,
+					"font size": 0
+				}
+			},
+			"plugins": {}
+		}
+	],
+	"definitions": [],
+	"assets": []
+}

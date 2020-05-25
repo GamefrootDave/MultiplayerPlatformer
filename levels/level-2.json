@@ -1,0 +1,707 @@
+{
+	"name": "Level 2",
+	"color": {
+		"r": 141,
+		"g": 114,
+		"b": 159,
+		"a": 1
+	},
+	"loader": {},
+	"systems": {},
+	"gameObjects": [
+		{
+			"id": 4,
+			"name": "Tile Map",
+			"type": "tilemap",
+			"jsonId": 19,
+			"imageId": 20,
+			"x": 0,
+			"y": 0,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				}
+			}
+		},
+		{
+			"type": "static-image",
+			"x": 76,
+			"y": 632,
+			"id": "152",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 17,
+			"anchorPointX": 34.5,
+			"anchorPointY": 36,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							17,
+							14
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					},
+					"walk": {
+						"cells": [
+							17,
+							23,
+							17,
+							24,
+							17,
+							15,
+							17,
+							16
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					},
+					"jumpUp": {
+						"cells": [
+							17,
+							17
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					},
+					"jumpMid": {
+						"cells": [
+							17,
+							18
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					},
+					"jumpDown": {
+						"cells": [
+							17,
+							37
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					},
+					"dead": {
+						"cells": [
+							17,
+							20,
+							17,
+							21,
+							17,
+							22
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 15,
+					"y": 9,
+					"width": 36,
+					"height": 63
+				},
+				"PlayerControls": {
+					"music": 5,
+					"jump": 6,
+					"air time": 0,
+					"jumpcloud": null,
+					"bg colour": "#000000",
+					"able to jump": false,
+					"toucher": "null",
+					"able to be hurt": false,
+					"health": 0,
+					"explosion": null,
+					"smoke": null,
+					"health bar": "null",
+					"health bar black": "null",
+					"health bar outline": "null",
+					"health bar white": "null",
+					"max health": 0,
+					"I am the host": false,
+					"i": false
+				}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "static-image",
+			"x": 72,
+			"y": -19,
+			"id": "153",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 17,
+			"anchorPointX": 16.5,
+			"anchorPointY": 7.5,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							17,
+							19
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 0,
+					"y": 0,
+					"width": 33,
+					"height": 15
+				},
+				"Gun": {
+					"shoot": 7,
+					"shoot bass": 8,
+					"player": "undefined",
+					"trigger held": false,
+					"player dead": false,
+					"white flash": "null",
+					"i": false
+				}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "text",
+			"id": "154",
+			"x": 7,
+			"y": -118,
+			"textColor": "#ffffffff",
+			"textFontFamily": "'Arial Black', sans-serif",
+			"textLineHeight": 1,
+			"textLineWidth": 199,
+			"textSize": 18,
+			"textText": " SOUND OFF 🔈",
+			"textWeight": "bold",
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"SoundButton": {
+					"sound on": false,
+					"font size": 0
+				}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "static-image",
+			"x": 813,
+			"y": 638,
+			"id": "155",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 17,
+			"anchorPointX": 34.5,
+			"anchorPointY": 36,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							17,
+							14
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					},
+					"walk": {
+						"cells": [
+							17,
+							23,
+							17,
+							24,
+							17,
+							15,
+							17,
+							16
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					},
+					"jumpUp": {
+						"cells": [
+							17,
+							17
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					},
+					"jumpMid": {
+						"cells": [
+							17,
+							18
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					},
+					"jumpDown": {
+						"cells": [
+							17,
+							37
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					},
+					"dead": {
+						"cells": [
+							17,
+							20,
+							17,
+							21,
+							17,
+							22
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 15,
+					"y": 9,
+					"width": 36,
+					"height": 63
+				},
+				"Player2": {
+					"player1list": null,
+					"player2list": null,
+					"toucher": "null",
+					"player 2 gun": "null"
+				}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "static-image",
+			"x": 144,
+			"y": -84,
+			"id": "354",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 17,
+			"anchorPointX": 21,
+			"anchorPointY": 21,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							17,
+							2
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 0,
+					"y": 0,
+					"width": 42,
+					"height": 42
+				},
+				"Muzzleflash": {}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "static-image",
+			"x": 286,
+			"y": -119,
+			"id": "355",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 17,
+			"anchorPointX": 27,
+			"anchorPointY": 9,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							17,
+							4
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 15,
+					"y": 3,
+					"width": 30,
+					"height": 12
+				},
+				"Bullet": {
+					"toucher": "null",
+					"gun": "null"
+				}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "static-image",
+			"x": 264,
+			"y": -92,
+			"id": "356",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 17,
+			"anchorPointX": 6,
+			"anchorPointY": 4.5,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							17,
+							0
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 0,
+					"y": 0,
+					"width": 12,
+					"height": 9
+				},
+				"Casing": {
+					"spin amount": 0,
+					"toucher": "null",
+					"fade": false
+				}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "static-image",
+			"x": 300,
+			"y": -139,
+			"id": "357",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 17,
+			"anchorPointX": 19.5,
+			"anchorPointY": 36,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							17,
+							8,
+							17,
+							11,
+							17,
+							10,
+							17,
+							9
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 0,
+					"y": 0,
+					"width": 39,
+					"height": 72
+				},
+				"Jumpcloud": {}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "static-image",
+			"x": 13,
+			"y": -87,
+			"id": "358",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 17,
+			"anchorPointX": 24,
+			"anchorPointY": 24,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							17,
+							3
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 0,
+					"y": 0,
+					"width": 48,
+					"height": 48
+				},
+				"Camera": {
+					"player": "undefined",
+					"bottom rectangle": "null",
+					"top rectangle": "null",
+					"textfield": "null",
+					"text offset": 0,
+					"fade rectangle": "null",
+					"cinematic on": false,
+					"text acceleration": 0,
+					"fade in": false,
+					"fade out": false,
+					"player dead": false
+				}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "static-image",
+			"x": 93,
+			"y": -96,
+			"id": "359",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 17,
+			"anchorPointX": 18,
+			"anchorPointY": 24,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							17,
+							6,
+							17,
+							5,
+							17,
+							7
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 0,
+					"y": 0,
+					"width": 36,
+					"height": 48
+				},
+				"Sparks": {}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "static-image",
+			"x": 481,
+			"y": -121,
+			"id": "360",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 17,
+			"anchorPointX": 48,
+			"anchorPointY": 48,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							17,
+							12
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					},
+					"black": {
+						"cells": [
+							17,
+							13
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 0,
+					"y": 0,
+					"width": 96,
+					"height": 96
+				},
+				"Explosion": {}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "static-image",
+			"x": 615,
+			"y": -105,
+			"id": "361",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 17,
+			"anchorPointX": 24,
+			"anchorPointY": 24,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							17,
+							3
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 0,
+					"y": 0,
+					"width": 48,
+					"height": 48
+				},
+				"Smoke": {}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "text",
+			"id": "362",
+			"x": 6,
+			"y": -213,
+			"textColor": "#000000ff",
+			"textFontFamily": "Helvetica, Arial, sans-serif",
+			"textLineHeight": 1,
+			"textLineWidth": 512,
+			"textSize": 18,
+			"textText": "Host logic",
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"HostRoomLogic": {
+					"list of players": null,
+					"rectangle": "null"
+				}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "text",
+			"id": "363",
+			"x": 7,
+			"y": -252,
+			"textColor": "#000000ff",
+			"textFontFamily": "Helvetica, Arial, sans-serif",
+			"textLineHeight": 1,
+			"textLineWidth": 512,
+			"textSize": 18,
+			"textText": "Client logic",
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"ClientLogic2": {}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "static-image",
+			"x": 824,
+			"y": 603,
+			"id": "364",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 17,
+			"anchorPointX": 16.5,
+			"anchorPointY": 7.5,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							17,
+							19
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 0,
+					"y": 0,
+					"width": 33,
+					"height": 15
+				},
+				"Player2Gun": {
+					"player 2": "null"
+				}
+			},
+			"plugins": {}
+		}
+	],
+	"definitions": [],
+	"assets": []
+}

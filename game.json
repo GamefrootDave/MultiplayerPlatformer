@@ -1,0 +1,160 @@
+{
+	"name": "Vlambeer Platformer",
+	"width": 960,
+	"height": 540,
+	"levels": [
+		{
+			"id": 1,
+			"name": "Level 1",
+			"url": "levels/level-1.json"
+		},
+		{
+			"id": 2,
+			"name": "Level 2",
+			"url": "levels/level-2.json"
+		},
+		{
+			"id": 3,
+			"name": "Level 3",
+			"url": "levels/level-3.json"
+		}
+	],
+	"plugins": [
+		"GamefrootText",
+		"Primitives",
+		"GamefrootPrimitives",
+		"RoomList",
+		"HostButton",
+		"SoundButton",
+		"PlayerControls",
+		"Gun",
+		"Player2",
+		"Muzzleflash",
+		"Bullet",
+		"Casing",
+		"Jumpcloud",
+		"Camera",
+		"Sparks",
+		"Explosion",
+		"Smoke",
+		"HostRoomLogic",
+		"ClientLogic2",
+		"Player2Gun",
+		"Zombie",
+		"ZombieSpawner"
+	],
+	"assets": [
+		{
+			"id": 1,
+			"type": "sound",
+			"url": [
+				"https://storage.googleapis.com/files.gamefroot.com//users/5151/assets/506202454.mp3",
+				"https://storage.googleapis.com/files.gamefroot.com//users/5151/assets/506202454.ogg"
+			]
+		},
+		{
+			"id": 2,
+			"type": "sound",
+			"url": [
+				"https://storage.googleapis.com/files.gamefroot.com//users/5151/assets/506199832.mp3",
+				"https://storage.googleapis.com/files.gamefroot.com//users/5151/assets/506199832.ogg"
+			]
+		},
+		{
+			"id": 3,
+			"type": "sound",
+			"url": [
+				"https://storage.googleapis.com/files.gamefroot.com//users/5151/assets/506199832.mp3",
+				"https://storage.googleapis.com/files.gamefroot.com//users/5151/assets/506199832.ogg"
+			]
+		},
+		{
+			"id": 5,
+			"type": "sound"
+		},
+		{
+			"id": 6,
+			"type": "sound"
+		},
+		{
+			"id": 7,
+			"type": "sound"
+		},
+		{
+			"id": 8,
+			"type": "sound"
+		},
+		{
+			"id": 10,
+			"type": "sound"
+		},
+		{
+			"id": 11,
+			"type": "sound"
+		},
+		{
+			"id": 12,
+			"type": "sound"
+		},
+		{
+			"id": 13,
+			"type": "sound"
+		},
+		{
+			"id": 14,
+			"type": "sound"
+		},
+		{
+			"id": 15,
+			"type": "sound"
+		},
+		{
+			"id": 16,
+			"type": "sound"
+		},
+		{
+			"id": 17,
+			"type": "textureatlas",
+			"imageUrl": "assets/spritesheet-1.png",
+			"jsonId": 18,
+			"jsonUrl": "assets/spritesheet-1.json"
+		},
+		{
+			"id": 19,
+			"type": "json",
+			"url": "assets/Tile Map-map.json"
+		},
+		{
+			"id": 20,
+			"type": "spritesheet",
+			"url": "assets/Tile Map-1.png",
+			"frameWidth": 48,
+			"frameHeight": 48,
+			"sheetOffsetX": 4,
+			"sheetOffsetY": 4,
+			"cellOffsetX": 8,
+			"cellOffsetY": 8,
+			"rows": 2,
+			"cols": 3
+		},
+		{
+			"id": 21,
+			"type": "json",
+			"url": "assets/Tile Map1-map.json"
+		},
+		{
+			"id": 22,
+			"type": "spritesheet",
+			"url": "assets/Tile Map1-1.png",
+			"frameWidth": 48,
+			"frameHeight": 48,
+			"sheetOffsetX": 4,
+			"sheetOffsetY": 4,
+			"cellOffsetX": 8,
+			"cellOffsetY": 8,
+			"rows": 2,
+			"cols": 3
+		}
+	],
+	"firstLevel": 1
+}
