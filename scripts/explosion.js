@@ -13,6 +13,7 @@ Phaserfroot.PluginManager.register(
       this.owner.once( "levelSwitch", this.destroy, this );
 
       // Attach custom event listeners.
+      this.owner.on( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
       this.onTick_ = this.scene.time.addEvent( {
         delay: 20,
         loop: true,
@@ -53,6 +54,7 @@ Phaserfroot.PluginManager.register(
       this.owner.off( "levelSwitch", this.destroy, this );
 
       // Detach custom event listeners.
+      this.owner.removeListener( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
       if ( this.delayed_event ) this.delayed_event.remove();
       if ( this.delayed_event2 ) this.delayed_event2.remove();
       if ( this.onTick_ ) {
@@ -78,7 +80,9 @@ Phaserfroot.PluginManager.register(
           if ( !this.owner || this.owner.exists === false ) {
             return;
           }
-            this.owner.visible = false;
+            if (this.owner.visible) {
+            this.owner.destroySafe();
+          }
         }, null, this );
       }, null, this );
     }
@@ -87,6 +91,12 @@ Phaserfroot.PluginManager.register(
       // Executed after time period of time.
       this.owner.scaleX = this.owner.scaleX + 0.1;
       this.owner.scaleY = this.owner.scaleX;
+    }
+
+    onLevelStart2() {
+      this.owner.visible = false;
+      this.owner.setPhysics( false );
+
     }
 
     math_random_int ( a, b ) {

@@ -11,7 +11,7 @@
 	"gameObjects": [
 		{
 			"type": "text",
-			"id": "373",
+			"id": "1367",
 			"x": 479,
 			"y": 74,
 			"textAlignment": "center",
@@ -31,7 +31,7 @@
 		},
 		{
 			"type": "text",
-			"id": "374",
+			"id": "1368",
 			"x": 477,
 			"y": 167,
 			"textAlignment": "center",
@@ -40,7 +40,7 @@
 			"textLineHeight": 1,
 			"textLineWidth": 900,
 			"textSize": 24,
-			"textText": "Room name goes here | 1/2 players | 👉 JOIN 👈\n\nAnother cool room name | 1/2 players | 👉 JOIN 👈\n\nEpic room | 1/2 players | 👉 JOIN 👈\n\nRoom name goes here | 1/2 players | 👉 JOIN 👈",
+			"textText": "Room name goes here | 2 players | 👉 JOIN 👈\n\nAnother cool room name | 9 players | 👉 JOIN 👈\n\nEpic room | 4 players | 👉 JOIN 👈\n\nRoom name goes here | 1 player | 👉 JOIN 👈",
 			"textWeight": "bold",
 			"components": {
 				"arcadephysics": {
@@ -57,7 +57,7 @@
 		},
 		{
 			"type": "text",
-			"id": "375",
+			"id": "1369",
 			"x": 479,
 			"y": 432,
 			"textAlignment": "center",
@@ -81,7 +81,7 @@
 		},
 		{
 			"type": "text",
-			"id": "376",
+			"id": "1370",
 			"x": 15,
 			"y": 16,
 			"textColor": "#ffffffff",
@@ -96,7 +96,6 @@
 					"gravity": false
 				},
 				"SoundButton": {
-					"sound on": false,
 					"font size": 0
 				}
 			},

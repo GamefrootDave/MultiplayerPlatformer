@@ -13,6 +13,7 @@ Phaserfroot.PluginManager.register(
       this.owner.once( "levelSwitch", this.destroy, this );
 
       // Attach custom event listeners.
+      this.owner.on( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
 
 
       // Initialize properties from parameters.
@@ -44,6 +45,7 @@ Phaserfroot.PluginManager.register(
       this.owner.off( "levelSwitch", this.destroy, this );
 
       // Detach custom event listeners.
+      this.owner.removeListener( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
 
     }
 
@@ -55,9 +57,17 @@ Phaserfroot.PluginManager.register(
       this.owner.tags.add( 'jumpcloud' );
     }
 
+    onLevelStart2() {
+      this.owner.visible = false;
+      this.owner.setPhysics( false );
+
+    }
+
     _idle__22animationrepeat__222 () {
         if (( this.owner && this.owner.exists )) {
-        this.owner.destroySafe();
+        if (this.owner.visible) {
+          this.owner.destroySafe();
+        }
       }
 
     }

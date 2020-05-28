@@ -13,6 +13,7 @@ Phaserfroot.PluginManager.register(
       this.owner.once( "levelSwitch", this.destroy, this );
 
       // Attach custom event listeners.
+      this.owner.on( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
       this.owner.on( this.owner.EVENTS.COLLIDE, this.onTouchInstance2, this );
       this.owner.properties.onUpdate( this.onMessageReceived, this, "_messaging_");
 
@@ -50,6 +51,7 @@ Phaserfroot.PluginManager.register(
 
       // Detach custom event listeners.
       if ( this.delayed_event ) this.delayed_event.remove();
+      this.owner.removeListener( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
       this.owner.off( this.owner.EVENTS.COLLIDE, this.onTouchInstance2, this );
 
     }
@@ -83,15 +85,17 @@ Phaserfroot.PluginManager.register(
 
     EVENTS_UPDATE () {
       // Executed every frame.
-      if (!( this.owner.body.touching.down || this.owner.body.blocked.down )) {
-        this.owner.bearing = this.owner.bearing + this.spin_amount;
-      }
-      if (this.fade) {
-        this.owner.scaleX = this.owner.scaleX - 0.02;
-        this.owner.scaleY = this.owner.scaleX;
-        if (this.owner.scaleX <= 0) {
-          if (( this.owner && this.owner.exists )) {
-            this.owner.destroySafe();
+      if (this.owner.visible) {
+        if (!( this.owner.body.touching.down || this.owner.body.blocked.down )) {
+          this.owner.bearing = this.owner.bearing + this.spin_amount;
+        }
+        if (this.fade) {
+          this.owner.scaleX = this.owner.scaleX - 0.02;
+          this.owner.scaleY = this.owner.scaleX;
+          if (this.owner.scaleX <= 0) {
+            if (( this.owner && this.owner.exists )) {
+              this.owner.destroySafe();
+            }
           }
         }
       }
@@ -105,6 +109,12 @@ Phaserfroot.PluginManager.register(
         b = c;
       }
       return Math.floor( Math.random() * ( b - a + 1 ) + a );
+    }
+
+    onLevelStart2() {
+      this.owner.visible = false;
+      this.owner.setPhysics( false );
+
     }
 
     onTouchInstance2 ( instance ) {

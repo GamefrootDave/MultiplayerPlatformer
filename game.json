@@ -29,6 +29,8 @@
 		"PlayerControls",
 		"Gun",
 		"Player2",
+		"Player2Gun",
+		"Scoreboard",
 		"Muzzleflash",
 		"Bullet",
 		"Casing",
@@ -39,7 +41,7 @@
 		"Smoke",
 		"HostRoomLogic",
 		"ClientLogic2",
-		"Player2Gun",
+		"SpawnOtherPlayers",
 		"Zombie",
 		"ZombieSpawner"
 	],
@@ -77,11 +79,11 @@
 			"type": "sound"
 		},
 		{
-			"id": 7,
+			"id": 8,
 			"type": "sound"
 		},
 		{
-			"id": 8,
+			"id": 9,
 			"type": "sound"
 		},
 		{
@@ -98,34 +100,18 @@
 		},
 		{
 			"id": 13,
-			"type": "sound"
-		},
-		{
-			"id": 14,
-			"type": "sound"
-		},
-		{
-			"id": 15,
-			"type": "sound"
-		},
-		{
-			"id": 16,
-			"type": "sound"
-		},
-		{
-			"id": 17,
 			"type": "textureatlas",
 			"imageUrl": "assets/spritesheet-1.png",
-			"jsonId": 18,
+			"jsonId": 14,
 			"jsonUrl": "assets/spritesheet-1.json"
 		},
 		{
-			"id": 19,
+			"id": 15,
 			"type": "json",
 			"url": "assets/Tile Map-map.json"
 		},
 		{
-			"id": 20,
+			"id": 16,
 			"type": "spritesheet",
 			"url": "assets/Tile Map-1.png",
 			"frameWidth": 48,
@@ -138,12 +124,12 @@
 			"cols": 3
 		},
 		{
-			"id": 21,
+			"id": 17,
 			"type": "json",
 			"url": "assets/Tile Map1-map.json"
 		},
 		{
-			"id": 22,
+			"id": 18,
 			"type": "spritesheet",
 			"url": "assets/Tile Map1-1.png",
 			"frameWidth": 48,

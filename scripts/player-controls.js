@@ -13,6 +13,17 @@ Phaserfroot.PluginManager.register(
       this.owner.once( "levelSwitch", this.destroy, this );
 
       // Attach custom event listeners.
+      this.onTick_ = this.scene.time.addEvent( {
+        delay: 100,
+        loop: true,
+        callback: function () {
+          if ( !this.owner || this.owner.exists === false ) {
+            return;
+          }
+          this.onTick();
+        },
+        callbackScope: this,
+      } );
       this.owner.on( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
       this.scene.getKey( 68 ).on( "down", this.onKeyInput68, this );
       this.scene.getKey( 68 ).on( "up", this.onKeyInput682, this );
@@ -29,29 +40,37 @@ Phaserfroot.PluginManager.register(
 
       // Initialize properties from parameters.
       this.value = instanceProperties[ "value" ];
+      this.playerID = instanceProperties[ "playerID" ];
+      this.victim = instanceProperties[ "victim" ];
+      this.playerID_that_shot_me = instanceProperties[ "playerID that shot me" ];
+      this.killer = instanceProperties[ "killer" ];
       this.jumpcloud = instanceProperties[ "jumpcloud" ];
       this.explosion = instanceProperties[ "explosion" ];
       this.smoke = instanceProperties[ "smoke" ];
       this.bg_colour = instanceProperties[ "bg colour" ];
-      this.I_am_the_host = instanceProperties[ "I am the host" ];
-      this.able_to_be_hurt = instanceProperties[ "able to be hurt" ];
-      this.able_to_jump = instanceProperties[ "able to jump" ];
+      this.jump = instanceProperties[ "jump" ];
+      this.music = instanceProperties[ "music" ];
+      this.deaths = instanceProperties[ "deaths" ];
+      this.kills = instanceProperties[ "kills" ];
+      this.health = instanceProperties[ "health" ];
+      this.air_time = instanceProperties[ "air time" ];
+      this.max_health = instanceProperties[ "max health" ];
       this.toucher = ( typeof instanceProperties[ "toucher" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "toucher" ], true ) : null;
       this.health_bar_outline = ( typeof instanceProperties[ "health bar outline" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "health bar outline" ], true ) : null;
       this.health_bar_white = ( typeof instanceProperties[ "health bar white" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "health bar white" ], true ) : null;
       this.health_bar_black = ( typeof instanceProperties[ "health bar black" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "health bar black" ], true ) : null;
+      this.scoreboard = ( typeof instanceProperties[ "scoreboard" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "scoreboard" ], true ) : null;
       this.health_bar = ( typeof instanceProperties[ "health bar" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "health bar" ], true ) : null;
-      this.jump = instanceProperties[ "jump" ];
-      this.music = instanceProperties[ "music" ];
-      this.health = instanceProperties[ "health" ];
-      this.air_time = instanceProperties[ "air time" ];
-      this.max_health = instanceProperties[ "max health" ];
+      this.player_name_text = ( typeof instanceProperties[ "player name text" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "player name text" ], true ) : null;
+      this.able_to_be_hurt = instanceProperties[ "able to be hurt" ];
+      this.able_to_jump = instanceProperties[ "able to jump" ];
+      this.I_am_the_host = instanceProperties[ "I am the host" ];
 
 
       // Boot phase.
       this.camera = this.scene.cameras.main;
       this.animation_key = this.owner.data.list.animKeyPrefix;
-      this.owner.on( "animationrepeat-" + this.animation_key + "dead", this._dead__22animationrepeat__222, this );
+      this.owner.on( "animationrepeat-" + this.animation_key + "dying", this._dying__22animationrepeat__222, this );
 
       this.onCreate();
 
@@ -77,6 +96,9 @@ Phaserfroot.PluginManager.register(
       this.owner.off( "levelSwitch", this.destroy, this );
 
       // Detach custom event listeners.
+      if ( this.onTick_ ) {
+        this.onTick_.remove();
+      }
       this.owner.removeListener( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
       if ( this.delayed_event ) this.delayed_event.remove();
       this.scene.getKey( 68 ).off( "down", this.onKeyInput68, this );
@@ -122,11 +144,17 @@ Phaserfroot.PluginManager.register(
       this.max_health = this.health;
       if (this.game.GLOBAL_VARIABLES.hostPlayerID == this.game.GLOBAL_VARIABLES.myPlayerID) {
         this.I_am_the_host = true;
-        this.owner.posX = 100;
       } else {
         this.I_am_the_host = false;
-        this.owner.posX = 800;
       }
+      this.owner.posX = this.math_random_int( 300, 1100 );
+      this.owner.posY = 300;
+    }
+
+    onTick () {
+      // Executed after time period of time.
+      // we update player info on player input, and also 10 times a second
+      this.NETWORK_UPDATE_ON_TICK(  );
     }
 
     EVENTS_POST_UPDATE () {
@@ -176,11 +204,21 @@ Phaserfroot.PluginManager.register(
         return;
       }
       this.health_bar.scaleX = this.health / this.max_health;
+      if ( !this.player_name_text ) {
+        this.reportError( "`Set Instance CenterX` block could not find the instance [player_name_text]." );
+        return;
+      }
+      this.player_name_text.x = this.owner.x;
+      if ( !this.player_name_text ) {
+        this.reportError( "`Set Instance CenterY` block could not find the instance [player_name_text]." );
+        return;
+      }
+      this.player_name_text.y = (this.errorCheckNotNull11( this.health_bar_outline, this.owner, "`Get Position of Instance` block could not find an instance named [health_bar_outline].")).posY - 25;
     }
 
     EVENTS_UPDATE () {
       // Executed every frame.
-      if (!(this.owner.playing() == 'dead')) {
+      if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
         if (( this.owner.body.touching.down || this.owner.body.blocked.down )) {
           if (this.owner.body.velocity.x < -50 || this.owner.body.velocity.x > 50) {
             this.owner.playMy( 'walk' );
@@ -219,6 +257,7 @@ Phaserfroot.PluginManager.register(
               this.able_to_jump = false;
               this.create_jumpcloud(  );
               this.owner.body.velocity.y = (-850);
+              this.NETWORK_UPDATE_ON_INPUT(  );
               this.delayed_event = this.scene.time.delayedCall( 500, function() {
                 if ( !this.owner || this.owner.exists === false ) {
                   return;
@@ -229,96 +268,100 @@ Phaserfroot.PluginManager.register(
           }
         }
       }
-      if (this.I_am_the_host) {
-        this.scene.messageExternal( 'sendToRoom', [this.game.GLOBAL_VARIABLES.hostRoomName, 'positionPlayer1', this.game.GLOBAL_VARIABLES.myPlayerID, this.owner.x, this.owner.y, this.owner.playing(), this.game.GLOBAL_VARIABLES.hostPlayerID, this.owner.body.velocity.x, this.owner.body.velocity.y, this.owner.scaleX] );
-      } else {
-        this.scene.messageExternal( 'sendToRoom', [this.game.GLOBAL_VARIABLES.hostRoomName, 'positionPlayer2', this.game.GLOBAL_VARIABLES.myPlayerID, this.owner.x, this.owner.y, this.owner.playing(), this.game.GLOBAL_VARIABLES.hostPlayerID, this.owner.body.velocity.x, this.owner.body.velocity.y, this.owner.scaleX] );
-      }
     }
 
     onKeyInput68 () {
-      if (!(this.owner.playing() == 'dead')) {
+      if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
         this.owner.scaleX = 1;
         this.owner.body.acceleration.x = 1000;
+        this.NETWORK_UPDATE_ON_INPUT(  );
       }
     }
 
     onKeyInput682 () {
-      if (!(this.owner.playing() == 'dead')) {
+      if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
         if (!( this.scene.getKey( 65 ).isDown || this.scene._keys.lastPressed === 65 )) {
           this.owner.body.acceleration.x = 0;
         } else {
           this.owner.scaleX = -1;
           this.owner.body.acceleration.x = (-1000);
         }
+        this.NETWORK_UPDATE_ON_INPUT(  );
       }
     }
 
     onKeyInput65 () {
-      if (!(this.owner.playing() == 'dead')) {
+      if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
         this.owner.scaleX = -1;
         this.owner.body.acceleration.x = (-1000);
+        this.NETWORK_UPDATE_ON_INPUT(  );
       }
     }
 
     onKeyInput652 () {
-      if (!(this.owner.playing() == 'dead')) {
+      if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
         if (!( this.scene.getKey( 68 ).isDown || this.scene._keys.lastPressed === 68 )) {
           this.owner.body.acceleration.x = 0;
         } else {
           this.owner.scaleX = 1;
           this.owner.body.acceleration.x = 1000;
         }
+        this.NETWORK_UPDATE_ON_INPUT(  );
       }
     }
 
     onKeyInput38 () {
-      if (!(this.owner.playing() == 'dead')) {
+      if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
         if (( this.owner.body.touching.down || this.owner.body.blocked.down )) {
           this.owner.body.velocity.y = (-850);
+          this.NETWORK_UPDATE_ON_INPUT(  );
         }
       }
     }
 
     onKeyInput39 () {
-      if (!(this.owner.playing() == 'dead')) {
+      if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
         this.owner.scaleX = 1;
         this.owner.body.acceleration.x = 1000;
+        this.NETWORK_UPDATE_ON_INPUT(  );
       }
     }
 
     onKeyInput392 () {
-      if (!(this.owner.playing() == 'dead')) {
+      if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
         if (!( this.scene.getKey( 37 ).isDown || this.scene._keys.lastPressed === 37 )) {
           this.owner.body.acceleration.x = 0;
         } else {
           this.owner.scaleX = -1;
           this.owner.body.acceleration.x = (-1000);
         }
+        this.NETWORK_UPDATE_ON_INPUT(  );
       }
     }
 
     onKeyInput37 () {
-      if (!(this.owner.playing() == 'dead')) {
+      if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
         this.owner.scaleX = -1;
         this.owner.body.acceleration.x = (-1000);
+        this.NETWORK_UPDATE_ON_INPUT(  );
       }
     }
 
     onKeyInput372 () {
-      if (!(this.owner.playing() == 'dead')) {
+      if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
         if (!( this.scene.getKey( 39 ).isDown || this.scene._keys.lastPressed === 39 )) {
           this.owner.body.acceleration.x = 0;
         } else {
           this.owner.scaleX = 1;
           this.owner.body.acceleration.x = 1000;
         }
+        this.NETWORK_UPDATE_ON_INPUT(  );
       }
     }
 
     executeMessagerecoil () {
       // Executed when the message 'recoil' is received.
-      if (!(this.owner.playing() == 'dead')) {
+      if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
         this.delayed_event2 = this.scene.time.delayedCall( 10, function() {
           if ( !this.owner || this.owner.exists === false ) {
             return;
@@ -328,6 +371,7 @@ Phaserfroot.PluginManager.register(
           } else {
             this.owner.body.velocity.x = 80;
           }
+          this.NETWORK_UPDATE_ON_INPUT(  );
         }, null, this );
       }
     }
@@ -357,9 +401,41 @@ Phaserfroot.PluginManager.register(
 
     executeMessagebulletHit () {
       // Executed when the 'bulletHit' is received.
-      if (this.value != this.game.GLOBAL_VARIABLES.myPlayerID) {
+      if (this.value[0] == this.game.GLOBAL_VARIABLES.myPlayerID) {
+        this.playerID_that_shot_me = this.value[1];
         this.get_hurt(  );
       }
+    }
+
+    executeMessagegetPlayerInfo () {
+      // Executed when the 'getPlayerInfo' is received.
+      if (this.playerID != this.game.GLOBAL_VARIABLES.myPlayerID) {
+        this.scene.messageExternal( 'sendToPlayer', [this.playerID, 'getPlayerInfo', this.game.GLOBAL_VARIABLES.myPlayerID, this.owner.x, this.owner.y, this.owner.playing(), this.game.GLOBAL_VARIABLES.hostPlayerID, this.owner.body.velocity.x, this.owner.body.velocity.y, this.owner.scaleX, this.owner.body.acceleration.x, this.owner.body.acceleration.y, this.health, this.game.GLOBAL_VARIABLES.myName, this.kills, this.deaths] );
+      }
+    }
+
+    executeMessageplayerDead () {
+      // Executed when the 'playerDead' is received.
+      this.victim = this.value[0];
+      this.killer = this.value[11];
+      if (this.victim == this.game.GLOBAL_VARIABLES.myPlayerID) {
+        this.deaths = this.deaths + 1;
+        this.scene.messageInstance( this.scoreboard, 'update scoreboard', [this.game.GLOBAL_VARIABLES.myPlayerID, this.game.GLOBAL_VARIABLES.myName, this.kills, this.deaths] );
+      }
+      if (this.killer == this.game.GLOBAL_VARIABLES.myPlayerID) {
+        this.kills = this.kills + 1;
+        this.scene.messageInstance( this.scoreboard, 'update scoreboard', [this.game.GLOBAL_VARIABLES.myPlayerID, this.game.GLOBAL_VARIABLES.myName, this.kills, this.deaths] );
+      }
+    }
+
+    math_random_int ( a, b ) {
+      if ( a > b ) {
+        // Swap a and b to ensure a is smaller.
+        var c = a;
+        a = b;
+        b = c;
+      }
+      return Math.floor( Math.random() * ( b - a + 1 ) + a );
     }
 
     reportError( message ) {
@@ -402,29 +478,18 @@ Phaserfroot.PluginManager.register(
     }
 
     onLevelStart2() {
+      this.deaths = 0;
+      this.kills = 0;
       this.jumpcloud = (this.errorCheckNotNull( this.scene.getChildrenByTag( 'jumpcloud' )[ 0 ], this.owner, "`Get Class Of Instance` block could not find an instance named [scene.getChildrenByTag( _jumpclo].")).name;
-      if ( !this.scene.getChildrenByTag( 'jumpcloud' )[ 0 ] ) {
-        this.reportError( "`Destroy` block could not find the instance [scene.getChildrenByTag( _jumpclo]." );
-        return;
-      }
-      this.scene.getChildrenByTag( 'jumpcloud' )[ 0 ].destroySafe();
       this.explosion = (this.errorCheckNotNull2( this.scene.getChildrenByTag( 'explosion' )[ 0 ], this.owner, "`Get Class Of Instance` block could not find an instance named [scene.getChildrenByTag( _explosi].")).name;
-      if ( !this.scene.getChildrenByTag( 'explosion' )[ 0 ] ) {
-        this.reportError( "`Destroy` block could not find the instance [scene.getChildrenByTag( _explosi]." );
-        return;
-      }
-      this.scene.getChildrenByTag( 'explosion' )[ 0 ].destroySafe();
       this.smoke = (this.errorCheckNotNull3( this.scene.getChildrenByTag( 'smoke' )[ 0 ], this.owner, "`Get Class Of Instance` block could not find an instance named [scene.getChildrenByTag( _smoke_ ].")).name;
-      if ( !this.scene.getChildrenByTag( 'smoke' )[ 0 ] ) {
-        this.reportError( "`Destroy` block could not find the instance [scene.getChildrenByTag( _smoke_ ]." );
-        return;
-      }
-      this.scene.getChildrenByTag( 'smoke' )[ 0 ].destroySafe();
+      this.scoreboard = this.scene.getChildrenByTag( 'scoreboard' )[ 0 ];
       this.scene.components.getByName( "SoundManager" )[ 0 ].playMusic( this.owner.scene.game.cache.audio.get( 'music' ) ? 'music' : null );
-      this.scene.components.getByName( "SoundManager" )[ 0 ].volume = ( 10/ 100 )
       this.bg_colour = this.getBackgroundColour();
       this.create_health_bars(  );
       this.set_up_physics_layers(  );
+      // Tell other players to spawn me in
+      this.scene.messageExternal( 'sendToRoom', [this.game.GLOBAL_VARIABLES.hostRoomName, 'getPlayerInfo', this.game.GLOBAL_VARIABLES.myPlayerID, this.owner.x, this.owner.y, this.owner.playing(), this.game.GLOBAL_VARIABLES.hostPlayerID, this.owner.body.velocity.x, this.owner.body.velocity.y, this.owner.scaleX, this.owner.body.acceleration.x, this.owner.body.acceleration.y, this.health, this.game.GLOBAL_VARIABLES.myName] );
 
     }
 
@@ -560,6 +625,65 @@ Phaserfroot.PluginManager.register(
         return;
       }
       this.health_bar.anchorX = 0;
+      this.checkScene( "Create Text block did not work, likely because the level changed before it was triggered.\n\nSuggestion: check whether the level has changed before running this section of code." );
+      this.player_name_text = this.scene.addText( { x: 0, y: 0, textText: this.game.GLOBAL_VARIABLES.myName } );
+      if ( !this.player_name_text ) {
+        this.reportError( "`Set Text Alignment` block could not find an instance called [player_name_text]." );
+        return;
+      }
+      if ( !this.player_name_text.setAlign ) {
+        this.reportError( "`Set Text Alignment` block could not find text alignment information on an instance called [player_name_text]." );
+        return;
+      }
+      this.player_name_text.setAlign( "center" );
+      if ( this.player_name_text.width === 0 ) {
+        this.player_name_text.width = 1;
+        this.player_name_text.displayOriginX = this.player_name_text.width * 0.5;
+        this.player_name_text.width = 0;
+      } else {
+        this.player_name_text.displayOriginX = this.player_name_text.width * 0.5;
+      }
+      if ( !this.player_name_text ) {
+        this.reportError( "`Set Text Colour` block could not find an instance called [player_name_text]." );
+        return;
+      }
+      if ( !this.player_name_text.setColor ) {
+        this.reportError( "`Set Text Colour` block could not find text color information on an instance called [player_name_text]." );
+        return;
+      }
+      this.player_name_text.setColor( "0xffffff".replace( /^0x/, "#" ) );
+      if ( !this.player_name_text ) {
+        this.reportError( "`Set Text Numeric` block could not find an instance called [player_name_text]." );
+        return;
+      }
+      if ( !this.player_name_text.setFontSize ) {
+        this.reportError( "`Set Text Numeric` block could not find text properties on an instance called [player_name_text]." );
+        return;
+      }
+      this.player_name_text.setFontSize( 24 );
+      if ( !this.player_name_text ) {
+        this.reportError( "`Set Text Family` block could not find an instance called [player_name_text]." );
+        return;
+      }
+      if ( !this.player_name_text.setFontFamily ) {
+        this.reportError( "`Set Text Family` block could not find font information on an instance called [player_name_text]." );
+        return;
+      }
+      this.player_name_text.setFontFamily( "'Arial Black', sans-serif" );
+      if ( !this.player_name_text ) {
+        this.reportError( "`Set Text Weight` block could not find an instance called [player_name_text]." );
+        return;
+      }
+      if ( !this.player_name_text.setFontStyle ) {
+        this.reportError( "`Set Text Weight` block could not find font information on an instance called [player_name_text]." );
+        return;
+      }
+      this.player_name_text.setFontStyle( "bold" );
+      if ( !this.player_name_text ) {
+        this.reportError( "`Change Instance Depth` block could not find the instance [player_name_text]." );
+        return;
+      }
+      this.scene.addChildAfter( this.player_name_text, this.owner );
     }
 
     errorCheckNotNull4( input, backup, message ) {
@@ -618,6 +742,22 @@ Phaserfroot.PluginManager.register(
       return input;
     }
 
+    errorCheckNotNull11( input, backup, message ) {
+      if( !input ) {
+        reportError( message );
+        return backup;
+      }
+      return input;
+    }
+
+    NETWORK_UPDATE_ON_INPUT (  ) {
+      this.scene.messageExternal( 'sendToRoom', [this.game.GLOBAL_VARIABLES.hostRoomName, 'updatePlayer', this.game.GLOBAL_VARIABLES.myPlayerID, this.owner.x, this.owner.y, this.owner.playing(), this.game.GLOBAL_VARIABLES.hostPlayerID, this.owner.body.velocity.x, this.owner.body.velocity.y, this.owner.scaleX, this.owner.body.acceleration.x, this.owner.body.acceleration.y, this.health] );
+    }
+
+    NETWORK_UPDATE_ON_TICK (  ) {
+      this.scene.messageExternal( 'sendToRoom', [this.game.GLOBAL_VARIABLES.hostRoomName, 'tickPlayer', this.game.GLOBAL_VARIABLES.myPlayerID, this.owner.x, this.owner.y, this.owner.playing(), this.game.GLOBAL_VARIABLES.hostPlayerID, this.owner.body.velocity.x, this.owner.body.velocity.y, this.owner.scaleX, this.owner.body.acceleration.x, this.owner.body.acceleration.y, this.health] );
+    }
+
     create_jumpcloud (  ) {
       this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndJump' ) ? 'sndJump' : null );
       var instance = this.scene.addSpriteByName( this.jumpcloud );
@@ -658,9 +798,19 @@ Phaserfroot.PluginManager.register(
         this.executeMessagebulletHit();
       }
 
+      if ( message === 'getPlayerInfo' ) {
+        this.playerID = this.owner.properties.get( "_messaging-value_" );
+        this.executeMessagegetPlayerInfo();
+      }
+
+      if ( message === 'playerDead' ) {
+        this.value = this.owner.properties.get( "_messaging-value_" );
+        this.executeMessageplayerDead();
+      }
+
     }
 
-    errorCheckNotNull11( input, backup, message ) {
+    errorCheckNotNull12( input, backup, message ) {
       if( !input ) {
         reportError( message );
         return backup;
@@ -676,7 +826,7 @@ Phaserfroot.PluginManager.register(
         instance = instance.layer.tilemapLayer;
       }
       this.toucher = instance;
-        if ((this.errorCheckNotNull11( this.toucher, this.owner, "`Instance has Tag` block could not find an instance named [toucher].")).tags.has( 'zombie' )) {
+        if ((this.errorCheckNotNull12( this.toucher, this.owner, "`Instance has Tag` block could not find an instance named [toucher].")).tags.has( 'zombie' )) {
         if (this.able_to_be_hurt) {
           if (( this.owner.body.touching.left || this.owner.body.blocked.left ) || ( this.owner.body.touching.right || this.owner.body.blocked.right )) {
             this.get_hurt(  );
@@ -766,7 +916,7 @@ Phaserfroot.PluginManager.register(
         if ( this.owner.setTint ) {
           this.owner.setTint( "0xff0000" );
         }
-        this.delayed_event8 = this.scene.time.delayedCall( 20, function() {
+        this.delayed_event8 = this.scene.time.delayedCall( 50, function() {
           if ( !this.owner || this.owner.exists === false ) {
             return;
           }
@@ -806,13 +956,10 @@ Phaserfroot.PluginManager.register(
             onComplete: function() {
               this.camera.offsetY = 0;}.bind( this ) } );
           this.scene.broadcast( 'player dead', this.owner );
-          this.owner.playMy( 'dead' );
-          this.owner.playStop();
+          this.owner.playMy( 'dying' );
           this.scene.components.getByName( "SoundManager" )[ 0 ].setPauseMusic( true );
           this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndDeathPlayer' ) ? 'sndDeathPlayer' : null );
-          this.scene.physicsLayersManager.addToLayer( this.owner, 2 );
           this.owner.body.acceleration.x = 0;
-          this.scene.physics.world.gravity.y = 400;
           this.owner.body.velocity.y = (-500);
           if (( this.owner.body.touching.right || this.owner.body.blocked.right )) {
             this.owner.body.velocity.x = (-500);
@@ -820,62 +967,54 @@ Phaserfroot.PluginManager.register(
             this.owner.body.velocity.x = 500;
           }
           this.camera.backgroundColor = Phaser.Display.Color.HexStringToColor( "0xff0000" );
-          this.delayed_event13 = this.scene.time.delayedCall( 100, function() {
+          this.scene.messageExternal( 'sendToRoom', [this.game.GLOBAL_VARIABLES.hostRoomName, 'playerDead', this.game.GLOBAL_VARIABLES.myPlayerID, this.owner.x, this.owner.y, this.owner.playing(), this.game.GLOBAL_VARIABLES.hostPlayerID, this.owner.body.velocity.x, this.owner.body.velocity.y, this.owner.scaleX, this.owner.body.acceleration.x, this.owner.body.acceleration.y, this.health, this.playerID_that_shot_me] );
+          this.delayed_event12 = this.scene.time.delayedCall( 100, function() {
             if ( !this.owner || this.owner.exists === false ) {
               return;
             }
               this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndDeathBass' ) ? 'sndDeathBass' : null );
             this.camera.backgroundColor = Phaser.Display.Color.HexStringToColor( "0x000000" );
-            this.delayed_event12 = this.scene.time.delayedCall( 100, function() {
+            this.delayed_event11 = this.scene.time.delayedCall( 100, function() {
               if ( !this.owner || this.owner.exists === false ) {
                 return;
               }
                 this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndDeathBass' ) ? 'sndDeathBass' : null );
               this.camera.backgroundColor = Phaser.Display.Color.HexStringToColor( "0xff0000" );
-              this.delayed_event11 = this.scene.time.delayedCall( 100, function() {
+              this.delayed_event10 = this.scene.time.delayedCall( 100, function() {
                 if ( !this.owner || this.owner.exists === false ) {
                   return;
                 }
                   this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndDeathBass' ) ? 'sndDeathBass' : null );
                 this.camera.backgroundColor = Phaser.Display.Color.HexStringToColor( "0x000000" );
-                this.delayed_event10 = this.scene.time.delayedCall( 100, function() {
+                this.delayed_event9 = this.scene.time.delayedCall( 100, function() {
                   if ( !this.owner || this.owner.exists === false ) {
                     return;
                   }
                     this.camera.backgroundColor = Phaser.Display.Color.HexStringToColor( "0xff0000" );
                   this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndDeathBass' ) ? 'sndDeathBass' : null );
-                  this.owner.playFrameNext();
-                  this.delayed_event9 = this.scene.time.delayedCall( 500, function() {
-                    if ( !this.owner || this.owner.exists === false ) {
-                      return;
-                    }
-                      this.owner.playFrameNext();
-                  }, null, this );
                 }, null, this );
               }, null, this );
             }, null, this );
           }, null, this );
+          this.delayed_event13 = this.scene.time.delayedCall( 4000, function() {
+            if ( !this.owner || this.owner.exists === false ) {
+              return;
+            }
+              this.respawn(  );
+            this.scene.broadcast( 'player alive', this.owner );
+            this.scene.messageExternal( 'sendToRoom', [this.game.GLOBAL_VARIABLES.hostRoomName, 'playerRespawn', this.game.GLOBAL_VARIABLES.myPlayerID, this.owner.x, this.owner.y, this.owner.playing(), this.game.GLOBAL_VARIABLES.hostPlayerID, this.owner.body.velocity.x, this.owner.body.velocity.y, this.owner.scaleX, this.owner.body.acceleration.x, this.owner.body.acceleration.y, this.health] );
+          }, null, this );
         }
+        this.NETWORK_UPDATE_ON_INPUT(  );
       }
     }
 
-    _dead__22animationrepeat__222 () {
-        this.owner.playFramePrevious();
-      this.owner.playStop();
+    _dying__22animationrepeat__222 () {
+        this.owner.playMy( 'dead' );
 
     }
 
-    math_random_int ( a, b ) {
-      if ( a > b ) {
-        // Swap a and b to ensure a is smaller.
-        var c = a;
-        a = b;
-        b = c;
-      }
-      return Math.floor( Math.random() * ( b - a + 1 ) + a );
-    }
-
-    errorCheckNotNull12( input, backup, message ) {
+    errorCheckNotNull13( input, backup, message ) {
       if( !input ) {
         reportError( message );
         return backup;
@@ -883,7 +1022,7 @@ Phaserfroot.PluginManager.register(
       return input;
     }
 
-    errorCheckNotNull13( input, backup, message ) {
+    errorCheckNotNull14( input, backup, message ) {
       if( !input ) {
         reportError( message );
         return backup;
@@ -901,16 +1040,16 @@ Phaserfroot.PluginManager.register(
           this.reportError( "`Set Instance CenterX` block could not find the instance [instance]." );
           return;
         }
-        instance.x = (this.errorCheckNotNull12( object, this.owner, "`Get Position Center of Instance` block could not find an instance named [object ].")).x + this.math_random_int( -80, 80 );
+        instance.x = (this.errorCheckNotNull13( object, this.owner, "`Get Position Center of Instance` block could not find an instance named [object ].")).x + this.math_random_int( -80, 80 );
         if ( !instance ) {
           this.reportError( "`Set Instance CenterY` block could not find the instance [instance]." );
           return;
         }
-        instance.y = (this.errorCheckNotNull13( object, this.owner, "`Get Position Center of Instance` block could not find an instance named [object ].")).y + this.math_random_int( -80, 80 );
+        instance.y = (this.errorCheckNotNull14( object, this.owner, "`Get Position Center of Instance` block could not find an instance named [object ].")).y + this.math_random_int( -80, 80 );
       }, null, this );
     }
 
-    errorCheckNotNull14( input, backup, message ) {
+    errorCheckNotNull15( input, backup, message ) {
       if( !input ) {
         reportError( message );
         return backup;
@@ -918,7 +1057,7 @@ Phaserfroot.PluginManager.register(
       return input;
     }
 
-    errorCheckNotNull15( input, backup, message ) {
+    errorCheckNotNull16( input, backup, message ) {
       if( !input ) {
         reportError( message );
         return backup;
@@ -936,13 +1075,28 @@ Phaserfroot.PluginManager.register(
           this.reportError( "`Set Instance CenterX` block could not find the instance [instance]." );
           return;
         }
-        instance.x = (this.errorCheckNotNull14( object, this.owner, "`Get Position Center of Instance` block could not find an instance named [object ].")).x + this.math_random_int( -80, 80 );
+        instance.x = (this.errorCheckNotNull15( object, this.owner, "`Get Position Center of Instance` block could not find an instance named [object ].")).x + this.math_random_int( -80, 80 );
         if ( !instance ) {
           this.reportError( "`Set Instance CenterY` block could not find the instance [instance]." );
           return;
         }
-        instance.y = (this.errorCheckNotNull15( object, this.owner, "`Get Position Center of Instance` block could not find an instance named [object ].")).y + this.math_random_int( -80, 80 );
+        instance.y = (this.errorCheckNotNull16( object, this.owner, "`Get Position Center of Instance` block could not find an instance named [object ].")).y + this.math_random_int( -80, 80 );
       }, null, this );
+    }
+
+    respawn (  ) {
+      this.owner.playMy( 'idle' );
+      this.scene.components.getByName( "SoundManager" )[ 0 ].setPauseMusic( false );
+      this.health = 100;
+      this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndNext' ) ? 'sndNext' : null );
+      this.camera.backgroundColor = Phaser.Display.Color.HexStringToColor( this.bg_colour );
+      this.owner.posX = this.math_random_int( 300, 1100 );
+      this.owner.posY = 300;
+      this.owner.body.velocity.y = 0;
+      this.owner.body.velocity.x = 0;
+      this.owner.body.acceleration.x = 0;
+      this.owner.body.acceleration.y = 0;
+      this.NETWORK_UPDATE_ON_INPUT(  );
     }
 
   }

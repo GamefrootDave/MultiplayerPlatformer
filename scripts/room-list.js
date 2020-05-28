@@ -76,7 +76,7 @@ Phaserfroot.PluginManager.register(
       // This tells the server list UI object in this level to add a server to the displayed list of buttons
       this.owner.visible = false;
       this.checkScene( "Create Text block did not work, likely because the level changed before it was triggered.\n\nSuggestion: check whether the level has changed before running this section of code." );
-      this.textfield = this.scene.addText( { x: 0, y: 0, textText: ([this.value[2],' | ',this.value[3],'/2 players | 👉 JOIN 👈'].join('')) } );
+      this.textfield = this.scene.addText( { x: 0, y: 0, textText: ([this.value[2],' | ',this.value[3],' players | 👉 JOIN 👈'].join('')) } );
       if ( !this.textfield ) {
         this.reportError( "`Set Key` block could not find the instance [textfield]." );
         return;

@@ -1,9 +1,9 @@
 Phaserfroot.PluginManager.register(
-  "SoundButton",
-  class SoundButton extends Phaserfroot.Component {
+  "Scoreboard",
+  class Scoreboard extends Phaserfroot.Component {
     constructor( target, instanceProperties ) {
       super( {
-        name: "SoundButton",
+        name: "Scoreboard",
         owner: target,
       } );
       this.instanceProperties = instanceProperties;
@@ -14,12 +14,18 @@ Phaserfroot.PluginManager.register(
 
       // Attach custom event listeners.
       this.owner.on( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
-      this.scene.input.on( "pointerdown", this.onPointerDown2, this );
       this.owner.properties.onUpdate( this.onMessageReceived, this, "_messaging_");
 
 
       // Initialize properties from parameters.
+      this.value = instanceProperties[ "value" ];
+      this.scoreboard = ( typeof instanceProperties[ "scoreboard" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "scoreboard" ], true ) : null;
+      this.player_scores = instanceProperties[ "player scores" ];
       this.font_size = instanceProperties[ "font size" ];
+      this.deaths = instanceProperties[ "deaths" ];
+      this.kills = instanceProperties[ "kills" ];
+      this.playerName = instanceProperties[ "playerName" ];
+      this.thisPlayerID = instanceProperties[ "thisPlayerID" ];
 
 
       // Boot phase.
@@ -49,7 +55,6 @@ Phaserfroot.PluginManager.register(
 
       // Detach custom event listeners.
       this.owner.removeListener( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
-      this.scene.input.off( "pointerdown", this.onPointerDown2, this );
 
     }
 
@@ -58,17 +63,7 @@ Phaserfroot.PluginManager.register(
     onCreate () {
       // Executed when this script is initially created.
       this.font_size = Number.parseInt( /(\d*\.\d*|\d*)/.exec( this.owner.style.fontSize )[ 0 ] );
-      if (this.game.GLOBAL_VARIABLES.sound_is_on == null) {
-        this.game.GLOBAL_VARIABLES.sound_is_on = true;
-        this.owner.components.getByName( "TextAutomation" )[ 0 ].text = 'SOUND ON 🔊';
-        this.scene.components.getByName( "SoundManager" )[ 0 ].volume = ( 10/ 100 )
-      } else if (this.game.GLOBAL_VARIABLES.sound_is_on) {
-        this.owner.components.getByName( "TextAutomation" )[ 0 ].text = 'SOUND ON 🔊';
-        this.scene.components.getByName( "SoundManager" )[ 0 ].volume = ( 10/ 100 )
-      } else {
-        this.owner.components.getByName( "TextAutomation" )[ 0 ].text = 'SOUND OFF 🔈';
-        this.scene.components.getByName( "SoundManager" )[ 0 ].volume = ( 0/ 100 )
-      }
+      this.player_scores = [[this.game.GLOBAL_VARIABLES.myName,': ',0,' kills / ',0,' deaths'].join('')];
     }
 
     EVENTS_POST_UPDATE () {
@@ -86,8 +81,14 @@ Phaserfroot.PluginManager.register(
       this.owner.visible = true;
     }
 
+    executeMessageupdate_scoreboard () {
+      // Executed when the 'update scoreboard' is received.
+      this.owner.components.getByName( "TextAutomation" )[ 0 ].text = ([this.playerName,': ',this.kills,' kills / ',this.deaths,' deaths'].join(''));
+    }
+
     onLevelStart2() {
       this.scene.sys.displayList.bringToTop( this.owner );
+      this.owner.components.getByName( "TextAutomation" )[ 0 ].text = ([this.game.GLOBAL_VARIABLES.myName,': ',0,' kills / ',0,' deaths'].join(''));
 
     }
 
@@ -104,30 +105,11 @@ Phaserfroot.PluginManager.register(
       }
       this.owner.setFontSize( (this.font_size / this.camera.scaleX) );
       var x_offset = 10;
-      var y_offset = 10;
+      var y_offset = 50;
       var x_relative_offset = x_offset + (this.camera.scaleX - 1) * 404;
       var y_relative_offset = y_offset + (this.camera.scaleY - 1) * 216;
       this.owner.posX = this.camera.posX + this.camera.offsetX + x_relative_offset;
       this.owner.posY = this.camera.posY + this.camera.offsetY + y_relative_offset;
-    }
-
-    onPointerDown2 ( pointer ) {
-      if ( !this.owner || !this.owner.exists ) {
-        return;
-      }
-      var point = this.camera.getWorldPoint( pointer.x, pointer.y );
-      if ( this.owner.getBounds().contains( point.x, point.y ) ) {
-      if (this.game.GLOBAL_VARIABLES.sound_is_on) {
-        this.game.GLOBAL_VARIABLES.sound_is_on = false;
-        this.owner.components.getByName( "TextAutomation" )[ 0 ].text = 'SOUND OFF 🔈';
-        this.scene.components.getByName( "SoundManager" )[ 0 ].volume = ( 0/ 100 )
-      } else {
-        this.game.GLOBAL_VARIABLES.sound_is_on = true;
-        this.owner.components.getByName( "TextAutomation" )[ 0 ].text = 'SOUND ON 🔊';
-        this.scene.components.getByName( "SoundManager" )[ 0 ].volume = ( 10/ 100 )
-      }
-
-      }
     }
 
     onMessageReceived ( name, message ) {
@@ -138,6 +120,11 @@ Phaserfroot.PluginManager.register(
 
       if ( message === 'player alive' ) {
         this.executeMessageplayer_alive();
+      }
+
+      if ( message === 'update scoreboard' ) {
+        this.value = this.owner.properties.get( "_messaging-value_" );
+        this.executeMessageupdate_scoreboard();
       }
 
     }

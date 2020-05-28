@@ -13,6 +13,7 @@ Phaserfroot.PluginManager.register(
       this.owner.once( "levelSwitch", this.destroy, this );
 
       // Attach custom event listeners.
+      this.owner.on( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
 
 
       // Initialize properties from parameters.
@@ -42,6 +43,7 @@ Phaserfroot.PluginManager.register(
       this.owner.off( "levelSwitch", this.destroy, this );
 
       // Detach custom event listeners.
+      this.owner.removeListener( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
 
     }
 
@@ -51,6 +53,12 @@ Phaserfroot.PluginManager.register(
       // Executed when this script is initially created.
       this.owner.setPhysics( false );
       this.owner.tags.add( 'muzzleflash' );
+    }
+
+    onLevelStart2() {
+      this.owner.visible = false;
+      this.owner.setPhysics( false );
+
     }
 
   }

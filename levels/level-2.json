@@ -13,8 +13,8 @@
 			"id": 4,
 			"name": "Tile Map",
 			"type": "tilemap",
-			"jsonId": 19,
-			"imageId": 20,
+			"jsonId": 15,
+			"imageId": 16,
 			"x": 0,
 			"y": 0,
 			"components": {
@@ -25,13 +25,13 @@
 		},
 		{
 			"type": "static-image",
-			"x": 76,
-			"y": 632,
-			"id": "152",
+			"x": 303,
+			"y": 288,
+			"id": "1",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 17,
+			"imageId": 13,
 			"anchorPointX": 34.5,
 			"anchorPointY": 36,
 			"components": {
@@ -41,7 +41,7 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							17,
+							13,
 							14
 						],
 						"loop": true,
@@ -50,13 +50,13 @@
 					},
 					"walk": {
 						"cells": [
-							17,
+							13,
 							23,
-							17,
+							13,
 							24,
-							17,
+							13,
 							15,
-							17,
+							13,
 							16
 						],
 						"loop": true,
@@ -65,7 +65,7 @@
 					},
 					"jumpUp": {
 						"cells": [
-							17,
+							13,
 							17
 						],
 						"loop": true,
@@ -74,7 +74,7 @@
 					},
 					"jumpMid": {
 						"cells": [
-							17,
+							13,
 							18
 						],
 						"loop": true,
@@ -83,8 +83,21 @@
 					},
 					"jumpDown": {
 						"cells": [
-							17,
+							13,
 							37
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					},
+					"dying": {
+						"cells": [
+							13,
+							20,
+							13,
+							21,
+							13,
+							22
 						],
 						"loop": true,
 						"play": false,
@@ -92,11 +105,7 @@
 					},
 					"dead": {
 						"cells": [
-							17,
-							20,
-							17,
-							21,
-							17,
+							13,
 							22
 						],
 						"loop": true,
@@ -105,10 +114,10 @@
 					}
 				},
 				"box": {
-					"x": 15,
-					"y": 9,
-					"width": 36,
-					"height": 63
+					"x": 0,
+					"y": 0,
+					"width": 69,
+					"height": 72
 				},
 				"PlayerControls": {
 					"music": 5,
@@ -128,20 +137,27 @@
 					"health bar white": "null",
 					"max health": 0,
 					"I am the host": false,
-					"i": false
+					"playerID": "",
+					"player name text": "undefined",
+					"playerID that shot me": "",
+					"deaths": 0,
+					"killer": "",
+					"kills": 0,
+					"victim": "",
+					"scoreboard": "null"
 				}
 			},
 			"plugins": {}
 		},
 		{
 			"type": "static-image",
-			"x": 72,
-			"y": -19,
-			"id": "153",
+			"x": 224,
+			"y": -121,
+			"id": "2",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 17,
+			"imageId": 13,
 			"anchorPointX": 16.5,
 			"anchorPointY": 7.5,
 			"components": {
@@ -151,7 +167,7 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							17,
+							13,
 							19
 						],
 						"loop": true,
@@ -166,20 +182,17 @@
 					"height": 15
 				},
 				"Gun": {
-					"shoot": 7,
-					"shoot bass": 8,
 					"player": "undefined",
 					"trigger held": false,
 					"player dead": false,
-					"white flash": "null",
-					"i": false
+					"white flash": "null"
 				}
 			},
 			"plugins": {}
 		},
 		{
 			"type": "text",
-			"id": "154",
+			"id": "3",
 			"x": 7,
 			"y": -118,
 			"textColor": "#ffffffff",
@@ -194,7 +207,6 @@
 					"gravity": false
 				},
 				"SoundButton": {
-					"sound on": false,
 					"font size": 0
 				}
 			},
@@ -202,13 +214,13 @@
 		},
 		{
 			"type": "static-image",
-			"x": 813,
-			"y": 638,
-			"id": "155",
+			"x": 729,
+			"y": -139,
+			"id": "4",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 17,
+			"imageId": 13,
 			"anchorPointX": 34.5,
 			"anchorPointY": 36,
 			"components": {
@@ -218,7 +230,7 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							17,
+							13,
 							14
 						],
 						"loop": true,
@@ -227,13 +239,13 @@
 					},
 					"walk": {
 						"cells": [
-							17,
+							13,
 							23,
-							17,
+							13,
 							24,
-							17,
+							13,
 							15,
-							17,
+							13,
 							16
 						],
 						"loop": true,
@@ -242,7 +254,7 @@
 					},
 					"jumpUp": {
 						"cells": [
-							17,
+							13,
 							17
 						],
 						"loop": true,
@@ -251,7 +263,7 @@
 					},
 					"jumpMid": {
 						"cells": [
-							17,
+							13,
 							18
 						],
 						"loop": true,
@@ -260,8 +272,21 @@
 					},
 					"jumpDown": {
 						"cells": [
-							17,
+							13,
 							37
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					},
+					"dying": {
+						"cells": [
+							13,
+							20,
+							13,
+							21,
+							13,
+							22
 						],
 						"loop": true,
 						"play": false,
@@ -269,11 +294,7 @@
 					},
 					"dead": {
 						"cells": [
-							17,
-							20,
-							17,
-							21,
-							17,
+							13,
 							22
 						],
 						"loop": true,
@@ -282,16 +303,101 @@
 					}
 				},
 				"box": {
-					"x": 15,
-					"y": 9,
-					"width": 36,
-					"height": 63
+					"x": 0,
+					"y": 0,
+					"width": 69,
+					"height": 72
 				},
 				"Player2": {
-					"player1list": null,
-					"player2list": null,
 					"toucher": "null",
-					"player 2 gun": "null"
+					"health": 0,
+					"thisPlayerID": "",
+					"max health": 0,
+					"health bar": "undefined",
+					"health bar black": "undefined",
+					"health bar outline": "undefined",
+					"health bar white": "undefined",
+					"player": "undefined",
+					"player name text": "undefined",
+					"playerName": "",
+					"deaths": 0,
+					"kills": 0,
+					"camera text": "null",
+					"scoreboard": "null",
+					"i": false,
+					"killer": "",
+					"victim": ""
+				}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "static-image",
+			"x": 797,
+			"y": -96,
+			"id": "5",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 13,
+			"anchorPointX": 16.5,
+			"anchorPointY": 7.5,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							13,
+							19
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 0,
+					"y": 0,
+					"width": 33,
+					"height": 15
+				},
+				"Player2Gun": {
+					"my player": "undefined",
+					"my player ID": "",
+					"player gun": "undefined",
+					"health": 0,
+					"thisPlayerID": ""
+				}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "text",
+			"id": "6",
+			"x": 13,
+			"y": 19,
+			"textColor": "#ffffffff",
+			"textFontFamily": "'Arial Black', sans-serif",
+			"textLineHeight": 1,
+			"textLineWidth": 512,
+			"textSize": 18,
+			"textText": "JIM 5 kills / 8 deaths\nDAVE 8 kills / 5 deaths",
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"Scoreboard": {
+					"font size": 0,
+					"killer": "",
+					"victim": "",
+					"player scores": null,
+					"deaths": 0,
+					"kills": 0,
+					"playerName": "",
+					"scoreboard": "null",
+					"thisPlayerID": ""
 				}
 			},
 			"plugins": {}
@@ -300,11 +406,11 @@
 			"type": "static-image",
 			"x": 144,
 			"y": -84,
-			"id": "354",
+			"id": "2572",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 17,
+			"imageId": 13,
 			"anchorPointX": 21,
 			"anchorPointY": 21,
 			"components": {
@@ -314,7 +420,7 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							17,
+							13,
 							2
 						],
 						"loop": true,
@@ -336,11 +442,11 @@
 			"type": "static-image",
 			"x": 286,
 			"y": -119,
-			"id": "355",
+			"id": "2573",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 17,
+			"imageId": 13,
 			"anchorPointX": 27,
 			"anchorPointY": 9,
 			"components": {
@@ -350,7 +456,7 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							17,
+							13,
 							4
 						],
 						"loop": true,
@@ -375,11 +481,11 @@
 			"type": "static-image",
 			"x": 264,
 			"y": -92,
-			"id": "356",
+			"id": "2574",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 17,
+			"imageId": 13,
 			"anchorPointX": 6,
 			"anchorPointY": 4.5,
 			"components": {
@@ -389,7 +495,7 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							17,
+							13,
 							0
 						],
 						"loop": true,
@@ -415,11 +521,11 @@
 			"type": "static-image",
 			"x": 300,
 			"y": -139,
-			"id": "357",
+			"id": "2575",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 17,
+			"imageId": 13,
 			"anchorPointX": 19.5,
 			"anchorPointY": 36,
 			"components": {
@@ -429,13 +535,13 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							17,
+							13,
 							8,
-							17,
+							13,
 							11,
-							17,
+							13,
 							10,
-							17,
+							13,
 							9
 						],
 						"loop": true,
@@ -457,11 +563,11 @@
 			"type": "static-image",
 			"x": 13,
 			"y": -87,
-			"id": "358",
+			"id": "2576",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 17,
+			"imageId": 13,
 			"anchorPointX": 24,
 			"anchorPointY": 24,
 			"components": {
@@ -471,7 +577,7 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							17,
+							13,
 							3
 						],
 						"loop": true,
@@ -505,11 +611,11 @@
 			"type": "static-image",
 			"x": 93,
 			"y": -96,
-			"id": "359",
+			"id": "2577",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 17,
+			"imageId": 13,
 			"anchorPointX": 18,
 			"anchorPointY": 24,
 			"components": {
@@ -519,11 +625,11 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							17,
+							13,
 							6,
-							17,
+							13,
 							5,
-							17,
+							13,
 							7
 						],
 						"loop": true,
@@ -545,11 +651,11 @@
 			"type": "static-image",
 			"x": 481,
 			"y": -121,
-			"id": "360",
+			"id": "2578",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 17,
+			"imageId": 13,
 			"anchorPointX": 48,
 			"anchorPointY": 48,
 			"components": {
@@ -559,7 +665,7 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							17,
+							13,
 							12
 						],
 						"loop": true,
@@ -568,7 +674,7 @@
 					},
 					"black": {
 						"cells": [
-							17,
+							13,
 							13
 						],
 						"loop": true,
@@ -590,11 +696,11 @@
 			"type": "static-image",
 			"x": 615,
 			"y": -105,
-			"id": "361",
+			"id": "2579",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 17,
+			"imageId": 13,
 			"anchorPointX": 24,
 			"anchorPointY": 24,
 			"components": {
@@ -604,7 +710,7 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							17,
+							13,
 							3
 						],
 						"loop": true,
@@ -624,9 +730,9 @@
 		},
 		{
 			"type": "text",
-			"id": "362",
-			"x": 6,
-			"y": -213,
+			"id": "2580",
+			"x": 13,
+			"y": -198,
 			"textColor": "#000000ff",
 			"textFontFamily": "Helvetica, Arial, sans-serif",
 			"textLineHeight": 1,
@@ -639,16 +745,17 @@
 				},
 				"HostRoomLogic": {
 					"list of players": null,
-					"rectangle": "null"
+					"camera text": "undefined",
+					"i": false
 				}
 			},
 			"plugins": {}
 		},
 		{
 			"type": "text",
-			"id": "363",
-			"x": 7,
-			"y": -252,
+			"id": "2581",
+			"x": 12,
+			"y": -169,
 			"textColor": "#000000ff",
 			"textFontFamily": "Helvetica, Arial, sans-serif",
 			"textLineHeight": 1,
@@ -659,44 +766,30 @@
 				"arcadephysics": {
 					"gravity": false
 				},
-				"ClientLogic2": {}
+				"ClientLogic2": {
+					"camera text": "undefined"
+				}
 			},
 			"plugins": {}
 		},
 		{
-			"type": "static-image",
-			"x": 824,
-			"y": 603,
-			"id": "364",
-			"scaleX": 1,
-			"scaleY": 1,
-			"rotation": 0,
-			"imageId": 17,
-			"anchorPointX": 16.5,
-			"anchorPointY": 7.5,
+			"type": "text",
+			"id": "2582",
+			"x": 161,
+			"y": -170,
+			"textColor": "#000000ff",
+			"textFontFamily": "Helvetica, Arial, sans-serif",
+			"textLineHeight": 1,
+			"textLineWidth": 206,
+			"textSize": 18,
+			"textText": "Spawn other players",
 			"components": {
 				"arcadephysics": {
 					"gravity": false
 				},
-				"TextureAnimation": {
-					"idle": {
-						"cells": [
-							17,
-							19
-						],
-						"loop": true,
-						"play": true,
-						"speed": 0.1
-					}
-				},
-				"box": {
-					"x": 0,
-					"y": 0,
-					"width": 33,
-					"height": 15
-				},
-				"Player2Gun": {
-					"player 2": "null"
+				"SpawnOtherPlayers": {
+					"list of players": null,
+					"player already exists": false
 				}
 			},
 			"plugins": {}

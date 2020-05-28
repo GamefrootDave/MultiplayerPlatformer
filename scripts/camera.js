@@ -13,22 +13,23 @@ Phaserfroot.PluginManager.register(
       this.owner.once( "levelSwitch", this.destroy, this );
 
       // Attach custom event listeners.
-      this.owner.on( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
       this.owner.properties.onUpdate( this.onMessageReceived, this, "_messaging_");
+      this.owner.on( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
 
 
       // Initialize properties from parameters.
+      this.value = instanceProperties[ "value" ];
       this.text_offset = instanceProperties[ "text offset" ];
       this.text_acceleration = instanceProperties[ "text acceleration" ];
+      this.player = ( typeof instanceProperties[ "player" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "player" ], true ) : null;
+      this.textfield = ( typeof instanceProperties[ "textfield" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "textfield" ], true ) : null;
+      this.fade_rectangle = ( typeof instanceProperties[ "fade rectangle" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "fade rectangle" ], true ) : null;
+      this.bottom_rectangle = ( typeof instanceProperties[ "bottom rectangle" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "bottom rectangle" ], true ) : null;
+      this.top_rectangle = ( typeof instanceProperties[ "top rectangle" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "top rectangle" ], true ) : null;
       this.player_dead = instanceProperties[ "player dead" ];
       this.cinematic_on = instanceProperties[ "cinematic on" ];
       this.fade_in = instanceProperties[ "fade in" ];
       this.fade_out = instanceProperties[ "fade out" ];
-      this.player = ( typeof instanceProperties[ "player" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "player" ], true ) : null;
-      this.top_rectangle = ( typeof instanceProperties[ "top rectangle" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "top rectangle" ], true ) : null;
-      this.bottom_rectangle = ( typeof instanceProperties[ "bottom rectangle" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "bottom rectangle" ], true ) : null;
-      this.textfield = ( typeof instanceProperties[ "textfield" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "textfield" ], true ) : null;
-      this.fade_rectangle = ( typeof instanceProperties[ "fade rectangle" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "fade rectangle" ], true ) : null;
 
 
       // Boot phase.
@@ -57,16 +58,10 @@ Phaserfroot.PluginManager.register(
       this.owner.off( "levelSwitch", this.destroy, this );
 
       // Detach custom event listeners.
+      this.owner.removeListener( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
       if ( this.delayed_event ) this.delayed_event.remove();
       if ( this.delayed_event2 ) this.delayed_event2.remove();
       if ( this.delayed_event3 ) this.delayed_event3.remove();
-      if ( this.delayed_event4 ) this.delayed_event4.remove();
-      if ( this.delayed_event5 ) this.delayed_event5.remove();
-      if ( this.delayed_event6 ) this.delayed_event6.remove();
-      this.owner.removeListener( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
-      if ( this.delayed_event7 ) this.delayed_event7.remove();
-      if ( this.delayed_event8 ) this.delayed_event8.remove();
-      if ( this.delayed_event9 ) this.delayed_event9.remove();
 
     }
 
@@ -74,6 +69,7 @@ Phaserfroot.PluginManager.register(
 
     onCreate () {
       // Executed when this script is initially created.
+      this.owner.tags.add( 'camera text' );
       this.owner.visible = false;
 
       // Set side collisions.
@@ -209,6 +205,18 @@ Phaserfroot.PluginManager.register(
       this.fade_in = true;
     }
 
+    executeMessagecinematicText () {
+      // Executed when the 'cinematicText' is received.
+      if ( !this.textfield ) {
+        this.reportError( "`Set Text on Text` block could not find an instance called [textfield]." );
+        return;
+      }
+      this.textfield.components.getByName( "TextAutomation" )[ 0 ].text = this.value;
+      this.text_offset = 1000;
+      this.text_acceleration = 5;
+      this.cinematic_on = true;
+    }
+
     EVENTS_UPDATE () {
       // Executed every frame.
       if (!this.player_dead) {
@@ -317,7 +325,7 @@ Phaserfroot.PluginManager.register(
           } else if (this.text_offset < 0) {
             this.text_offset = 0;
           }
-          this.delayed_event7 = this.scene.time.delayedCall( 4000, function() {
+          this.delayed_event = this.scene.time.delayedCall( 4000, function() {
             if ( !this.owner || this.owner.exists === false ) {
               return;
             }
@@ -367,23 +375,41 @@ Phaserfroot.PluginManager.register(
         return;
       }
       this.textfield.visible = false;
-      this.delayed_event9 = this.scene.time.delayedCall( 2000, function() {
+      this.delayed_event3 = this.scene.time.delayedCall( 2000, function() {
         if ( !this.owner || this.owner.exists === false ) {
           return;
         }
           this.fade_out = true;
-        this.delayed_event8 = this.scene.time.delayedCall( 2000, function() {
+        this.delayed_event2 = this.scene.time.delayedCall( 2000, function() {
           if ( !this.owner || this.owner.exists === false ) {
             return;
           }
-            if ( 1 <= ( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) && ( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) <= this.game.levelManager.levels.length ) {
-            this.game.levelManager.switchTo( ( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) );
-          } else {
-            ( function() {
-              var message = "`Go to level` block could not go to level number ( this.game.levelManager.levels.indexOf( this.scene ) + 1 ). Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
-              this.game.reportError( message, message, "SCRIPT ERROR" );
-            } ).bind( this )();
+            this.player_dead = false;
+          this.fade_out = false;
+          this.fade_in = false;
+          if ( !this.fade_rectangle ) {
+            this.reportError( "`Set Instance Alpha` block could not find the instance [fade_rectangle]." );
+            return;
           }
+          this.fade_rectangle.alpha = 0;
+          if ( !this.bottom_rectangle ) {
+            this.reportError( "`Set Instance Visibility` block could not find the instance [bottom_rectangle]." );
+            return;
+          }
+          this.bottom_rectangle.visible = true;
+          if ( !this.top_rectangle ) {
+            this.reportError( "`Set Instance Visibility` block could not find the instance [top_rectangle]." );
+            return;
+          }
+          this.top_rectangle.visible = true;
+          if ( !this.textfield ) {
+            this.reportError( "`Set Instance Visibility` block could not find the instance [textfield]." );
+            return;
+          }
+          this.textfield.visible = true;
+          this.camera.scaleX = 1;
+          this.camera.scaleY = this.camera.scaleX;
+          this.camera.centerOn( this.owner.x, this.owner.y );
         }, null, this );
       }, null, this );
     }
@@ -408,68 +434,22 @@ Phaserfroot.PluginManager.register(
       return input;
     }
 
+    onMessageReceived ( name, message ) {
+
+      if ( message === 'cinematicText' ) {
+        this.value = this.owner.properties.get( "_messaging-value_" );
+        this.executeMessagecinematicText();
+      }
+
+      if ( message === 'player dead' ) {
+        this.executeMessageplayer_dead();
+      }
+
+    }
+
     onLevelStart2() {
       this.player = this.scene.getChildrenByTag( 'player' )[ 0 ];
-      this.delayed_event = this.scene.time.delayedCall( 2000, function() {
-        if ( !this.owner || this.owner.exists === false ) {
-          return;
-        }
-          this.text_offset = 1000;
-        this.text_acceleration = 5;
-        this.cinematic_on = true;
-        this.scene.sys.displayList.bringToTop( this.fade_rectangle );
-      }, null, this );
-      this.delayed_event2 = this.scene.time.delayedCall( 15000, function() {
-        if ( !this.owner || this.owner.exists === false ) {
-          return;
-        }
-          if ( !this.textfield ) {
-          this.reportError( "`Set Text on Text` block could not find an instance called [textfield]." );
-          return;
-        }
-        this.textfield.components.getByName( "TextAutomation" )[ 0 ].text = 'DO YOU GOT WHAT IT TAKES?';
-        this.text_offset = 1000;
-        this.text_acceleration = 5;
-        this.cinematic_on = true;
-      }, null, this );
-      this.delayed_event4 = this.scene.time.delayedCall( 30000, function() {
-        if ( !this.owner || this.owner.exists === false ) {
-          return;
-        }
-          if ( !this.textfield ) {
-          this.reportError( "`Set Text on Text` block could not find an instance called [textfield]." );
-          return;
-        }
-        this.textfield.components.getByName( "TextAutomation" )[ 0 ].text = 'YOU\'RE STILL HERE?! TRY BEATING THIS!';
-        this.text_offset = 1000;
-        this.text_acceleration = 5;
-        this.cinematic_on = true;
-        this.delayed_event3 = this.scene.time.delayedCall( 2000, function() {
-          if ( !this.owner || this.owner.exists === false ) {
-            return;
-          }
-            this.scene.broadcast( 'epic wave' );
-        }, null, this );
-      }, null, this );
-      this.delayed_event6 = this.scene.time.delayedCall( 50000, function() {
-        if ( !this.owner || this.owner.exists === false ) {
-          return;
-        }
-          if ( !this.textfield ) {
-          this.reportError( "`Set Text on Text` block could not find an instance called [textfield]." );
-          return;
-        }
-        this.textfield.components.getByName( "TextAutomation" )[ 0 ].text = 'TOUGH GUY, HUH? OKAY THEN. 💀 💀 💀';
-        this.text_offset = 1000;
-        this.text_acceleration = 5;
-        this.cinematic_on = true;
-        this.delayed_event5 = this.scene.time.delayedCall( 2000, function() {
-          if ( !this.owner || this.owner.exists === false ) {
-            return;
-          }
-            this.scene.broadcast( 'unbeatable wave' );
-        }, null, this );
-      }, null, this );
+      this.scene.sys.displayList.bringToTop( this.fade_rectangle );
 
     }
 
@@ -607,14 +587,6 @@ Phaserfroot.PluginManager.register(
         return backup;
       }
       return input;
-    }
-
-    onMessageReceived ( name, message ) {
-
-      if ( message === 'player dead' ) {
-        this.executeMessageplayer_dead();
-      }
-
     }
 
   }
