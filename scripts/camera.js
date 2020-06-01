@@ -223,17 +223,6 @@ Phaserfroot.PluginManager.register(
         this.camera.centerOn( this.owner.x, this.owner.y );
         this.camera.posX = (Math.round(this.camera.posX));
         this.camera.posY = (Math.round(this.camera.posY));
-        if (( this.scene.getKey( 32 ).isDown || this.scene._keys.lastPressed === 32 )) {
-          if (this.camera.scaleX != 1.2) {
-            this.camera.scaleX = (Math.min(Math.max(this.camera.scaleX * 100 + 1, 100), 120) / 100);
-            this.camera.scaleY = this.camera.scaleX;
-          }
-        } else {
-          if (this.camera.scaleX != 1) {
-            this.camera.scaleX = (Math.min(Math.max(this.camera.scaleX * 100 - 1, 100), 120) / 100);
-            this.camera.scaleY = this.camera.scaleX;
-          }
-        }
       } else {
         this.camera.centerOn( (this.errorCheckNotNull2( this.player, this.owner, "A `Center Camera on Instance` block could not find an instance named [player].")).x, (this.errorCheckNotNull2( this.player, this.owner, "A `Center Camera on Instance` block could not find an instance named [player].")).y );
         this.camera.scaleX = (Math.min(Math.max(this.camera.scaleX * 100 + 0.5, 100), 300) / 100);

@@ -48,6 +48,13 @@ Phaserfroot.PluginManager.register(
       this.explosion = instanceProperties[ "explosion" ];
       this.smoke = instanceProperties[ "smoke" ];
       this.bg_colour = instanceProperties[ "bg colour" ];
+      this.toucher = ( typeof instanceProperties[ "toucher" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "toucher" ], true ) : null;
+      this.health_bar_outline = ( typeof instanceProperties[ "health bar outline" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "health bar outline" ], true ) : null;
+      this.player_name_text = ( typeof instanceProperties[ "player name text" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "player name text" ], true ) : null;
+      this.health_bar_white = ( typeof instanceProperties[ "health bar white" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "health bar white" ], true ) : null;
+      this.health_bar = ( typeof instanceProperties[ "health bar" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "health bar" ], true ) : null;
+      this.health_bar_black = ( typeof instanceProperties[ "health bar black" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "health bar black" ], true ) : null;
+      this.scoreboard = ( typeof instanceProperties[ "scoreboard" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "scoreboard" ], true ) : null;
       this.jump = instanceProperties[ "jump" ];
       this.music = instanceProperties[ "music" ];
       this.deaths = instanceProperties[ "deaths" ];
@@ -55,13 +62,6 @@ Phaserfroot.PluginManager.register(
       this.health = instanceProperties[ "health" ];
       this.air_time = instanceProperties[ "air time" ];
       this.max_health = instanceProperties[ "max health" ];
-      this.toucher = ( typeof instanceProperties[ "toucher" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "toucher" ], true ) : null;
-      this.health_bar_outline = ( typeof instanceProperties[ "health bar outline" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "health bar outline" ], true ) : null;
-      this.health_bar_white = ( typeof instanceProperties[ "health bar white" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "health bar white" ], true ) : null;
-      this.health_bar_black = ( typeof instanceProperties[ "health bar black" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "health bar black" ], true ) : null;
-      this.scoreboard = ( typeof instanceProperties[ "scoreboard" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "scoreboard" ], true ) : null;
-      this.health_bar = ( typeof instanceProperties[ "health bar" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "health bar" ], true ) : null;
-      this.player_name_text = ( typeof instanceProperties[ "player name text" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "player name text" ], true ) : null;
       this.able_to_be_hurt = instanceProperties[ "able to be hurt" ];
       this.able_to_jump = instanceProperties[ "able to jump" ];
       this.I_am_the_host = instanceProperties[ "I am the host" ];
@@ -896,7 +896,7 @@ Phaserfroot.PluginManager.register(
 
     get_hurt (  ) {
       if (this.health > 0) {
-        this.health = this.health - 10;
+        this.health = this.health - 2;
         this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndDeathBass' ) ? 'sndDeathBass' : null );
         var tracker2 = { k: 60 };
         var base2 = this.camera.offsetX;
@@ -968,6 +968,31 @@ Phaserfroot.PluginManager.register(
           }
           this.camera.backgroundColor = Phaser.Display.Color.HexStringToColor( "0xff0000" );
           this.scene.messageExternal( 'sendToRoom', [this.game.GLOBAL_VARIABLES.hostRoomName, 'playerDead', this.game.GLOBAL_VARIABLES.myPlayerID, this.owner.x, this.owner.y, this.owner.playing(), this.game.GLOBAL_VARIABLES.hostPlayerID, this.owner.body.velocity.x, this.owner.body.velocity.y, this.owner.scaleX, this.owner.body.acceleration.x, this.owner.body.acceleration.y, this.health, this.playerID_that_shot_me] );
+          if ( !this.player_name_text ) {
+            this.reportError( "`Set Instance Visibility` block could not find the instance [player_name_text]." );
+            return;
+          }
+          this.player_name_text.visible = false;
+          if ( !this.health_bar ) {
+            this.reportError( "`Set Instance Visibility` block could not find the instance [health_bar]." );
+            return;
+          }
+          this.health_bar.visible = false;
+          if ( !this.health_bar_black ) {
+            this.reportError( "`Set Instance Visibility` block could not find the instance [health_bar_black]." );
+            return;
+          }
+          this.health_bar_black.visible = false;
+          if ( !this.health_bar_outline ) {
+            this.reportError( "`Set Instance Visibility` block could not find the instance [health_bar_outline]." );
+            return;
+          }
+          this.health_bar_outline.visible = false;
+          if ( !this.health_bar_white ) {
+            this.reportError( "`Set Instance Visibility` block could not find the instance [health_bar_white]." );
+            return;
+          }
+          this.health_bar_white.visible = false;
           this.delayed_event12 = this.scene.time.delayedCall( 100, function() {
             if ( !this.owner || this.owner.exists === false ) {
               return;
@@ -1085,6 +1110,31 @@ Phaserfroot.PluginManager.register(
     }
 
     respawn (  ) {
+      if ( !this.player_name_text ) {
+        this.reportError( "`Set Instance Visibility` block could not find the instance [player_name_text]." );
+        return;
+      }
+      this.player_name_text.visible = true;
+      if ( !this.health_bar ) {
+        this.reportError( "`Set Instance Visibility` block could not find the instance [health_bar]." );
+        return;
+      }
+      this.health_bar.visible = true;
+      if ( !this.health_bar_black ) {
+        this.reportError( "`Set Instance Visibility` block could not find the instance [health_bar_black]." );
+        return;
+      }
+      this.health_bar_black.visible = true;
+      if ( !this.health_bar_outline ) {
+        this.reportError( "`Set Instance Visibility` block could not find the instance [health_bar_outline]." );
+        return;
+      }
+      this.health_bar_outline.visible = true;
+      if ( !this.health_bar_white ) {
+        this.reportError( "`Set Instance Visibility` block could not find the instance [health_bar_white]." );
+        return;
+      }
+      this.health_bar_white.visible = true;
       this.owner.playMy( 'idle' );
       this.scene.components.getByName( "SoundManager" )[ 0 ].setPauseMusic( false );
       this.health = 100;

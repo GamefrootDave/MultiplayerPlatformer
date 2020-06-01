@@ -49,8 +49,9 @@
 				"RoomList": {
 					"music": 1,
 					"click sound effect": 2,
-					"server list button": "undefined",
-					"textfield": "undefined"
+					"list of room buttons": null,
+					"server list button": "null",
+					"textfield": "null"
 				}
 			},
 			"plugins": {}
@@ -74,7 +75,7 @@
 				},
 				"HostButton": {
 					"click sound effect": 3,
-					"rectangle": "undefined"
+					"rectangle": "null"
 				}
 			},
 			"plugins": {}

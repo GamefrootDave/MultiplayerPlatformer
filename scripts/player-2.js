@@ -247,6 +247,31 @@ Phaserfroot.PluginManager.register(
         this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndDeathBass' ) ? 'sndDeathBass' : null );
         this.scene.physicsLayersManager.addToLayer( this.owner, 4 );
         this.owner.playMy( 'dead' );
+        if ( !this.player_name_text ) {
+          this.reportError( "`Set Instance Visibility` block could not find the instance [player_name_text]." );
+          return;
+        }
+        this.player_name_text.visible = false;
+        if ( !this.health_bar ) {
+          this.reportError( "`Set Instance Visibility` block could not find the instance [health_bar]." );
+          return;
+        }
+        this.health_bar.visible = false;
+        if ( !this.health_bar_black ) {
+          this.reportError( "`Set Instance Visibility` block could not find the instance [health_bar_black]." );
+          return;
+        }
+        this.health_bar_black.visible = false;
+        if ( !this.health_bar_outline ) {
+          this.reportError( "`Set Instance Visibility` block could not find the instance [health_bar_outline]." );
+          return;
+        }
+        this.health_bar_outline.visible = false;
+        if ( !this.health_bar_white ) {
+          this.reportError( "`Set Instance Visibility` block could not find the instance [health_bar_white]." );
+          return;
+        }
+        this.health_bar_white.visible = false;
       }
     }
 
@@ -264,6 +289,31 @@ Phaserfroot.PluginManager.register(
         this.owner.scaleX = this.value[7];
         this.owner.body.acceleration.x = (this.value[8]);
         this.owner.body.acceleration.y = (this.value[9]);
+        if ( !this.player_name_text ) {
+          this.reportError( "`Set Instance Visibility` block could not find the instance [player_name_text]." );
+          return;
+        }
+        this.player_name_text.visible = true;
+        if ( !this.health_bar ) {
+          this.reportError( "`Set Instance Visibility` block could not find the instance [health_bar]." );
+          return;
+        }
+        this.health_bar.visible = true;
+        if ( !this.health_bar_black ) {
+          this.reportError( "`Set Instance Visibility` block could not find the instance [health_bar_black]." );
+          return;
+        }
+        this.health_bar_black.visible = true;
+        if ( !this.health_bar_outline ) {
+          this.reportError( "`Set Instance Visibility` block could not find the instance [health_bar_outline]." );
+          return;
+        }
+        this.health_bar_outline.visible = true;
+        if ( !this.health_bar_white ) {
+          this.reportError( "`Set Instance Visibility` block could not find the instance [health_bar_white]." );
+          return;
+        }
+        this.health_bar_white.visible = true;
       }
     }
 
