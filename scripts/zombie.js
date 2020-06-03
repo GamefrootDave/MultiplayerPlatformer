@@ -77,7 +77,7 @@ Phaserfroot.PluginManager.register(
       this.owner.body.maxVelocity.x = (this.math_random_int( 180, 280 ));
       // zombies are physics layer 3
       this.scene.physicsLayersManager.addToLayer( this.owner, 3 );
-      this.health = this.math_random_int( 40, 80 );
+      this.health = this.math_random_int( 5, 20 );
       this.owner.body.bounce.set( (this.math_random_int( 20, 50 ) / 100) );
       this.fading = false;
       if (this.math_random_int( 1, 2 ) > 1) {

@@ -13,8 +13,8 @@
 			"id": 5,
 			"name": "Tile Map1",
 			"type": "tilemap",
-			"jsonId": 15,
-			"imageId": 16,
+			"jsonId": 13,
+			"imageId": 14,
 			"x": 0,
 			"y": 0,
 			"components": {
@@ -503,7 +503,6 @@
 					"health": 0,
 					"fading": false,
 					"acceleration direction": 0,
-					"i": false,
 					"able to be hurt": false
 				}
 			},

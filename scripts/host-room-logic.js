@@ -74,7 +74,7 @@ Phaserfroot.PluginManager.register(
         var targetPlayerName = this.value[0];
         var targetPlayerID = this.value[1];
         this.scene.messageInstance( this.camera_text, 'cinematicText', (String(targetPlayerName) + ' joined the game!') );
-        this.scene.messageExternal( 'sendToPlayer', [targetPlayerID, 'addPlayerToRoom', this.game.GLOBAL_VARIABLES.myPlayerID, this.game.GLOBAL_VARIABLES.myRoomName] );
+        this.scene.messageExternal( 'sendToPlayer', [targetPlayerID, 'addPlayerToRoom', this.game.GLOBAL_VARIABLES.myPlayerID, this.game.GLOBAL_VARIABLES.myRoomName, this.game.GLOBAL_VARIABLES.levelName] );
         if ( !this.list_of_players ) {
           this.reportError( "`Add to List` block could not find a list called [list_of_players]." );
           return;

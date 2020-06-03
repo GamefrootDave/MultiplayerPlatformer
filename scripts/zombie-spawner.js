@@ -40,8 +40,8 @@ Phaserfroot.PluginManager.register(
 
       // Initialize properties from parameters.
       this.zombie = instanceProperties[ "zombie" ];
-      this.player = ( typeof instanceProperties[ "player" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "player" ], true ) : null;
       this.number_of_zombies_to_spawn = instanceProperties[ "number of zombies to spawn" ];
+      this.player = ( typeof instanceProperties[ "player" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "player" ], true ) : null;
 
 
       // Boot phase.
@@ -131,39 +131,43 @@ Phaserfroot.PluginManager.register(
     }
 
     onLevelStart2() {
-      this.zombie = (this.errorCheckNotNull( this.scene.getChildrenByTag( 'zombie' )[ 0 ], this.owner, "`Get Class Of Instance` block could not find an instance named [scene.getChildrenByTag( _zombie_].")).name;
-      if ( !this.scene.getChildrenByTag( 'zombie' )[ 0 ] ) {
-        this.reportError( "`Destroy` block could not find the instance [scene.getChildrenByTag( _zombie_]." );
-        return;
-      }
-      this.scene.getChildrenByTag( 'zombie' )[ 0 ].destroySafe();
-      this.player = this.scene.getChildrenByTag( 'player' )[ 0 ];
-      this.number_of_zombies_to_spawn = 1;
-      if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) != 4) {
-        this.delayed_event = this.scene.time.delayedCall( 2000, function() {
-          if ( !this.owner || this.owner.exists === false ) {
-            return;
-          }
-            for (var count = 0; count < 8; count++) {
-            this.create_zombie(  );
-          }
-        }, null, this );
-        this.delayed_event2 = this.scene.time.delayedCall( 15000, function() {
-          if ( !this.owner || this.owner.exists === false ) {
-            return;
-          }
-            for (var count2 = 0; count2 < 20; count2++) {
-            this.create_zombie(  );
-          }
-        }, null, this );
-        this.delayed_event3 = this.scene.time.delayedCall( 30000, function() {
-          if ( !this.owner || this.owner.exists === false ) {
-            return;
-          }
-            for (var count3 = 0; count3 < 50; count3++) {
-            this.create_zombie(  );
-          }
-        }, null, this );
+      if (this.game.GLOBAL_VARIABLES.hostPlayerID == this.game.GLOBAL_VARIABLES.myPlayerID) {
+        this.zombie = (this.errorCheckNotNull( this.scene.getChildrenByTag( 'zombie' )[ 0 ], this.owner, "`Get Class Of Instance` block could not find an instance named [scene.getChildrenByTag( _zombie_].")).name;
+        if ( !this.scene.getChildrenByTag( 'zombie' )[ 0 ] ) {
+          this.reportError( "`Destroy` block could not find the instance [scene.getChildrenByTag( _zombie_]." );
+          return;
+        }
+        this.scene.getChildrenByTag( 'zombie' )[ 0 ].destroySafe();
+        this.player = this.scene.getChildrenByTag( 'player' )[ 0 ];
+        this.number_of_zombies_to_spawn = 1;
+        if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) != 4) {
+          this.delayed_event = this.scene.time.delayedCall( 2000, function() {
+            if ( !this.owner || this.owner.exists === false ) {
+              return;
+            }
+              for (var count = 0; count < 8; count++) {
+              this.create_zombie(  );
+            }
+          }, null, this );
+          this.delayed_event2 = this.scene.time.delayedCall( 15000, function() {
+            if ( !this.owner || this.owner.exists === false ) {
+              return;
+            }
+              for (var count2 = 0; count2 < 20; count2++) {
+              this.create_zombie(  );
+            }
+          }, null, this );
+          this.delayed_event3 = this.scene.time.delayedCall( 30000, function() {
+            if ( !this.owner || this.owner.exists === false ) {
+              return;
+            }
+              for (var count3 = 0; count3 < 50; count3++) {
+              this.create_zombie(  );
+            }
+          }, null, this );
+        }
+      } else {
+        this.owner.destroySafe();
       }
 
     }

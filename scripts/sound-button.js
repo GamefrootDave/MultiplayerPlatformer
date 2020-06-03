@@ -136,7 +136,7 @@ Phaserfroot.PluginManager.register(
 
     onStageTouch2 ( pointer ) {
       var pointer = pointer;
-      if (this.instContains( this.owner, (this.errorCheckNotNull( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).x, (this.errorCheckNotNull2( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).y )) {
+      if (this.instContains( this.owner, ((this.errorCheckNotNull( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).x + this.camera.posX), ((this.errorCheckNotNull2( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).y + this.camera.posY) )) {
         if (this.game.GLOBAL_VARIABLES.sound_is_on) {
           this.game.GLOBAL_VARIABLES.sound_is_on = false;
           this.owner.components.getByName( "TextAutomation" )[ 0 ].text = 'SOUND OFF 🔈';

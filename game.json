@@ -110,12 +110,12 @@
 		{
 			"id": 13,
 			"type": "json",
-			"url": "assets/Tile Map-map.json"
+			"url": "assets/Tile Map1-map.json"
 		},
 		{
 			"id": 14,
 			"type": "spritesheet",
-			"url": "assets/Tile Map-1.png",
+			"url": "assets/Tile Map1-1.png",
 			"frameWidth": 48,
 			"frameHeight": 48,
 			"sheetOffsetX": 4,
@@ -128,12 +128,12 @@
 		{
 			"id": 15,
 			"type": "json",
-			"url": "assets/Tile Map1-map.json"
+			"url": "assets/Tile Map-map.json"
 		},
 		{
 			"id": 16,
 			"type": "spritesheet",
-			"url": "assets/Tile Map1-1.png",
+			"url": "assets/Tile Map-1.png",
 			"frameWidth": 48,
 			"frameHeight": 48,
 			"sheetOffsetX": 4,

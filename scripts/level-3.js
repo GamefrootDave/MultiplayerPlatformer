@@ -83,7 +83,7 @@ Phaserfroot.PluginManager.register(
       if (this.instContains( this.owner, (this.errorCheckNotNull( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).x, (this.errorCheckNotNull2( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).y )) {
         this.owner.alpha = 0.2;
         this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndNext' ) ? 'sndNext' : null );
-        this.game.GLOBAL_VARIABLES.levelName = 'Level3';
+        this.game.GLOBAL_VARIABLES.levelName = 'Level 3';
         this.delayed_event = this.scene.time.delayedCall( 200, function() {
           if ( !this.owner || this.owner.exists === false ) {
             return;

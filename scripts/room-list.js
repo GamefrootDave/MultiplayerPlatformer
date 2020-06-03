@@ -184,14 +184,35 @@ Phaserfroot.PluginManager.register(
       // Executed when the 'addPlayerToRoom' is received.
       this.game.GLOBAL_VARIABLES.hostPlayerID = this.value[0];
       this.game.GLOBAL_VARIABLES.hostRoomName = this.value[1];
+      this.game.GLOBAL_VARIABLES.levelName = this.value[2];
       this.scene.messageExternal( 'joinRoom', this.game.GLOBAL_VARIABLES.hostRoomName );
-      if ( 1 <= ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ) && ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ) <= this.game.levelManager.levels.length ) {
-        this.game.levelManager.switchTo( ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ) );
-      } else {
-        ( function() {
-          var message = "`Go to level` block could not go to level number ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ). Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
-          this.game.reportError( message, message, "SCRIPT ERROR" );
-        } ).bind( this )();
+      if (this.game.GLOBAL_VARIABLES.levelName == 'Level 1') {
+        if ( 1 <= 3 && 3 <= this.game.levelManager.levels.length ) {
+          this.game.levelManager.switchTo( 3 );
+        } else {
+          ( function() {
+            var message = "`Go to level` block could not go to level number 3. Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
+            this.game.reportError( message, message, "SCRIPT ERROR" );
+          } ).bind( this )();
+        }
+      } else if (this.game.GLOBAL_VARIABLES.levelName == 'Level 2') {
+        if ( 1 <= 4 && 4 <= this.game.levelManager.levels.length ) {
+          this.game.levelManager.switchTo( 4 );
+        } else {
+          ( function() {
+            var message = "`Go to level` block could not go to level number 4. Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
+            this.game.reportError( message, message, "SCRIPT ERROR" );
+          } ).bind( this )();
+        }
+      } else if (this.game.GLOBAL_VARIABLES.levelName == 'Level 3') {
+        if ( 1 <= 5 && 5 <= this.game.levelManager.levels.length ) {
+          this.game.levelManager.switchTo( 5 );
+        } else {
+          ( function() {
+            var message = "`Go to level` block could not go to level number 5. Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
+            this.game.reportError( message, message, "SCRIPT ERROR" );
+          } ).bind( this )();
+        }
       }
     }
 

@@ -139,7 +139,7 @@ Phaserfroot.PluginManager.register(
       this.owner.body.maxVelocity.x = 300;
       this.air_time = 0;
       this.able_to_jump = true;
-      this.health = 100;
+      this.health = 60;
       this.able_to_be_hurt = true;
       this.max_health = this.health;
       if (this.game.GLOBAL_VARIABLES.hostPlayerID == this.game.GLOBAL_VARIABLES.myPlayerID) {
@@ -271,8 +271,14 @@ Phaserfroot.PluginManager.register(
 
     onKeyInput68 () {
       if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
-        this.owner.scaleX = 1;
-        this.owner.body.acceleration.x = 1000;
+        if (( this.scene.getKey( 32 ).isDown || this.scene._keys.lastPressed === 32 ) && this.owner.scaleX < 0) {
+          this.owner.body.acceleration.x = 1000;
+        } else if (( this.scene.getKey( 32 ).isDown || this.scene._keys.lastPressed === 32 ) && this.owner.scaleX > 0) {
+          this.owner.body.acceleration.x = 0;
+        } else {
+          this.owner.scaleX = 1;
+          this.owner.body.acceleration.x = 1000;
+        }
         this.NETWORK_UPDATE_ON_INPUT(  );
       }
     }
@@ -282,7 +288,6 @@ Phaserfroot.PluginManager.register(
         if (!( this.scene.getKey( 65 ).isDown || this.scene._keys.lastPressed === 65 )) {
           this.owner.body.acceleration.x = 0;
         } else {
-          this.owner.scaleX = -1;
           this.owner.body.acceleration.x = (-1000);
         }
         this.NETWORK_UPDATE_ON_INPUT(  );
@@ -291,8 +296,14 @@ Phaserfroot.PluginManager.register(
 
     onKeyInput65 () {
       if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
-        this.owner.scaleX = -1;
-        this.owner.body.acceleration.x = (-1000);
+        if (( this.scene.getKey( 32 ).isDown || this.scene._keys.lastPressed === 32 ) && this.owner.scaleX > 0) {
+          this.owner.body.acceleration.x = (-1000);
+        } else if (( this.scene.getKey( 32 ).isDown || this.scene._keys.lastPressed === 32 ) && this.owner.scaleX < 0) {
+          this.owner.body.acceleration.x = 0;
+        } else {
+          this.owner.scaleX = -1;
+          this.owner.body.acceleration.x = (-1000);
+        }
         this.NETWORK_UPDATE_ON_INPUT(  );
       }
     }
@@ -302,7 +313,6 @@ Phaserfroot.PluginManager.register(
         if (!( this.scene.getKey( 68 ).isDown || this.scene._keys.lastPressed === 68 )) {
           this.owner.body.acceleration.x = 0;
         } else {
-          this.owner.scaleX = 1;
           this.owner.body.acceleration.x = 1000;
         }
         this.NETWORK_UPDATE_ON_INPUT(  );
@@ -310,52 +320,28 @@ Phaserfroot.PluginManager.register(
     }
 
     onKeyInput38 () {
-      if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
-        if (( this.owner.body.touching.down || this.owner.body.blocked.down )) {
-          this.owner.body.velocity.y = (-850);
-          this.NETWORK_UPDATE_ON_INPUT(  );
-        }
-      }
+      this.scene.getKey( 87 )._key.onDown(
+        new KeyboardEvent( "onup", { code: 87 } ) );
     }
 
     onKeyInput39 () {
-      if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
-        this.owner.scaleX = 1;
-        this.owner.body.acceleration.x = 1000;
-        this.NETWORK_UPDATE_ON_INPUT(  );
-      }
+      this.scene.getKey( 68 )._key.onDown(
+        new KeyboardEvent( "onup", { code: 68 } ) );
     }
 
     onKeyInput392 () {
-      if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
-        if (!( this.scene.getKey( 37 ).isDown || this.scene._keys.lastPressed === 37 )) {
-          this.owner.body.acceleration.x = 0;
-        } else {
-          this.owner.scaleX = -1;
-          this.owner.body.acceleration.x = (-1000);
-        }
-        this.NETWORK_UPDATE_ON_INPUT(  );
-      }
+      this.scene.getKey( 68 )._key.onUp(
+        new KeyboardEvent( "onup", { code: 68 } ) );
     }
 
     onKeyInput37 () {
-      if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
-        this.owner.scaleX = -1;
-        this.owner.body.acceleration.x = (-1000);
-        this.NETWORK_UPDATE_ON_INPUT(  );
-      }
+      this.scene.getKey( 65 )._key.onDown(
+        new KeyboardEvent( "onup", { code: 65 } ) );
     }
 
     onKeyInput372 () {
-      if (!(this.owner.playing() == 'dying') && !(this.owner.playing() == 'dead')) {
-        if (!( this.scene.getKey( 39 ).isDown || this.scene._keys.lastPressed === 39 )) {
-          this.owner.body.acceleration.x = 0;
-        } else {
-          this.owner.scaleX = 1;
-          this.owner.body.acceleration.x = 1000;
-        }
-        this.NETWORK_UPDATE_ON_INPUT(  );
-      }
+      this.scene.getKey( 65 )._key.onUp(
+        new KeyboardEvent( "onup", { code: 65 } ) );
     }
 
     executeMessagerecoil () {
@@ -366,9 +352,9 @@ Phaserfroot.PluginManager.register(
             return;
           }
             if (this.owner.scaleX > 0) {
-            this.owner.body.velocity.x = (-80);
+            this.owner.body.velocity.x = (this.owner.body.velocity.x - 20);
           } else {
-            this.owner.body.velocity.x = 80;
+            this.owner.body.velocity.x = (this.owner.body.velocity.x + 20);
           }
           this.NETWORK_UPDATE_ON_INPUT(  );
         }, null, this );
@@ -943,7 +929,7 @@ Phaserfroot.PluginManager.register(
 
     get_hurt (  ) {
       if (this.health > 0) {
-        this.health = this.health - 2;
+        this.health = this.health - 4;
         this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndDeathBass' ) ? 'sndDeathBass' : null );
         var tracker2 = { k: 60 };
         var base2 = this.camera.offsetX;
@@ -1184,7 +1170,7 @@ Phaserfroot.PluginManager.register(
       this.health_bar_white.visible = true;
       this.owner.playMy( 'idle' );
       this.scene.components.getByName( "SoundManager" )[ 0 ].setPauseMusic( false );
-      this.health = 100;
+      this.health = this.max_health;
       this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndNext' ) ? 'sndNext' : null );
       this.camera.backgroundColor = Phaser.Display.Color.HexStringToColor( this.bg_colour );
       this.position_me(  );
@@ -1193,6 +1179,9 @@ Phaserfroot.PluginManager.register(
       this.owner.body.acceleration.x = 0;
       this.owner.body.acceleration.y = 0;
       this.NETWORK_UPDATE_ON_INPUT(  );
+      this.scene.getChildrenByTag( 'zombie' ).forEach( ( function ( child ) {
+        this.scene.messageInstance( child, 'destroy zombie' );
+      } ).bind( this ) );
     }
 
   }

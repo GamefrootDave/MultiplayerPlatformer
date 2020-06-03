@@ -503,7 +503,6 @@
 					"health": 0,
 					"fading": false,
 					"acceleration direction": 0,
-					"i": false,
 					"able to be hurt": false
 				}
 			},
