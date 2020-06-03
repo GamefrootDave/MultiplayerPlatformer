@@ -215,7 +215,7 @@ Phaserfroot.PluginManager.register(
             this.reportError( "`Set Instance Y` block could not find the instance [instance]." );
             return;
           }
-          instance.posY = 50;
+          instance.posY = -50;
         } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 5) {
           if ( !instance ) {
             this.reportError( "`Set Instance X` block could not find the instance [instance]." );

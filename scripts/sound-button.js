@@ -14,7 +14,7 @@ Phaserfroot.PluginManager.register(
 
       // Attach custom event listeners.
       this.owner.on( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
-      this.scene.input.on( "pointerdown", this.onPointerDown2, this );
+      this.scene.input.on( "pointerdown", this.onStageTouch2, this );
       this.owner.properties.onUpdate( this.onMessageReceived, this, "_messaging_");
 
 
@@ -49,7 +49,7 @@ Phaserfroot.PluginManager.register(
 
       // Detach custom event listeners.
       this.owner.removeListener( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
-      this.scene.input.off( "pointerdown", this.onPointerDown2, this );
+      this.scene.input.off( "pointerdown", this.onStageTouch2, this );
 
     }
 
@@ -88,6 +88,7 @@ Phaserfroot.PluginManager.register(
 
     onLevelStart2() {
       this.scene.sys.displayList.bringToTop( this.owner );
+      this.scene.components.getByName( "SoundManager" )[ 0 ].playMusic( this.owner.scene.game.cache.audio.get( 'music' ) ? 'music' : null );
 
     }
 
@@ -111,23 +112,42 @@ Phaserfroot.PluginManager.register(
       this.owner.posY = this.camera.posY + this.camera.offsetY + y_relative_offset;
     }
 
-    onPointerDown2 ( pointer ) {
-      if ( !this.owner || !this.owner.exists ) {
-        return;
+    errorCheckNotNull( input, backup, message ) {
+      if( !input ) {
+        reportError( message );
+        return backup;
       }
-      var point = this.camera.getWorldPoint( pointer.x, pointer.y );
-      if ( this.owner.getBounds().contains( point.x, point.y ) ) {
-      if (this.game.GLOBAL_VARIABLES.sound_is_on) {
-        this.game.GLOBAL_VARIABLES.sound_is_on = false;
-        this.owner.components.getByName( "TextAutomation" )[ 0 ].text = 'SOUND OFF 🔈';
-        this.scene.components.getByName( "SoundManager" )[ 0 ].volume = ( 0/ 100 )
-      } else {
-        this.game.GLOBAL_VARIABLES.sound_is_on = true;
-        this.owner.components.getByName( "TextAutomation" )[ 0 ].text = 'SOUND ON 🔊';
-        this.scene.components.getByName( "SoundManager" )[ 0 ].volume = ( 10/ 100 )
+      return input;
+    }
+
+    errorCheckNotNull2( input, backup, message ) {
+      if( !input ) {
+        reportError( message );
+        return backup;
+      }
+      return input;
+    }
+
+    instContains ( ins, x, y ) {
+      if ( !ins || !ins.getHitbox ) return false;
+      var hitbox = ins.getHitbox();
+      return hitbox.contains( x, y );
+    }
+
+    onStageTouch2 ( pointer ) {
+      var pointer = pointer;
+      if (this.instContains( this.owner, (this.errorCheckNotNull( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).x, (this.errorCheckNotNull2( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).y )) {
+        if (this.game.GLOBAL_VARIABLES.sound_is_on) {
+          this.game.GLOBAL_VARIABLES.sound_is_on = false;
+          this.owner.components.getByName( "TextAutomation" )[ 0 ].text = 'SOUND OFF 🔈';
+          this.scene.components.getByName( "SoundManager" )[ 0 ].volume = ( 0/ 100 )
+        } else {
+          this.game.GLOBAL_VARIABLES.sound_is_on = true;
+          this.owner.components.getByName( "TextAutomation" )[ 0 ].text = 'SOUND ON 🔊';
+          this.scene.components.getByName( "SoundManager" )[ 0 ].volume = ( 10/ 100 )
+        }
       }
 
-      }
     }
 
     onMessageReceived ( name, message ) {

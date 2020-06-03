@@ -15,7 +15,7 @@ Phaserfroot.PluginManager.register(
       // Attach custom event listeners.
       this.owner.on( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
       this.owner.properties.onUpdate( this.onMessageReceived, this, "_messaging_");
-      this.scene.input.on( "pointerdown", this.onStageInput, this );
+      this.scene.input.on( "pointerdown", this.onStageTouch2, this );
 
 
       // Initialize properties from parameters.
@@ -28,7 +28,6 @@ Phaserfroot.PluginManager.register(
 
 
       // Boot phase.
-      this.camera = this.scene.cameras.main;
 
       this.onCreate();
 
@@ -55,7 +54,7 @@ Phaserfroot.PluginManager.register(
       this.owner.removeListener( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
       if ( this.delayed_event ) this.delayed_event.remove();
       if ( this.delayed_event2 ) this.delayed_event2.remove();
-      this.scene.input.off( "pointerdown", this.onStageInput, this );
+      this.scene.input.off( "pointerdown", this.onStageTouch2, this );
 
     }
 
@@ -181,34 +180,6 @@ Phaserfroot.PluginManager.register(
       }
     }
 
-    onStageInput () {
-      // Executed whenever the stage is pressed.
-      var server_list_button_list2 = this.list_of_room_buttons;
-      for (var server_list_button_index2 in server_list_button_list2) {
-        this.server_list_button = server_list_button_list2[server_list_button_index2];
-        if (this.instContains( this.server_list_button, (this.scene.input.manager.mousePointer.x + this.camera.posX), (this.scene.input.manager.mousePointer.y + this.camera.posY) )) {
-          var button_that_was_pressed = this.server_list_button;
-          this.scene.messageExternal( 'sendToPlayer', [(this.errorCheckNotNull( button_that_was_pressed, this.owner, "`Get Key on Instance` block could not find an instance called [button_that_was_pressed].")).properties.get( 'hostPlayerID' ), 'requestToJoinRoom', this.game.GLOBAL_VARIABLES.myName, this.game.GLOBAL_VARIABLES.myPlayerID] );
-          if ( !button_that_was_pressed ) {
-            this.reportError( "`Set Instance Alpha` block could not find the instance [button_that_was_pressed]." );
-            return;
-          }
-          button_that_was_pressed.alpha = 0.2;
-          this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndNext' ) ? 'sndNext' : null );
-          this.delayed_event2 = this.scene.time.delayedCall( 200, function() {
-            if ( !this.owner || this.owner.exists === false ) {
-              return;
-            }
-              if ( !button_that_was_pressed ) {
-              this.reportError( "`Set Instance Alpha` block could not find the instance [button_that_was_pressed]." );
-              return;
-            }
-            button_that_was_pressed.alpha = 1;
-          }, null, this );
-        }
-      }
-    }
-
     executeMessageaddPlayerToRoom () {
       // Executed when the 'addPlayerToRoom' is received.
       this.game.GLOBAL_VARIABLES.hostPlayerID = this.value[0];
@@ -297,18 +268,63 @@ Phaserfroot.PluginManager.register(
       this.game.reportError( message, message, "SCRIPT ERROR" );
     }
 
-    instContains ( ins, x, y ) {
-      if ( !ins || !ins.getHitbox ) return false;
-      var hitbox = ins.getHitbox();
-      return hitbox.contains( x, y );
-    }
-
     errorCheckNotNull( input, backup, message ) {
       if( !input ) {
         reportError( message );
         return backup;
       }
       return input;
+    }
+
+    errorCheckNotNull2( input, backup, message ) {
+      if( !input ) {
+        reportError( message );
+        return backup;
+      }
+      return input;
+    }
+
+    instContains ( ins, x, y ) {
+      if ( !ins || !ins.getHitbox ) return false;
+      var hitbox = ins.getHitbox();
+      return hitbox.contains( x, y );
+    }
+
+    errorCheckNotNull3( input, backup, message ) {
+      if( !input ) {
+        reportError( message );
+        return backup;
+      }
+      return input;
+    }
+
+    onStageTouch2 ( pointer ) {
+      var pointer = pointer;
+      var server_list_button_list2 = this.list_of_room_buttons;
+      for (var server_list_button_index2 in server_list_button_list2) {
+        this.server_list_button = server_list_button_list2[server_list_button_index2];
+        if (this.instContains( this.server_list_button, (this.errorCheckNotNull( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).x, (this.errorCheckNotNull2( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).y )) {
+          var button_that_was_pressed = this.server_list_button;
+          this.scene.messageExternal( 'sendToPlayer', [(this.errorCheckNotNull3( button_that_was_pressed, this.owner, "`Get Key on Instance` block could not find an instance called [button_that_was_pressed].")).properties.get( 'hostPlayerID' ), 'requestToJoinRoom', this.game.GLOBAL_VARIABLES.myName, this.game.GLOBAL_VARIABLES.myPlayerID] );
+          if ( !button_that_was_pressed ) {
+            this.reportError( "`Set Instance Alpha` block could not find the instance [button_that_was_pressed]." );
+            return;
+          }
+          button_that_was_pressed.alpha = 0.2;
+          this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndNext' ) ? 'sndNext' : null );
+          this.delayed_event2 = this.scene.time.delayedCall( 200, function() {
+            if ( !this.owner || this.owner.exists === false ) {
+              return;
+            }
+              if ( !button_that_was_pressed ) {
+              this.reportError( "`Set Instance Alpha` block could not find the instance [button_that_was_pressed]." );
+              return;
+            }
+            button_that_was_pressed.alpha = 1;
+          }, null, this );
+        }
+      }
+
     }
 
   }

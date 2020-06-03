@@ -15,25 +15,16 @@ Phaserfroot.PluginManager.register(
       // Attach custom event listeners.
       this.owner.on( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
       this.owner.properties.onUpdate( this.onMessageReceived, this, "_messaging_");
-      this.onTick_ = this.scene.time.addEvent( {
-        delay: this.math_random_int( 700, 1200 ),
-        loop: true,
-        callback: function () {
-          if ( !this.owner || this.owner.exists === false ) {
-            return;
-          }
-          this.onTick();
-        },
-        callbackScope: this,
-      } );
       this.owner.on( this.owner.EVENTS.COLLIDE, this.onTouchInstance2, this );
 
 
       // Initialize properties from parameters.
-      this.health = instanceProperties[ "health" ];
       this.toucher = ( typeof instanceProperties[ "toucher" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "toucher" ], true ) : null;
       this.player = ( typeof instanceProperties[ "player" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "player" ], true ) : null;
+      this.health = instanceProperties[ "health" ];
+      this.acceleration_direction = instanceProperties[ "acceleration direction" ];
       this.fading = instanceProperties[ "fading" ];
+      this.able_to_be_hurt = instanceProperties[ "able to be hurt" ];
 
 
       // Boot phase.
@@ -67,9 +58,6 @@ Phaserfroot.PluginManager.register(
 
       // Detach custom event listeners.
       this.owner.removeListener( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
-      if ( this.onTick_ ) {
-        this.onTick_.remove();
-      }
       if ( this.delayed_event ) this.delayed_event.remove();
       this.owner.off( this.owner.EVENTS.COLLIDE, this.onTouchInstance2, this );
       if ( this.delayed_event2 ) this.delayed_event2.remove();
@@ -92,16 +80,47 @@ Phaserfroot.PluginManager.register(
       this.health = this.math_random_int( 40, 80 );
       this.owner.body.bounce.set( (this.math_random_int( 20, 50 ) / 100) );
       this.fading = false;
+      if (this.math_random_int( 1, 2 ) > 1) {
+        this.acceleration_direction = -1000;
+      } else {
+        this.acceleration_direction = 1000;
+      }
+      this.owner.body.acceleration.x = this.acceleration_direction;
+      this.able_to_be_hurt = true;
     }
 
     executeMessagedestroy_zombie () {
       // Executed when the message 'destroy zombie' is received.
-      this.health = 0;
+      this.health = 1;
       this.get_hurt(  );
     }
 
     EVENTS_UPDATE () {
       // Executed every frame.
+      if (this.health > 0) {
+        this.owner.body.acceleration.x = this.acceleration_direction;
+        if (( function () {
+          var instance1 = this.owner;
+          var instance2 = this.player;
+          if ( !( instance1 && instance2 ) ) {
+            return 0;
+          }
+          var dx = instance2.x - instance1.x;
+          var dy = instance2.y - instance1.y;
+          return Math.sqrt( dx * dx + dy * dy );
+        } ).call( this ) < 50) {
+          if ((this.errorCheckNotNull( this.player, this.owner, "`Get Position Center of Instance` block could not find an instance named [player ].")).x > this.owner.x) {
+            this.acceleration_direction = 1000;
+          } else if ((this.errorCheckNotNull2( this.player, this.owner, "`Get Position Center of Instance` block could not find an instance named [player ].")).x < this.owner.x) {
+            this.acceleration_direction = -1000;
+          }
+        }
+      }
+      if (this.owner.body.velocity.x > 50) {
+        this.owner.scaleX = 1;
+      } else {
+        this.owner.scaleX = -1;
+      }
       if (this.owner.playing() != 'dead') {
         if (this.owner.playing() != 'hurt') {
           if (( this.owner.body.touching.down || this.owner.body.blocked.down )) {
@@ -130,26 +149,6 @@ Phaserfroot.PluginManager.register(
         if (this.owner.alpha <= 0) {
           if (( this.owner && this.owner.exists )) {
             this.owner.destroySafe();
-          }
-        }
-      }
-    }
-
-    onTick () {
-      // Executed after time period of time.
-      if (( this.player && this.player.exists )) {
-        if (this.health > 0) {
-          if ((this.errorCheckNotNull( this.player, this.owner, "`Get Position Center of Instance` block could not find an instance named [player ].")).x > this.owner.x) {
-            this.owner.body.acceleration.x = 1000;
-            this.owner.scaleX = 1;
-          } else if ((this.errorCheckNotNull2( this.player, this.owner, "`Get Position Center of Instance` block could not find an instance named [player ].")).x < this.owner.x) {
-            this.owner.body.acceleration.x = (-1000);
-            this.owner.scaleX = -1;
-          }
-          if ((this.errorCheckNotNull3( this.player, this.owner, "`Get Position Center of Instance` block could not find an instance named [player ].")).y < this.owner.y - 50) {
-            if (( this.owner.body.touching.down || this.owner.body.blocked.down )) {
-              this.owner.body.velocity.y = (-850);
-            }
           }
         }
       }
@@ -218,6 +217,14 @@ Phaserfroot.PluginManager.register(
       return input;
     }
 
+    errorCheckNotNull5( input, backup, message ) {
+      if( !input ) {
+        reportError( message );
+        return backup;
+      }
+      return input;
+    }
+
     onTouchInstance2 ( instance ) {
       if ( !instance ) {
         return;
@@ -226,16 +233,10 @@ Phaserfroot.PluginManager.register(
         instance = instance.layer.tilemapLayer;
       }
       this.toucher = instance;
-        if (this.toucher == this.player) {
-        if (( this.owner.body.touching.up || this.owner.body.blocked.up )) {
-          this.get_hurt(  );
-        } else {
-          this.owner.body.acceleration.x = 0;
-          this.owner.body.velocity.x = 0;
-        }
-      }
-      if ((this.errorCheckNotNull4( this.toucher, this.owner, "`Instance has Tag` block could not find an instance named [toucher].")).tags.has( 'bullet' )) {
-        if (( this.owner && this.owner.exists )) {
+        if ((this.errorCheckNotNull3( this.toucher, this.owner, "`Instance has Tag` block could not find an instance named [toucher].")).tags.has( 'deadly' )) {
+        if (this.able_to_be_hurt) {
+          this.able_to_be_hurt = false;
+          this.health = 1;
           this.get_hurt(  );
         }
       }
@@ -248,6 +249,39 @@ Phaserfroot.PluginManager.register(
             this.owner.setPhysics( false );
           }
         }, null, this );
+      }
+      if (this.toucher == this.player) {
+        if (( this.owner.body.touching.up || this.owner.body.blocked.up )) {
+          this.get_hurt(  );
+        } else {
+          this.owner.body.acceleration.x = 0;
+          this.owner.body.velocity.x = 0;
+        }
+      } else if (!(this.errorCheckNotNull4( this.toucher, this.owner, "`Instance has Tag` block could not find an instance named [toucher].")).tags.has( 'bullet' )) {
+        if (this.health > 0) {
+          if (( this.owner.body.touching.left || this.owner.body.blocked.left )) {
+            this.acceleration_direction = 1000;
+            if (this.math_random_int( 1, 6 ) > 4) {
+              if (( this.owner.body.touching.down || this.owner.body.blocked.down )) {
+                this.acceleration_direction = -1000;
+                this.owner.body.velocity.y = (-850);
+              }
+            }
+          } else if (( this.owner.body.touching.right || this.owner.body.blocked.right )) {
+            this.acceleration_direction = -1000;
+            if (this.math_random_int( 1, 6 ) > 4) {
+              if (( this.owner.body.touching.down || this.owner.body.blocked.down )) {
+                this.acceleration_direction = 1000;
+                this.owner.body.velocity.y = (-850);
+              }
+            }
+          }
+        }
+      }
+      if ((this.errorCheckNotNull5( this.toucher, this.owner, "`Instance has Tag` block could not find an instance named [toucher].")).tags.has( 'bullet' )) {
+        if (( this.owner && this.owner.exists )) {
+          this.get_hurt(  );
+        }
       }
 
     }

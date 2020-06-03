@@ -59,7 +59,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 480,
 			"anchorPointY": 116,
 			"components": {
@@ -69,7 +69,7 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
+							11,
 							1
 						],
 						"loop": true,
@@ -94,7 +94,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 142,
 			"anchorPointY": 78.5,
 			"components": {
@@ -104,8 +104,8 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
-							19
+							11,
+							20
 						],
 						"loop": true,
 						"play": true,
@@ -118,9 +118,7 @@
 					"width": 284,
 					"height": 157
 				},
-				"Level1": {
-					"i": false
-				}
+				"Level1": {}
 			},
 			"plugins": {}
 		},
@@ -132,7 +130,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 150.5,
 			"anchorPointY": 67,
 			"components": {
@@ -142,8 +140,8 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
-							31
+							11,
+							32
 						],
 						"loop": true,
 						"play": true,
@@ -168,7 +166,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 132,
 			"anchorPointY": 35.5,
 			"components": {
@@ -178,8 +176,8 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
-							18
+							11,
+							19
 						],
 						"loop": true,
 						"play": true,

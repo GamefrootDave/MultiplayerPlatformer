@@ -147,16 +147,7 @@ Phaserfroot.PluginManager.register(
       } else {
         this.I_am_the_host = false;
       }
-      if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 3) {
-        this.owner.posX = this.math_random_int( 300, 1200 );
-        this.owner.posY = 50;
-      } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 4) {
-        this.owner.posX = this.math_random_int( 200, 700 );
-        this.owner.posY = 140;
-      } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 5) {
-        this.owner.posX = this.math_random_int( 300, 1100 );
-        this.owner.posY = 300;
-      }
+      this.position_me(  );
     }
 
     onTick () {
@@ -444,6 +435,19 @@ Phaserfroot.PluginManager.register(
         b = c;
       }
       return Math.floor( Math.random() * ( b - a + 1 ) + a );
+    }
+
+    position_me (  ) {
+      if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 3) {
+        this.owner.posX = this.math_random_int( 300, 1200 );
+        this.owner.posY = 50;
+      } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 4) {
+        this.owner.posX = this.math_random_int( 200, 700 );
+        this.owner.posY = 140;
+      } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 5) {
+        this.owner.posX = this.math_random_int( 300, 1100 );
+        this.owner.posY = 300;
+      }
     }
 
     reportError( message ) {
@@ -847,6 +851,14 @@ Phaserfroot.PluginManager.register(
       return input;
     }
 
+    errorCheckNotNull13( input, backup, message ) {
+      if( !input ) {
+        reportError( message );
+        return backup;
+      }
+      return input;
+    }
+
     onTouchInstance2 ( instance ) {
       if ( !instance ) {
         return;
@@ -918,6 +930,12 @@ Phaserfroot.PluginManager.register(
                 this.able_to_be_hurt = true;
             }, null, this );
           }
+        }
+      }
+      if ((this.errorCheckNotNull13( this.toucher, this.owner, "`Instance has Tag` block could not find an instance named [toucher].")).tags.has( 'deadly' )) {
+        if (this.health > 0) {
+          this.health = 1;
+          this.get_hurt(  );
         }
       }
 
@@ -1068,7 +1086,7 @@ Phaserfroot.PluginManager.register(
 
     }
 
-    errorCheckNotNull13( input, backup, message ) {
+    errorCheckNotNull14( input, backup, message ) {
       if( !input ) {
         reportError( message );
         return backup;
@@ -1076,7 +1094,7 @@ Phaserfroot.PluginManager.register(
       return input;
     }
 
-    errorCheckNotNull14( input, backup, message ) {
+    errorCheckNotNull15( input, backup, message ) {
       if( !input ) {
         reportError( message );
         return backup;
@@ -1094,16 +1112,16 @@ Phaserfroot.PluginManager.register(
           this.reportError( "`Set Instance CenterX` block could not find the instance [instance]." );
           return;
         }
-        instance.x = (this.errorCheckNotNull13( object, this.owner, "`Get Position Center of Instance` block could not find an instance named [object ].")).x + this.math_random_int( -80, 80 );
+        instance.x = (this.errorCheckNotNull14( object, this.owner, "`Get Position Center of Instance` block could not find an instance named [object ].")).x + this.math_random_int( -80, 80 );
         if ( !instance ) {
           this.reportError( "`Set Instance CenterY` block could not find the instance [instance]." );
           return;
         }
-        instance.y = (this.errorCheckNotNull14( object, this.owner, "`Get Position Center of Instance` block could not find an instance named [object ].")).y + this.math_random_int( -80, 80 );
+        instance.y = (this.errorCheckNotNull15( object, this.owner, "`Get Position Center of Instance` block could not find an instance named [object ].")).y + this.math_random_int( -80, 80 );
       }, null, this );
     }
 
-    errorCheckNotNull15( input, backup, message ) {
+    errorCheckNotNull16( input, backup, message ) {
       if( !input ) {
         reportError( message );
         return backup;
@@ -1111,7 +1129,7 @@ Phaserfroot.PluginManager.register(
       return input;
     }
 
-    errorCheckNotNull16( input, backup, message ) {
+    errorCheckNotNull17( input, backup, message ) {
       if( !input ) {
         reportError( message );
         return backup;
@@ -1129,12 +1147,12 @@ Phaserfroot.PluginManager.register(
           this.reportError( "`Set Instance CenterX` block could not find the instance [instance]." );
           return;
         }
-        instance.x = (this.errorCheckNotNull15( object, this.owner, "`Get Position Center of Instance` block could not find an instance named [object ].")).x + this.math_random_int( -80, 80 );
+        instance.x = (this.errorCheckNotNull16( object, this.owner, "`Get Position Center of Instance` block could not find an instance named [object ].")).x + this.math_random_int( -80, 80 );
         if ( !instance ) {
           this.reportError( "`Set Instance CenterY` block could not find the instance [instance]." );
           return;
         }
-        instance.y = (this.errorCheckNotNull16( object, this.owner, "`Get Position Center of Instance` block could not find an instance named [object ].")).y + this.math_random_int( -80, 80 );
+        instance.y = (this.errorCheckNotNull17( object, this.owner, "`Get Position Center of Instance` block could not find an instance named [object ].")).y + this.math_random_int( -80, 80 );
       }, null, this );
     }
 
@@ -1169,8 +1187,7 @@ Phaserfroot.PluginManager.register(
       this.health = 100;
       this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndNext' ) ? 'sndNext' : null );
       this.camera.backgroundColor = Phaser.Display.Color.HexStringToColor( this.bg_colour );
-      this.owner.posX = this.math_random_int( 300, 1100 );
-      this.owner.posY = 300;
+      this.position_me(  );
       this.owner.body.velocity.y = 0;
       this.owner.body.velocity.x = 0;
       this.owner.body.acceleration.x = 0;

@@ -13,8 +13,8 @@
 			"id": 4,
 			"name": "Tile Map",
 			"type": "tilemap",
-			"jsonId": 17,
-			"imageId": 18,
+			"jsonId": 13,
+			"imageId": 14,
 			"x": 0,
 			"y": 0,
 			"components": {
@@ -31,7 +31,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 34.5,
 			"anchorPointY": 36,
 			"components": {
@@ -41,8 +41,8 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
-							24
+							11,
+							26
 						],
 						"loop": true,
 						"play": true,
@@ -50,13 +50,13 @@
 					},
 					"walk": {
 						"cells": [
-							13,
+							11,
 							27,
-							13,
+							11,
 							28,
-							13,
+							11,
 							29,
-							13,
+							11,
 							30
 						],
 						"loop": true,
@@ -65,8 +65,8 @@
 					},
 					"jumpUp": {
 						"cells": [
-							13,
-							25
+							11,
+							31
 						],
 						"loop": true,
 						"play": false,
@@ -74,8 +74,8 @@
 					},
 					"jumpMid": {
 						"cells": [
-							13,
-							20
+							11,
+							21
 						],
 						"loop": true,
 						"play": false,
@@ -83,8 +83,8 @@
 					},
 					"jumpDown": {
 						"cells": [
-							13,
-							26
+							11,
+							22
 						],
 						"loop": true,
 						"play": false,
@@ -92,12 +92,12 @@
 					},
 					"dying": {
 						"cells": [
-							13,
-							21,
-							13,
-							22,
-							13,
-							45
+							11,
+							46,
+							11,
+							24,
+							11,
+							25
 						],
 						"loop": true,
 						"play": false,
@@ -105,8 +105,8 @@
 					},
 					"dead": {
 						"cells": [
-							13,
-							45
+							11,
+							25
 						],
 						"loop": true,
 						"play": false,
@@ -120,10 +120,10 @@
 					"height": 63
 				},
 				"PlayerControls": {
-					"music": 5,
-					"jump": 6,
 					"air time": 0,
 					"jumpcloud": null,
+					"music": null,
+					"jump": null,
 					"bg colour": "#000000",
 					"able to jump": false,
 					"toucher": "null",
@@ -157,7 +157,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 16.5,
 			"anchorPointY": 7.5,
 			"components": {
@@ -167,7 +167,7 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
+							11,
 							23
 						],
 						"loop": true,
@@ -220,7 +220,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 34.5,
 			"anchorPointY": 36,
 			"components": {
@@ -230,8 +230,8 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
-							24
+							11,
+							26
 						],
 						"loop": true,
 						"play": true,
@@ -239,13 +239,13 @@
 					},
 					"walk": {
 						"cells": [
-							13,
+							11,
 							27,
-							13,
+							11,
 							28,
-							13,
+							11,
 							29,
-							13,
+							11,
 							30
 						],
 						"loop": true,
@@ -254,8 +254,8 @@
 					},
 					"jumpUp": {
 						"cells": [
-							13,
-							25
+							11,
+							31
 						],
 						"loop": true,
 						"play": false,
@@ -263,8 +263,8 @@
 					},
 					"jumpMid": {
 						"cells": [
-							13,
-							20
+							11,
+							21
 						],
 						"loop": true,
 						"play": false,
@@ -272,8 +272,8 @@
 					},
 					"jumpDown": {
 						"cells": [
-							13,
-							26
+							11,
+							22
 						],
 						"loop": true,
 						"play": false,
@@ -281,12 +281,12 @@
 					},
 					"dying": {
 						"cells": [
-							13,
-							21,
-							13,
-							22,
-							13,
-							45
+							11,
+							46,
+							11,
+							24,
+							11,
+							25
 						],
 						"loop": true,
 						"play": false,
@@ -294,8 +294,8 @@
 					},
 					"dead": {
 						"cells": [
-							13,
-							45
+							11,
+							25
 						],
 						"loop": true,
 						"play": false,
@@ -338,7 +338,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 16.5,
 			"anchorPointY": 7.5,
 			"components": {
@@ -348,7 +348,7 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
+							11,
 							23
 						],
 						"loop": true,
@@ -407,7 +407,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 34.5,
 			"anchorPointY": 36,
 			"components": {
@@ -417,8 +417,8 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
-							33
+							11,
+							34
 						],
 						"loop": true,
 						"play": true,
@@ -426,14 +426,14 @@
 					},
 					"walk": {
 						"cells": [
-							13,
-							34,
-							13,
+							11,
 							35,
-							13,
+							11,
 							36,
-							13,
-							37
+							11,
+							37,
+							11,
+							38
 						],
 						"loop": true,
 						"play": false,
@@ -441,8 +441,8 @@
 					},
 					"jumpUp": {
 						"cells": [
-							13,
-							38
+							11,
+							39
 						],
 						"loop": true,
 						"play": false,
@@ -450,8 +450,8 @@
 					},
 					"jumpMid": {
 						"cells": [
-							13,
-							39
+							11,
+							40
 						],
 						"loop": true,
 						"play": false,
@@ -459,8 +459,8 @@
 					},
 					"jumpDown": {
 						"cells": [
-							13,
-							44
+							11,
+							33
 						],
 						"loop": true,
 						"play": false,
@@ -468,10 +468,10 @@
 					},
 					"hurt": {
 						"cells": [
-							13,
-							40,
-							13,
-							41
+							11,
+							41,
+							11,
+							42
 						],
 						"loop": true,
 						"play": false,
@@ -479,12 +479,12 @@
 					},
 					"dead": {
 						"cells": [
-							13,
-							42,
-							13,
+							11,
 							43,
-							13,
-							32
+							11,
+							44,
+							11,
+							45
 						],
 						"loop": true,
 						"play": false,
@@ -501,7 +501,10 @@
 					"player": "undefined",
 					"toucher": "undefined",
 					"health": 0,
-					"fading": false
+					"fading": false,
+					"acceleration direction": 0,
+					"i": false,
+					"able to be hurt": false
 				}
 			},
 			"plugins": {}
@@ -514,7 +517,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 21,
 			"anchorPointY": 21,
 			"components": {
@@ -524,7 +527,7 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
+							11,
 							2
 						],
 						"loop": true,
@@ -550,7 +553,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 27,
 			"anchorPointY": 9,
 			"components": {
@@ -560,8 +563,8 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
-							4
+							11,
+							5
 						],
 						"loop": true,
 						"play": true,
@@ -589,7 +592,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 6,
 			"anchorPointY": 4.5,
 			"components": {
@@ -599,7 +602,7 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
+							11,
 							0
 						],
 						"loop": true,
@@ -629,7 +632,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 19.5,
 			"anchorPointY": 36,
 			"components": {
@@ -639,14 +642,14 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
-							14,
-							13,
-							12,
-							13,
+							11,
 							15,
+							11,
 							13,
-							13
+							11,
+							14,
+							11,
+							16
 						],
 						"loop": true,
 						"play": true,
@@ -671,7 +674,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 24,
 			"anchorPointY": 24,
 			"components": {
@@ -681,7 +684,7 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
+							11,
 							3
 						],
 						"loop": true,
@@ -719,7 +722,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 18,
 			"anchorPointY": 24,
 			"components": {
@@ -729,11 +732,11 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
+							11,
+							12,
+							11,
 							10,
-							13,
-							9,
-							13,
+							11,
 							11
 						],
 						"loop": true,
@@ -759,7 +762,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 48,
 			"anchorPointY": 48,
 			"components": {
@@ -769,8 +772,8 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
-							17
+							11,
+							18
 						],
 						"loop": true,
 						"play": true,
@@ -778,8 +781,8 @@
 					},
 					"black": {
 						"cells": [
-							13,
-							16
+							11,
+							17
 						],
 						"loop": true,
 						"play": false,
@@ -804,7 +807,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 24,
 			"anchorPointY": 24,
 			"components": {
@@ -814,7 +817,7 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
+							11,
 							3
 						],
 						"loop": true,
@@ -914,8 +917,7 @@
 				},
 				"ZombieSpawner": {
 					"player": "undefined",
-					"number of zombies to spawn": 0,
-					"i": false
+					"number of zombies to spawn": 0
 				}
 			},
 			"plugins": {}
@@ -928,7 +930,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 46.5,
 			"anchorPointY": 51,
 			"components": {
@@ -938,8 +940,8 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
-							8
+							11,
+							9
 						],
 						"loop": true,
 						"play": true,
@@ -964,7 +966,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 46.5,
 			"anchorPointY": 51,
 			"components": {
@@ -974,8 +976,8 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
-							7
+							11,
+							8
 						],
 						"loop": true,
 						"play": true,
@@ -1000,7 +1002,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 42,
 			"anchorPointY": 45,
 			"components": {
@@ -1010,8 +1012,8 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
-							5
+							11,
+							7
 						],
 						"loop": true,
 						"play": true,
@@ -1036,7 +1038,7 @@
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
-			"imageId": 13,
+			"imageId": 11,
 			"anchorPointX": 42,
 			"anchorPointY": 45,
 			"components": {
@@ -1046,7 +1048,7 @@
 				"TextureAnimation": {
 					"idle": {
 						"cells": [
-							13,
+							11,
 							6
 						],
 						"loop": true,

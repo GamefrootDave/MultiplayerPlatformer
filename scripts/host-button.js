@@ -15,7 +15,7 @@ Phaserfroot.PluginManager.register(
       // Attach custom event listeners.
       this.owner.on( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
       this.owner.properties.onUpdate( this.onMessageReceived, this, "_messaging_");
-      this.scene.input.on( "pointerdown", this.onPointerDown2, this );
+      this.scene.input.on( "pointerdown", this.onStageTouch2, this );
 
 
       // Initialize properties from parameters.
@@ -25,7 +25,6 @@ Phaserfroot.PluginManager.register(
 
 
       // Boot phase.
-      this.camera = this.scene.cameras.main;
 
       this.onCreate();
 
@@ -54,7 +53,7 @@ Phaserfroot.PluginManager.register(
       if ( this.delayed_event2 ) this.delayed_event2.remove();
       if ( this.delayed_event3 ) this.delayed_event3.remove();
       if ( this.delayed_event4 ) this.delayed_event4.remove();
-      this.scene.input.off( "pointerdown", this.onPointerDown2, this );
+      this.scene.input.off( "pointerdown", this.onStageTouch2, this );
 
     }
 
@@ -159,60 +158,79 @@ Phaserfroot.PluginManager.register(
       return val;
     }
 
-    onPointerDown2 ( pointer ) {
-      if ( !this.owner || !this.owner.exists ) {
-        return;
+    errorCheckNotNull( input, backup, message ) {
+      if( !input ) {
+        reportError( message );
+        return backup;
       }
-      var point = this.camera.getWorldPoint( pointer.x, pointer.y );
-      if ( this.owner.getBounds().contains( point.x, point.y ) ) {
-      if (this.owner.text == 'HOST A GAME') {
-        this.game.GLOBAL_VARIABLES.myRoomName = this.promptUser( 'Name this room:' );
-        this.game.GLOBAL_VARIABLES.hostRoomName = this.game.GLOBAL_VARIABLES.myRoomName;
-        this.game.GLOBAL_VARIABLES.hostPlayerID = this.game.GLOBAL_VARIABLES.myPlayerID;
-        this.owner.components.getByName( "TextAutomation" )[ 0 ].text = (['Creating ',this.game.GLOBAL_VARIABLES.myRoomName,'...'].join(''));
-        this.delayed_event2 = this.scene.time.delayedCall( 2000, function() {
-          if ( !this.owner || this.owner.exists === false ) {
-            return;
-          }
-            // hostRoom is now sent when level has been selected
-          if ( 1 <= ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ) && ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ) <= this.game.levelManager.levels.length ) {
-            this.game.levelManager.switchTo( ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ) );
-          } else {
-            ( function() {
-              var message = "`Go to level` block could not go to level number ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ). Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
-              this.game.reportError( message, message, "SCRIPT ERROR" );
-            } ).bind( this )();
-          }
-        }, null, this );
-      } else if (this.owner.text == 'SINGLEPLAYER') {
-        this.game.GLOBAL_VARIABLES.myRoomName = 'SINGLEPLAYER';
-        this.game.GLOBAL_VARIABLES.hostRoomName = this.game.GLOBAL_VARIABLES.myRoomName;
-        this.game.GLOBAL_VARIABLES.hostPlayerID = this.game.GLOBAL_VARIABLES.myPlayerID;
-        this.owner.components.getByName( "TextAutomation" )[ 0 ].text = (['Loading','...',''].join(''));
-        this.delayed_event3 = this.scene.time.delayedCall( 400, function() {
-          if ( !this.owner || this.owner.exists === false ) {
-            return;
-          }
-            if ( 1 <= ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ) && ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ) <= this.game.levelManager.levels.length ) {
-            this.game.levelManager.switchTo( ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ) );
-          } else {
-            ( function() {
-              var message = "`Go to level` block could not go to level number ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ). Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
-              this.game.reportError( message, message, "SCRIPT ERROR" );
-            } ).bind( this )();
-          }
-        }, null, this );
-      }
-      this.owner.alpha = 0.2;
-      this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndNext' ) ? 'sndNext' : null );
-      this.delayed_event4 = this.scene.time.delayedCall( 200, function() {
-        if ( !this.owner || this.owner.exists === false ) {
-          return;
-        }
-          this.owner.alpha = 1;
-      }, null, this );
+      return input;
+    }
 
+    errorCheckNotNull2( input, backup, message ) {
+      if( !input ) {
+        reportError( message );
+        return backup;
       }
+      return input;
+    }
+
+    instContains ( ins, x, y ) {
+      if ( !ins || !ins.getHitbox ) return false;
+      var hitbox = ins.getHitbox();
+      return hitbox.contains( x, y );
+    }
+
+    onStageTouch2 ( pointer ) {
+      var pointer = pointer;
+      if (this.instContains( this.owner, (this.errorCheckNotNull( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).x, (this.errorCheckNotNull2( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).y )) {
+        if (this.owner.text == 'HOST A GAME') {
+          this.game.GLOBAL_VARIABLES.myRoomName = this.promptUser( 'Name this room:' );
+          this.game.GLOBAL_VARIABLES.hostRoomName = this.game.GLOBAL_VARIABLES.myRoomName;
+          this.game.GLOBAL_VARIABLES.hostPlayerID = this.game.GLOBAL_VARIABLES.myPlayerID;
+          this.owner.components.getByName( "TextAutomation" )[ 0 ].text = (['Creating ',this.game.GLOBAL_VARIABLES.myRoomName,'...'].join(''));
+          this.delayed_event2 = this.scene.time.delayedCall( 2000, function() {
+            if ( !this.owner || this.owner.exists === false ) {
+              return;
+            }
+              // hostRoom is now sent when level has been selected
+            if ( 1 <= ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ) && ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ) <= this.game.levelManager.levels.length ) {
+              this.game.levelManager.switchTo( ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ) );
+            } else {
+              ( function() {
+                var message = "`Go to level` block could not go to level number ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ). Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
+                this.game.reportError( message, message, "SCRIPT ERROR" );
+              } ).bind( this )();
+            }
+          }, null, this );
+        } else if (this.owner.text == 'SINGLEPLAYER') {
+          this.game.GLOBAL_VARIABLES.myRoomName = 'SINGLEPLAYER';
+          this.game.GLOBAL_VARIABLES.hostRoomName = this.game.GLOBAL_VARIABLES.myRoomName;
+          this.game.GLOBAL_VARIABLES.hostPlayerID = this.game.GLOBAL_VARIABLES.myPlayerID;
+          this.owner.components.getByName( "TextAutomation" )[ 0 ].text = (['Loading','...',''].join(''));
+          this.delayed_event3 = this.scene.time.delayedCall( 400, function() {
+            if ( !this.owner || this.owner.exists === false ) {
+              return;
+            }
+              if ( 1 <= ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ) && ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ) <= this.game.levelManager.levels.length ) {
+              this.game.levelManager.switchTo( ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ) );
+            } else {
+              ( function() {
+                var message = "`Go to level` block could not go to level number ( this.game.levelManager.levels.indexOf( this.scene ) + 2 ). Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
+                this.game.reportError( message, message, "SCRIPT ERROR" );
+              } ).bind( this )();
+            }
+          }, null, this );
+        }
+        this.owner.alpha = 0.2;
+        this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndNext' ) ? 'sndNext' : null );
+        this.delayed_event4 = this.scene.time.delayedCall( 200, function() {
+          if ( !this.owner || this.owner.exists === false ) {
+            return;
+          }
+            this.owner.alpha = 1;
+        }, null, this );
+      }
+
     }
 
   }

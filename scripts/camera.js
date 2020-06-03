@@ -229,6 +229,9 @@ Phaserfroot.PluginManager.register(
           this.camera.scaleX = (Math.min(Math.max(this.camera.scaleX * 100 + 0.5, 100), 300) / 100);
           this.camera.scaleY = this.camera.scaleX;
         }
+      } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 4) {
+        this.camera.posX = 0;
+        this.camera.posY = 0;
       }
       if ((this.errorCheckNotNull3( this.player, this.owner, "`Get scale of Instance` block could not find an instance named [player].")).scaleX > 0) {
         this.owner.body.velocity.x = (Math.min(Math.max((((this.errorCheckNotNull4( this.player, this.owner, "`Get Position Center of Instance` block could not find an instance named [player ].")).x + 250) - this.owner.x) * 3, -800), 800));

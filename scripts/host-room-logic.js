@@ -94,7 +94,9 @@ Phaserfroot.PluginManager.register(
       this.camera_text = this.scene.getChildrenByTag( 'camera text' )[ 0 ];
       // Am I the host? If I am, set up the game! If not, destroy myself!
       if (this.game.GLOBAL_VARIABLES.hostPlayerID == this.game.GLOBAL_VARIABLES.myPlayerID) {
-        this.scene.messageInstance( this.camera_text, 'cinematicText', ('Waiting for players to join...' + '') );
+        if (this.game.GLOBAL_VARIABLES.myPlayerID != '0') {
+          this.scene.messageInstance( this.camera_text, 'cinematicText', ('Waiting for players to join...' + '') );
+        }
         this.list_of_players = [];
         if ( !this.list_of_players ) {
           this.reportError( "`Add to List` block could not find a list called [list_of_players]." );

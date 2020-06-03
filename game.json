@@ -60,7 +60,8 @@
 		"AButtonControl4",
 		"BButtonControl5",
 		"LeftButtonControl",
-		"RightButtonControl"
+		"RightButtonControl",
+		"Deadly"
 	],
 	"assets": [
 		{
@@ -84,15 +85,11 @@
 			"type": "sound"
 		},
 		{
-			"id": 5,
-			"type": "sound"
-		},
-		{
 			"id": 6,
 			"type": "sound"
 		},
 		{
-			"id": 8,
+			"id": 7,
 			"type": "sound"
 		},
 		{
@@ -100,19 +97,33 @@
 			"type": "sound"
 		},
 		{
-			"id": 11,
+			"id": 10,
 			"type": "sound"
 		},
 		{
-			"id": 12,
-			"type": "sound"
+			"id": 11,
+			"type": "textureatlas",
+			"imageUrl": "assets/spritesheet-1.png",
+			"jsonId": 12,
+			"jsonUrl": "assets/spritesheet-1.json"
 		},
 		{
 			"id": 13,
-			"type": "textureatlas",
-			"imageUrl": "assets/spritesheet-1.png",
-			"jsonId": 14,
-			"jsonUrl": "assets/spritesheet-1.json"
+			"type": "json",
+			"url": "assets/Tile Map-map.json"
+		},
+		{
+			"id": 14,
+			"type": "spritesheet",
+			"url": "assets/Tile Map-1.png",
+			"frameWidth": 48,
+			"frameHeight": 48,
+			"sheetOffsetX": 4,
+			"sheetOffsetY": 4,
+			"cellOffsetX": 8,
+			"cellOffsetY": 8,
+			"rows": 2,
+			"cols": 2
 		},
 		{
 			"id": 15,
@@ -135,28 +146,10 @@
 		{
 			"id": 17,
 			"type": "json",
-			"url": "assets/Tile Map-map.json"
-		},
-		{
-			"id": 18,
-			"type": "spritesheet",
-			"url": "assets/Tile Map-1.png",
-			"frameWidth": 48,
-			"frameHeight": 48,
-			"sheetOffsetX": 4,
-			"sheetOffsetY": 4,
-			"cellOffsetX": 8,
-			"cellOffsetY": 8,
-			"rows": 2,
-			"cols": 2
-		},
-		{
-			"id": 19,
-			"type": "json",
 			"url": "assets/Tile Map2-map.json"
 		},
 		{
-			"id": 20,
+			"id": 18,
 			"type": "spritesheet",
 			"url": "assets/Tile Map2-1.png",
 			"frameWidth": 48,
