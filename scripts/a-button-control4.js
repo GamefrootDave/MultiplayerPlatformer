@@ -20,14 +20,14 @@ Phaserfroot.PluginManager.register(
 
 
       // Initialize properties from parameters.
+      this.button_down = instanceProperties[ "button down" ];
+      this.touchscreen = instanceProperties[ "touchscreen" ];
       this.target = ( typeof instanceProperties[ "target" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "target" ], true ) : null;
       this.my_key = instanceProperties[ "my key" ];
       this.start_x_pos = instanceProperties[ "start x pos" ];
       this.start_y_pos = instanceProperties[ "start y pos" ];
       this.pointer = instanceProperties[ "pointer" ];
       this.target_tag = instanceProperties[ "target tag" ];
-      this.touchscreen = instanceProperties[ "touchscreen" ];
-      this.button_down = instanceProperties[ "button down" ];
 
 
       // Boot phase.
@@ -169,14 +169,8 @@ Phaserfroot.PluginManager.register(
 
     onStageTouch32 ( pointer ) {
       var pointer = pointer;
-      if (this.touchscreen) {
-        if (this.pointer != null) {
-          if (this.pointer == pointer) {
-            this.button_down = false;
-            this.release(  );
-          }
-        }
-      }
+      this.button_down = false;
+      this.release(  );
 
     }
 

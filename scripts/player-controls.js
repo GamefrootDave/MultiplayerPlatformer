@@ -30,6 +30,7 @@ Phaserfroot.PluginManager.register(
       this.scene.getKey( 65 ).on( "down", this.onKeyInput65, this );
       this.scene.getKey( 65 ).on( "up", this.onKeyInput652, this );
       this.scene.getKey( 38 ).on( "down", this.onKeyInput38, this );
+      this.scene.getKey( 38 ).on( "up", this.onKeyInput382, this );
       this.scene.getKey( 39 ).on( "down", this.onKeyInput39, this );
       this.scene.getKey( 39 ).on( "up", this.onKeyInput392, this );
       this.scene.getKey( 37 ).on( "down", this.onKeyInput37, this );
@@ -106,6 +107,7 @@ Phaserfroot.PluginManager.register(
       this.scene.getKey( 65 ).off( "down", this.onKeyInput65, this );
       this.scene.getKey( 65 ).off( "up", this.onKeyInput652, this );
       this.scene.getKey( 38 ).off( "down", this.onKeyInput38, this );
+      this.scene.getKey( 38 ).off( "up", this.onKeyInput382, this );
       this.scene.getKey( 39 ).off( "down", this.onKeyInput39, this );
       this.scene.getKey( 39 ).off( "up", this.onKeyInput392, this );
       this.scene.getKey( 37 ).off( "down", this.onKeyInput37, this );
@@ -321,6 +323,11 @@ Phaserfroot.PluginManager.register(
 
     onKeyInput38 () {
       this.scene.getKey( 87 )._key.onDown(
+        new KeyboardEvent( "onup", { code: 87 } ) );
+    }
+
+    onKeyInput382 () {
+      this.scene.getKey( 87 )._key.onUp(
         new KeyboardEvent( "onup", { code: 87 } ) );
     }
 

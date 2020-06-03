@@ -1005,8 +1005,7 @@
 					"start y pos": 0,
 					"target": "null",
 					"target tag": "",
-					"touchscreen": false,
-					"Other": "null"
+					"touchscreen": false
 				}
 			},
 			"plugins": {}
