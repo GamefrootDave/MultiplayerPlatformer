@@ -75,7 +75,7 @@
 					"jumpMid": {
 						"cells": [
 							11,
-							21
+							32
 						],
 						"loop": true,
 						"play": false,
@@ -84,7 +84,7 @@
 					"jumpDown": {
 						"cells": [
 							11,
-							22
+							33
 						],
 						"loop": true,
 						"play": false,
@@ -93,11 +93,11 @@
 					"dying": {
 						"cells": [
 							11,
-							46,
+							34,
 							11,
-							24,
+							35,
 							11,
-							25
+							50
 						],
 						"loop": true,
 						"play": false,
@@ -106,7 +106,7 @@
 					"dead": {
 						"cells": [
 							11,
-							25
+							50
 						],
 						"loop": true,
 						"play": false,
@@ -168,7 +168,7 @@
 					"idle": {
 						"cells": [
 							11,
-							23
+							25
 						],
 						"loop": true,
 						"play": true,
@@ -264,7 +264,7 @@
 					"jumpMid": {
 						"cells": [
 							11,
-							21
+							32
 						],
 						"loop": true,
 						"play": false,
@@ -273,7 +273,7 @@
 					"jumpDown": {
 						"cells": [
 							11,
-							22
+							33
 						],
 						"loop": true,
 						"play": false,
@@ -282,11 +282,11 @@
 					"dying": {
 						"cells": [
 							11,
-							46,
+							34,
 							11,
-							24,
+							35,
 							11,
-							25
+							50
 						],
 						"loop": true,
 						"play": false,
@@ -295,7 +295,7 @@
 					"dead": {
 						"cells": [
 							11,
-							25
+							50
 						],
 						"loop": true,
 						"play": false,
@@ -349,7 +349,7 @@
 					"idle": {
 						"cells": [
 							11,
-							23
+							25
 						],
 						"loop": true,
 						"play": true,
@@ -418,7 +418,7 @@
 					"idle": {
 						"cells": [
 							11,
-							34
+							38
 						],
 						"loop": true,
 						"play": true,
@@ -427,47 +427,9 @@
 					"walk": {
 						"cells": [
 							11,
-							35,
+							39,
 							11,
-							36,
-							11,
-							37,
-							11,
-							38
-						],
-						"loop": true,
-						"play": false,
-						"speed": 0.1
-					},
-					"jumpUp": {
-						"cells": [
-							11,
-							39
-						],
-						"loop": true,
-						"play": false,
-						"speed": 0.1
-					},
-					"jumpMid": {
-						"cells": [
-							11,
-							40
-						],
-						"loop": true,
-						"play": false,
-						"speed": 0.1
-					},
-					"jumpDown": {
-						"cells": [
-							11,
-							33
-						],
-						"loop": true,
-						"play": false,
-						"speed": 0.1
-					},
-					"hurt": {
-						"cells": [
+							40,
 							11,
 							41,
 							11,
@@ -477,14 +439,52 @@
 						"play": false,
 						"speed": 0.1
 					},
+					"jumpUp": {
+						"cells": [
+							11,
+							43
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					},
+					"jumpMid": {
+						"cells": [
+							11,
+							44
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					},
+					"jumpDown": {
+						"cells": [
+							11,
+							45
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					},
+					"hurt": {
+						"cells": [
+							11,
+							46,
+							11,
+							37
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					},
 					"dead": {
 						"cells": [
 							11,
-							43,
+							47,
 							11,
-							44,
+							48,
 							11,
-							45
+							49
 						],
 						"loop": true,
 						"play": false,
@@ -642,13 +642,13 @@
 					"idle": {
 						"cells": [
 							11,
-							15,
+							16,
 							11,
 							13,
 							11,
-							14,
+							15,
 							11,
-							16
+							14
 						],
 						"loop": true,
 						"play": true,
@@ -732,11 +732,11 @@
 					"idle": {
 						"cells": [
 							11,
-							12,
+							7,
 							11,
-							10,
+							8,
 							11,
-							11
+							6
 						],
 						"loop": true,
 						"play": true,
@@ -772,7 +772,7 @@
 					"idle": {
 						"cells": [
 							11,
-							18
+							21
 						],
 						"loop": true,
 						"play": true,
@@ -781,7 +781,7 @@
 					"black": {
 						"cells": [
 							11,
-							17
+							22
 						],
 						"loop": true,
 						"play": false,
@@ -925,13 +925,173 @@
 			"type": "static-image",
 			"x": 820,
 			"y": 420,
-			"id": "1187",
+			"id": "6",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
 			"imageId": 11,
 			"anchorPointX": 46.5,
 			"anchorPointY": 51,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							11,
+							19
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					},
+					"pressed": {
+						"cells": [
+							11,
+							20
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 0,
+					"y": 0,
+					"width": 93,
+					"height": 99
+				},
+				"AButtonControl4": {
+					"button down": false,
+					"my key": 0,
+					"start x pos": 0,
+					"start y pos": 0,
+					"target": "null",
+					"target tag": "",
+					"touchscreen": false
+				}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "static-image",
+			"x": 700,
+			"y": 420,
+			"id": "7",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 11,
+			"anchorPointX": 46.5,
+			"anchorPointY": 51,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							11,
+							17
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					},
+					"pressed": {
+						"cells": [
+							11,
+							18
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 0,
+					"y": 0,
+					"width": 93,
+					"height": 99
+				},
+				"BButtonControl5": {
+					"button down": false,
+					"my key": 0,
+					"start x pos": 0,
+					"start y pos": 0,
+					"target": "null",
+					"target tag": "",
+					"touchscreen": false,
+					"Other": "null"
+				}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "static-image",
+			"x": 60,
+			"y": 430,
+			"id": "8",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 11,
+			"anchorPointX": 42,
+			"anchorPointY": 45,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							11,
+							12
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					},
+					"pressed": {
+						"cells": [
+							11,
+							11
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 0,
+					"y": 0,
+					"width": 84,
+					"height": 90
+				},
+				"LeftButtonControl": {
+					"button down": false,
+					"my key": 0,
+					"start x pos": 0,
+					"start y pos": 0,
+					"target": "null",
+					"target tag": "",
+					"touchscreen": false
+				}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "static-image",
+			"x": 170,
+			"y": 430,
+			"id": "9",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 11,
+			"anchorPointX": 42,
+			"anchorPointY": 45,
 			"components": {
 				"arcadephysics": {
 					"gravity": false
@@ -945,77 +1105,14 @@
 						"loop": true,
 						"play": true,
 						"speed": 0.1
-					}
-				},
-				"box": {
-					"x": 0,
-					"y": 0,
-					"width": 93,
-					"height": 102
-				},
-				"AButtonControl4": {}
-			},
-			"plugins": {}
-		},
-		{
-			"type": "static-image",
-			"x": 700,
-			"y": 420,
-			"id": "1188",
-			"scaleX": 1,
-			"scaleY": 1,
-			"rotation": 0,
-			"imageId": 11,
-			"anchorPointX": 46.5,
-			"anchorPointY": 51,
-			"components": {
-				"arcadephysics": {
-					"gravity": false
-				},
-				"TextureAnimation": {
-					"idle": {
+					},
+					"pressed": {
 						"cells": [
 							11,
-							8
+							10
 						],
 						"loop": true,
-						"play": true,
-						"speed": 0.1
-					}
-				},
-				"box": {
-					"x": 0,
-					"y": 0,
-					"width": 93,
-					"height": 102
-				},
-				"BButtonControl5": {}
-			},
-			"plugins": {}
-		},
-		{
-			"type": "static-image",
-			"x": 60,
-			"y": 430,
-			"id": "1189",
-			"scaleX": 1,
-			"scaleY": 1,
-			"rotation": 0,
-			"imageId": 11,
-			"anchorPointX": 42,
-			"anchorPointY": 45,
-			"components": {
-				"arcadephysics": {
-					"gravity": false
-				},
-				"TextureAnimation": {
-					"idle": {
-						"cells": [
-							11,
-							7
-						],
-						"loop": true,
-						"play": true,
+						"play": false,
 						"speed": 0.1
 					}
 				},
@@ -1025,43 +1122,15 @@
 					"width": 84,
 					"height": 90
 				},
-				"LeftButtonControl": {}
-			},
-			"plugins": {}
-		},
-		{
-			"type": "static-image",
-			"x": 170,
-			"y": 430,
-			"id": "1190",
-			"scaleX": 1,
-			"scaleY": 1,
-			"rotation": 0,
-			"imageId": 11,
-			"anchorPointX": 42,
-			"anchorPointY": 45,
-			"components": {
-				"arcadephysics": {
-					"gravity": false
-				},
-				"TextureAnimation": {
-					"idle": {
-						"cells": [
-							11,
-							6
-						],
-						"loop": true,
-						"play": true,
-						"speed": 0.1
-					}
-				},
-				"box": {
-					"x": 0,
-					"y": 0,
-					"width": 84,
-					"height": 90
-				},
-				"RightButtonControl": {}
+				"RightButtonControl": {
+					"button down": false,
+					"my key": 0,
+					"start x pos": 0,
+					"start y pos": 0,
+					"target": "null",
+					"target tag": "",
+					"touchscreen": false
+				}
 			},
 			"plugins": {}
 		}

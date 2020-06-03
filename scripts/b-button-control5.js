@@ -15,6 +15,7 @@ Phaserfroot.PluginManager.register(
       // Attach custom event listeners.
       this.owner.on( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
       this.scene.input.on( "pointerdown", this.onStageTouch2, this );
+      this.scene.input.on( "pointerup", this.onStageTouch32, this );
       this.owner.properties.onUpdate( this.onMessageReceived, this, "_messaging_");
 
 
@@ -57,6 +58,7 @@ Phaserfroot.PluginManager.register(
       // Detach custom event listeners.
       this.owner.removeListener( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
       this.scene.input.off( "pointerdown", this.onStageTouch2, this );
+      this.scene.input.off( "pointerup", this.onStageTouch32, this );
 
     }
 
@@ -80,15 +82,6 @@ Phaserfroot.PluginManager.register(
         if (this.owner.alpha < 1) {
           this.owner.alpha = this.owner.alpha + 0.05;
         }
-        if (this.button_down) {
-          if (!this.instContains( this.owner, ((this.errorCheckNotNull( this.pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).x + this.camera.posX), ((this.errorCheckNotNull2( this.pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).y + this.camera.posY) )) {
-            if (this.button_down == true) {
-              if (this.pointer != null) {
-                this.release(  );
-              }
-            }
-          }
-        }
       } else {
         if (this.owner.alpha > 0) {
           this.owner.alpha = this.owner.alpha - 0.05;
@@ -101,15 +94,19 @@ Phaserfroot.PluginManager.register(
       this.owner.visible = false;
     }
 
+    executeMessageplayer_alive () {
+      // Executed when the message 'player alive' is received.
+      this.owner.visible = true;
+    }
+
     onLevelStart2() {
       if (this.scene.getChildrenByTag( this.target_tag )[ 0 ] != null) {
         this.target = this.scene.getChildrenByTag( this.target_tag )[ 0 ];
       } else {
         this.target = this.owner;
       }
-      if (this.touchscreen == null) {
-        this.touchscreen = false;
-      }
+      this.touchscreen = true;
+      this.scene.sys.displayList.bringToTop( this.owner );
 
     }
 
@@ -141,37 +138,10 @@ Phaserfroot.PluginManager.register(
       return hitbox.contains( x, y );
     }
 
-    errorCheckNotNull3( input, backup, message ) {
-      if( !input ) {
-        reportError( message );
-        return backup;
-      }
-      return input;
-    }
-
-    errorCheckNotNull4( input, backup, message ) {
-      if( !input ) {
-        reportError( message );
-        return backup;
-      }
-      return input;
-    }
-
-    errorCheckNotNull5( input, backup, message ) {
-      if( !input ) {
-        reportError( message );
-        return backup;
-      }
-      return input;
-    }
-
     onStageTouch2 ( pointer ) {
       var pointer = pointer;
-      if ((this.errorCheckNotNull3( this.scene.input.manager.pointers[1], this.scene.input.manager.activePointer, "`Get active/down/up of Pointer` block could not find a pointer named [scene.input.manager.pointers[1]].")).active) {
-        this.touchscreen = true;
-      }
       if (this.touchscreen) {
-        if (this.instContains( this.owner, ((this.errorCheckNotNull4( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).x + this.camera.posX), ((this.errorCheckNotNull5( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).y + this.camera.posY) )) {
+        if (this.instContains( this.owner, ((this.errorCheckNotNull( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).x + this.camera.posX), ((this.errorCheckNotNull2( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).y + this.camera.posY) )) {
           this.pointer = pointer;
           this.pressed(  );
         }
@@ -186,6 +156,18 @@ Phaserfroot.PluginManager.register(
         new KeyboardEvent( "onup", { code: this.my_key } ) );
     }
 
+    onStageTouch32 ( pointer ) {
+      var pointer = pointer;
+      if (this.button_down == true) {
+        if (this.pointer != null) {
+          if (this.pointer == pointer) {
+            this.release(  );
+          }
+        }
+      }
+
+    }
+
     release (  ) {
       this.button_down = false;
       this.owner.playMy( 'idle' );
@@ -197,6 +179,10 @@ Phaserfroot.PluginManager.register(
 
       if ( message === 'player dead' ) {
         this.executeMessageplayer_dead();
+      }
+
+      if ( message === 'player alive' ) {
+        this.executeMessageplayer_alive();
       }
 
     }

@@ -139,7 +139,7 @@ Phaserfroot.PluginManager.register(
       this.owner.body.maxVelocity.x = 300;
       this.air_time = 0;
       this.able_to_jump = true;
-      this.health = 60;
+      this.health = 100;
       this.able_to_be_hurt = true;
       this.max_health = this.health;
       if (this.game.GLOBAL_VARIABLES.hostPlayerID == this.game.GLOBAL_VARIABLES.myPlayerID) {
@@ -929,7 +929,7 @@ Phaserfroot.PluginManager.register(
 
     get_hurt (  ) {
       if (this.health > 0) {
-        this.health = this.health - 4;
+        this.health = this.health - 6;
         this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndDeathBass' ) ? 'sndDeathBass' : null );
         var tracker2 = { k: 60 };
         var base2 = this.camera.offsetX;

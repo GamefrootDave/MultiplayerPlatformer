@@ -280,6 +280,7 @@ Phaserfroot.PluginManager.register(
       // This player has respawned
       if (this.value[0] == this.thisPlayerID) {
         this.health = this.value[10];
+        this.max_health = this.health;
         this.owner.alpha = 1;
         this.scene.physicsLayersManager.addToLayer( this.owner, 0 );
         this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndPrev' ) ? 'sndPrev' : null );
