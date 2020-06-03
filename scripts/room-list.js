@@ -68,6 +68,11 @@ Phaserfroot.PluginManager.register(
       this.list_of_room_buttons = [];
     }
 
+    executeMessagecould_not_connect () {
+      // Executed when the message 'could not connect' is received.
+      this.owner.components.getByName( "TextAutomation" )[ 0 ].text = 'Could not connect 🔌';
+    }
+
     executeMessagegiveRoom () {
       // Executed when the 'giveRoom' is received.
       // When the other players tell us that they are hosts, then update our list of servers!
@@ -249,21 +254,11 @@ Phaserfroot.PluginManager.register(
 
     }
 
-    play_music_once_it_loads (  ) {
-      this.game.log.log( (String(this.owner.scene.game.cache.audio.get( 'music' ) ? 'music' : null)) );
-      if (String(this.owner.scene.game.cache.audio.get( 'music' ) ? 'music' : null) == 'null') {
-        this.delayed_event = this.scene.time.delayedCall( 500, function() {
-          if ( !this.owner || this.owner.exists === false ) {
-            return;
-          }
-            this.play_music_once_it_loads(  );
-        }, null, this );
-      } else {
-        this.scene.components.getByName( "SoundManager" )[ 0 ].playMusic( this.owner.scene.game.cache.audio.get( 'music' ) ? 'music' : null );
-      }
-    }
-
     onMessageReceived ( name, message ) {
+
+      if ( message === 'could not connect' ) {
+        this.executeMessagecould_not_connect();
+      }
 
       if ( message === 'giveRoom' ) {
         this.value = this.owner.properties.get( "_messaging-value_" );
@@ -275,6 +270,19 @@ Phaserfroot.PluginManager.register(
         this.executeMessageaddPlayerToRoom();
       }
 
+    }
+
+    play_music_once_it_loads (  ) {
+      if (String(this.owner.scene.game.cache.audio.get( 'music' ) ? 'music' : null) == 'null') {
+        this.delayed_event = this.scene.time.delayedCall( 500, function() {
+          if ( !this.owner || this.owner.exists === false ) {
+            return;
+          }
+            this.play_music_once_it_loads(  );
+        }, null, this );
+      } else {
+        this.scene.components.getByName( "SoundManager" )[ 0 ].playMusic( this.owner.scene.game.cache.audio.get( 'music' ) ? 'music' : null );
+      }
     }
 
     checkScene( message ) {

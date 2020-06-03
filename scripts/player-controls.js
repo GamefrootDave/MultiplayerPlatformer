@@ -147,8 +147,16 @@ Phaserfroot.PluginManager.register(
       } else {
         this.I_am_the_host = false;
       }
-      this.owner.posX = this.math_random_int( 300, 1100 );
-      this.owner.posY = 300;
+      if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 3) {
+        this.owner.posX = this.math_random_int( 300, 1200 );
+        this.owner.posY = 50;
+      } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 4) {
+        this.owner.posX = this.math_random_int( 200, 700 );
+        this.owner.posY = 140;
+      } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 5) {
+        this.owner.posX = this.math_random_int( 300, 1100 );
+        this.owner.posY = 300;
+      }
     }
 
     onTick () {
@@ -512,6 +520,22 @@ Phaserfroot.PluginManager.register(
       } else {
         this.owner.scene.physicsLayersManager.layers[ 2 ].setExternalCollision( 2, false );
       };
+      // zombies are physics layer 3
+      if ( 0 === 3 ) {
+        this.owner.scene.physicsLayersManager.layers[ 0 ].setInternalCollisions( true );
+      } else {
+        this.owner.scene.physicsLayersManager.layers[ 0 ].setExternalCollision( 3, true );
+      };
+      if ( 1 === 3 ) {
+        this.owner.scene.physicsLayersManager.layers[ 1 ].setInternalCollisions( true );
+      } else {
+        this.owner.scene.physicsLayersManager.layers[ 1 ].setExternalCollision( 3, true );
+      };
+      if ( 3 === 3 ) {
+        this.owner.scene.physicsLayersManager.layers[ 3 ].setInternalCollisions( false );
+      } else {
+        this.owner.scene.physicsLayersManager.layers[ 3 ].setExternalCollision( 3, false );
+      };
       // my bullets are physics layer 4
       if ( 0 === 4 ) {
         this.owner.scene.physicsLayersManager.layers[ 0 ].setInternalCollisions( true );
@@ -522,6 +546,11 @@ Phaserfroot.PluginManager.register(
         this.owner.scene.physicsLayersManager.layers[ 1 ].setInternalCollisions( false );
       } else {
         this.owner.scene.physicsLayersManager.layers[ 1 ].setExternalCollision( 4, false );
+      };
+      if ( 3 === 4 ) {
+        this.owner.scene.physicsLayersManager.layers[ 3 ].setInternalCollisions( true );
+      } else {
+        this.owner.scene.physicsLayersManager.layers[ 3 ].setExternalCollision( 4, true );
       };
     }
 

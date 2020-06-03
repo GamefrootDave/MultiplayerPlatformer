@@ -76,7 +76,6 @@ Phaserfroot.PluginManager.register(
       }
       if ( this.delayed_event2 ) this.delayed_event2.remove();
       if ( this.delayed_event3 ) this.delayed_event3.remove();
-      if ( this.delayed_event4 ) this.delayed_event4.remove();
       this.scene.getKey( 32 ).off( "up", this.onKeyInput322, this );
 
     }
@@ -155,12 +154,12 @@ Phaserfroot.PluginManager.register(
         this.reportError( "`Set Instance Y` block could not find the instance [instance]." );
         return;
       }
-      instance.posY = (this.errorCheckNotNull24( bullet_instance, this.owner, "`Get Position of Instance` block could not find an instance named [bullet_instance].")).posY;
+      instance.posY = (this.errorCheckNotNull28( bullet_instance, this.owner, "`Get Position of Instance` block could not find an instance named [bullet_instance].")).posY;
       if ( !instance ) {
         this.reportError( "`Set Instance X` block could not find the instance [instance]." );
         return;
       }
-      instance.posX = (this.errorCheckNotNull25( bullet_instance, this.owner, "`Get Position of Instance` block could not find an instance named [bullet_instance].")).posX;
+      instance.posX = (this.errorCheckNotNull29( bullet_instance, this.owner, "`Get Position of Instance` block could not find an instance named [bullet_instance].")).posX;
     }
 
     executeMessagesparks_right () {
@@ -176,12 +175,12 @@ Phaserfroot.PluginManager.register(
         this.reportError( "`Set Instance Y` block could not find the instance [instance]." );
         return;
       }
-      instance.posY = (this.errorCheckNotNull26( bullet_instance, this.owner, "`Get Position of Instance` block could not find an instance named [bullet_instance].")).posY;
+      instance.posY = (this.errorCheckNotNull30( bullet_instance, this.owner, "`Get Position of Instance` block could not find an instance named [bullet_instance].")).posY;
       if ( !instance ) {
         this.reportError( "`Set Instance X` block could not find the instance [instance]." );
         return;
       }
-      instance.posX = ((this.errorCheckNotNull27( bullet_instance, this.owner, "`Get Position of Instance` block could not find an instance named [bullet_instance].")).posX + ( (this.errorCheckNotNull28( bullet_instance, this.owner, "`Get width/height of Instance` block could not find an instance named [bullet_instance].")).width * bullet_instance.scaleX )) - ( (this.errorCheckNotNull29( instance, this.owner, "`Get width/height of Instance` block could not find an instance named [instance].")).width * instance.scaleX );
+      instance.posX = ((this.errorCheckNotNull31( bullet_instance, this.owner, "`Get Position of Instance` block could not find an instance named [bullet_instance].")).posX + ( (this.errorCheckNotNull32( bullet_instance, this.owner, "`Get width/height of Instance` block could not find an instance named [bullet_instance].")).width * bullet_instance.scaleX )) - ( (this.errorCheckNotNull33( instance, this.owner, "`Get width/height of Instance` block could not find an instance named [instance].")).width * instance.scaleX );
     }
 
     executeMessagesparks_bottom () {
@@ -197,12 +196,12 @@ Phaserfroot.PluginManager.register(
         this.reportError( "`Set Instance CenterX` block could not find the instance [instance]." );
         return;
       }
-      instance.x = (this.errorCheckNotNull30( bullet_instance, this.owner, "`Get Position Center of Instance` block could not find an instance named [bullet_instance ].")).x;
+      instance.x = (this.errorCheckNotNull34( bullet_instance, this.owner, "`Get Position Center of Instance` block could not find an instance named [bullet_instance ].")).x;
       if ( !instance ) {
         this.reportError( "`Set Instance CenterY` block could not find the instance [instance]." );
         return;
       }
-      instance.y = (this.errorCheckNotNull31( bullet_instance, this.owner, "`Get Position Center of Instance` block could not find an instance named [bullet_instance ].")).y;
+      instance.y = (this.errorCheckNotNull35( bullet_instance, this.owner, "`Get Position Center of Instance` block could not find an instance named [bullet_instance ].")).y;
     }
 
     executeMessageplayer_dead () {
@@ -387,13 +386,7 @@ Phaserfroot.PluginManager.register(
     shoot (  ) {
       this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndFire' ) ? 'sndFire' : null );
       this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndFireBass' ) ? 'sndFireBass' : null );
-      this.bullet2(  );
-      this.delayed_event2 = this.scene.time.delayedCall( 60, function() {
-        if ( !this.owner || this.owner.exists === false ) {
-          return;
-        }
-          this.bullet2(  );
-      }, null, this );
+      this.shoot_three_bullets(  );
       this.muzzleflash2(  );
       this.casing2(  );
       var tracker = { k: (this.math_random_int( 20, 30 )) };
@@ -437,19 +430,19 @@ Phaserfroot.PluginManager.register(
           this.reportError( "`Set Instance X` block could not find the instance [white_flash]." );
           return;
         }
-        this.white_flash.posX = this.camera.posX;
+        this.white_flash.posX = this.camera.posX + this.camera.offsetX;
         if ( !this.white_flash ) {
           this.reportError( "`Set Instance Y` block could not find the instance [white_flash]." );
           return;
         }
-        this.white_flash.posY = this.camera.posY;
+        this.white_flash.posY = this.camera.posY + this.camera.offsetY;
         if ( !this.white_flash ) {
           this.reportError( "`Set Instance Alpha` block could not find the instance [white_flash]." );
           return;
         }
         this.white_flash.alpha = this.math_random_int( 80, 10 ) / 100;
         var this_white_flash = this.white_flash;
-        this.delayed_event3 = this.scene.time.delayedCall( 20, function() {
+        this.delayed_event2 = this.scene.time.delayedCall( 20, function() {
           if ( !this.owner || this.owner.exists === false ) {
             return;
           }
@@ -497,7 +490,7 @@ Phaserfroot.PluginManager.register(
         return;
       }
       instance.posY = this.owner.posY - 18;
-      this.delayed_event4 = this.scene.time.delayedCall( 20, function() {
+      this.delayed_event3 = this.scene.time.delayedCall( 20, function() {
         if ( !this.owner || this.owner.exists === false ) {
           return;
         }
@@ -557,6 +550,18 @@ Phaserfroot.PluginManager.register(
       return input;
     }
 
+    shoot_three_bullets (  ) {
+      if (this.owner.scaleX > 0) {
+        this.bullet2( this.math_random_int( 352, 357 ), (this.errorCheckNotNull15( this.player, this.owner, "`Get Position Center of Instance` block could not find an instance named [player ].")).x - 24, this.owner.posY - 18 );
+        this.bullet2( 360, (this.errorCheckNotNull16( this.player, this.owner, "`Get Position Center of Instance` block could not find an instance named [player ].")).x - 24, this.owner.posY - 12 );
+        this.bullet2( this.math_random_int( 363, 368 ), (this.errorCheckNotNull17( this.player, this.owner, "`Get Position Center of Instance` block could not find an instance named [player ].")).x - 24, this.owner.posY - 6 );
+      } else {
+        this.bullet2( this.math_random_int( 183, 188 ), (this.errorCheckNotNull18( this.player, this.owner, "`Get Position Center of Instance` block could not find an instance named [player ].")).x - 33, this.owner.posY - 18 );
+        this.bullet2( 180, (this.errorCheckNotNull19( this.player, this.owner, "`Get Position Center of Instance` block could not find an instance named [player ].")).x - 33, this.owner.posY - 12 );
+        this.bullet2( this.math_random_int( 177, 172 ), (this.errorCheckNotNull20( this.player, this.owner, "`Get Position Center of Instance` block could not find an instance named [player ].")).x - 33, this.owner.posY - 6 );
+      }
+    }
+
     errorCheckNotNull21( input, backup, message ) {
       if( !input ) {
         reportError( message );
@@ -581,45 +586,64 @@ Phaserfroot.PluginManager.register(
       return input;
     }
 
-    bullet2 (  ) {
+    errorCheckNotNull24( input, backup, message ) {
+      if( !input ) {
+        reportError( message );
+        return backup;
+      }
+      return input;
+    }
+
+    errorCheckNotNull25( input, backup, message ) {
+      if( !input ) {
+        reportError( message );
+        return backup;
+      }
+      return input;
+    }
+
+    errorCheckNotNull26( input, backup, message ) {
+      if( !input ) {
+        reportError( message );
+        return backup;
+      }
+      return input;
+    }
+
+    errorCheckNotNull27( input, backup, message ) {
+      if( !input ) {
+        reportError( message );
+        return backup;
+      }
+      return input;
+    }
+
+    bullet2 ( rotation, x_pos, y_pos ) {
       var bullet_instance = this.scene.addSpriteByName( this.bullet );
       if ( !bullet_instance ) {
         this.reportError( "`Change Instance Depth` block could not find the instance [bullet_instance]." );
         return;
       }
       this.scene.addChildAfter( bullet_instance, this.owner );
-      if (this.owner.scaleX > 0) {
-        if ( !bullet_instance ) {
-          this.reportError( "`Set Instance X` block could not find the instance [bullet_instance]." );
-          return;
-        }
-        bullet_instance.posX = (this.errorCheckNotNull15( this.player, this.owner, "`Get Position Center of Instance` block could not find an instance named [player ].")).x - 18;
-        if ( !bullet_instance ) {
-          this.reportError( "`Set Instance Rotation` block could not find the instance [bullet_instance]." );
-          return;
-        }
-        bullet_instance.bearing = this.math_random_int( 355, 365 );
-      } else {
-        if ( !bullet_instance ) {
-          this.reportError( "`Set Instance X` block could not find the instance [bullet_instance]." );
-          return;
-        }
-        bullet_instance.posX = (this.errorCheckNotNull16( this.player, this.owner, "`Get Position Center of Instance` block could not find an instance named [player ].")).x - 33;
-        if ( !bullet_instance ) {
-          this.reportError( "`Set Instance Rotation` block could not find the instance [bullet_instance]." );
-          return;
-        }
-        bullet_instance.bearing = this.math_random_int( 175, 185 );
+      if ( !bullet_instance ) {
+        this.reportError( "`Set Instance Rotation` block could not find the instance [bullet_instance]." );
+        return;
       }
+      bullet_instance.bearing = rotation;
+      if ( !bullet_instance ) {
+        this.reportError( "`Set Instance X` block could not find the instance [bullet_instance]." );
+        return;
+      }
+      bullet_instance.posX = x_pos;
       if ( !bullet_instance ) {
         this.reportError( "`Set Instance Y` block could not find the instance [bullet_instance]." );
         return;
       }
-      bullet_instance.posY = this.owner.posY - 6;
-      this.scene.messageInstance( bullet_instance, 'x velocity', (Math.cos((this.errorCheckNotNull17( bullet_instance, this.owner, "`Get Rotation of Instance` block could not find an instance named [bullet_instance].")).bearing / 180 * Math.PI) * 2000) );
-      this.scene.messageInstance( bullet_instance, 'y velocity', (Math.sin((this.errorCheckNotNull18( bullet_instance, this.owner, "`Get Rotation of Instance` block could not find an instance named [bullet_instance].")).bearing / 180 * Math.PI) * 2000) );
+      bullet_instance.posY = y_pos;
+      this.scene.messageInstance( bullet_instance, 'x velocity', (Math.cos((this.errorCheckNotNull21( bullet_instance, this.owner, "`Get Rotation of Instance` block could not find an instance named [bullet_instance].")).bearing / 180 * Math.PI) * 2000) );
+      this.scene.messageInstance( bullet_instance, 'y velocity', (Math.sin((this.errorCheckNotNull22( bullet_instance, this.owner, "`Get Rotation of Instance` block could not find an instance named [bullet_instance].")).bearing / 180 * Math.PI) * 2000) );
       this.scene.messageInstance( bullet_instance, 'gun', this.owner );
-      this.scene.messageExternal( 'sendToRoom', [this.game.GLOBAL_VARIABLES.hostRoomName, 'playerBullet', this.game.GLOBAL_VARIABLES.myPlayerID, (this.errorCheckNotNull19( bullet_instance, this.owner, "`Get Position of Instance` block could not find an instance named [bullet_instance].")).posX, (this.errorCheckNotNull20( bullet_instance, this.owner, "`Get Position of Instance` block could not find an instance named [bullet_instance].")).posY, (this.errorCheckNotNull21( bullet_instance, this.owner, "`Get Rotation of Instance` block could not find an instance named [bullet_instance].")).bearing, Math.cos((this.errorCheckNotNull22( bullet_instance, this.owner, "`Get Rotation of Instance` block could not find an instance named [bullet_instance].")).bearing / 180 * Math.PI) * 2000, Math.sin((this.errorCheckNotNull23( bullet_instance, this.owner, "`Get Rotation of Instance` block could not find an instance named [bullet_instance].")).bearing / 180 * Math.PI) * 2000] );
+      this.scene.messageExternal( 'sendToRoom', [this.game.GLOBAL_VARIABLES.hostRoomName, 'playerBullet', this.game.GLOBAL_VARIABLES.myPlayerID, (this.errorCheckNotNull23( bullet_instance, this.owner, "`Get Position of Instance` block could not find an instance named [bullet_instance].")).posX, (this.errorCheckNotNull24( bullet_instance, this.owner, "`Get Position of Instance` block could not find an instance named [bullet_instance].")).posY, (this.errorCheckNotNull25( bullet_instance, this.owner, "`Get Rotation of Instance` block could not find an instance named [bullet_instance].")).bearing, Math.cos((this.errorCheckNotNull26( bullet_instance, this.owner, "`Get Rotation of Instance` block could not find an instance named [bullet_instance].")).bearing / 180 * Math.PI) * 2000, Math.sin((this.errorCheckNotNull27( bullet_instance, this.owner, "`Get Rotation of Instance` block could not find an instance named [bullet_instance].")).bearing / 180 * Math.PI) * 2000] );
     }
 
     casing2 (  ) {
@@ -681,38 +705,6 @@ Phaserfroot.PluginManager.register(
 
     }
 
-    errorCheckNotNull24( input, backup, message ) {
-      if( !input ) {
-        reportError( message );
-        return backup;
-      }
-      return input;
-    }
-
-    errorCheckNotNull25( input, backup, message ) {
-      if( !input ) {
-        reportError( message );
-        return backup;
-      }
-      return input;
-    }
-
-    errorCheckNotNull26( input, backup, message ) {
-      if( !input ) {
-        reportError( message );
-        return backup;
-      }
-      return input;
-    }
-
-    errorCheckNotNull27( input, backup, message ) {
-      if( !input ) {
-        reportError( message );
-        return backup;
-      }
-      return input;
-    }
-
     errorCheckNotNull28( input, backup, message ) {
       if( !input ) {
         reportError( message );
@@ -738,6 +730,38 @@ Phaserfroot.PluginManager.register(
     }
 
     errorCheckNotNull31( input, backup, message ) {
+      if( !input ) {
+        reportError( message );
+        return backup;
+      }
+      return input;
+    }
+
+    errorCheckNotNull32( input, backup, message ) {
+      if( !input ) {
+        reportError( message );
+        return backup;
+      }
+      return input;
+    }
+
+    errorCheckNotNull33( input, backup, message ) {
+      if( !input ) {
+        reportError( message );
+        return backup;
+      }
+      return input;
+    }
+
+    errorCheckNotNull34( input, backup, message ) {
+      if( !input ) {
+        reportError( message );
+        return backup;
+      }
+      return input;
+    }
+
+    errorCheckNotNull35( input, backup, message ) {
       if( !input ) {
         reportError( message );
         return backup;

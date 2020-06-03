@@ -28,6 +28,7 @@ Phaserfroot.PluginManager.register(
 
       // Boot phase.
 
+      this.onCreate();
 
     }
 
@@ -54,6 +55,11 @@ Phaserfroot.PluginManager.register(
     }
 
     // CUSTOM METHODS
+
+    onCreate () {
+      // Executed when this script is initially created.
+      this.owner.visible = false;
+    }
 
     executeMessagegetPlayerInfo () {
       // Executed when the 'getPlayerInfo' is received.

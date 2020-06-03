@@ -1,5 +1,5 @@
 {
-	"name": "Level 3",
+	"name": "Level 5",
 	"color": {
 		"r": 141,
 		"g": 114,
@@ -10,11 +10,11 @@
 	"systems": {},
 	"gameObjects": [
 		{
-			"id": 4,
-			"name": "Tile Map",
+			"id": 10,
+			"name": "Tile Map2",
 			"type": "tilemap",
-			"jsonId": 17,
-			"imageId": 18,
+			"jsonId": 19,
+			"imageId": 20,
 			"x": 0,
 			"y": 0,
 			"components": {
@@ -25,9 +25,9 @@
 		},
 		{
 			"type": "static-image",
-			"x": 759,
-			"y": 241,
-			"id": "2062",
+			"x": 303,
+			"y": 288,
+			"id": "2048",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -120,8 +120,8 @@
 					"height": 63
 				},
 				"PlayerControls": {
-					"music": 5,
-					"jump": 6,
+					"music": 11,
+					"jump": 12,
 					"air time": 0,
 					"jumpcloud": null,
 					"bg colour": "#000000",
@@ -151,9 +151,9 @@
 		},
 		{
 			"type": "static-image",
-			"x": 205,
-			"y": -137,
-			"id": "2063",
+			"x": 224,
+			"y": -121,
+			"id": "2049",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -192,9 +192,9 @@
 		},
 		{
 			"type": "text",
-			"id": "2064",
-			"x": -12,
-			"y": -134,
+			"id": "2050",
+			"x": 7,
+			"y": -118,
 			"textColor": "#ffffffff",
 			"textFontFamily": "'Arial Black', sans-serif",
 			"textLineHeight": 1,
@@ -214,9 +214,9 @@
 		},
 		{
 			"type": "static-image",
-			"x": 710,
-			"y": -155,
-			"id": "2065",
+			"x": 729,
+			"y": -139,
+			"id": "2051",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -332,9 +332,9 @@
 		},
 		{
 			"type": "static-image",
-			"x": 778,
-			"y": -112,
-			"id": "2066",
+			"x": 797,
+			"y": -96,
+			"id": "2052",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -374,7 +374,7 @@
 		},
 		{
 			"type": "text",
-			"id": "2067",
+			"id": "2053",
 			"x": 13,
 			"y": 19,
 			"textColor": "#ffffffff",
@@ -401,9 +401,9 @@
 		},
 		{
 			"type": "static-image",
-			"x": 853,
-			"y": -157,
-			"id": "2068",
+			"x": 880,
+			"y": -156,
+			"id": "2054",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -508,9 +508,9 @@
 		},
 		{
 			"type": "static-image",
-			"x": 125,
-			"y": -100,
-			"id": "1587",
+			"x": 144,
+			"y": -84,
+			"id": "1875",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -544,9 +544,9 @@
 		},
 		{
 			"type": "static-image",
-			"x": 267,
-			"y": -135,
-			"id": "1588",
+			"x": 286,
+			"y": -119,
+			"id": "1876",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -583,9 +583,9 @@
 		},
 		{
 			"type": "static-image",
-			"x": 245,
-			"y": -108,
-			"id": "1589",
+			"x": 264,
+			"y": -92,
+			"id": "1877",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -623,9 +623,9 @@
 		},
 		{
 			"type": "static-image",
-			"x": 281,
-			"y": -155,
-			"id": "1590",
+			"x": 300,
+			"y": -139,
+			"id": "1878",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -665,9 +665,9 @@
 		},
 		{
 			"type": "static-image",
-			"x": -6,
-			"y": -103,
-			"id": "1591",
+			"x": 13,
+			"y": -87,
+			"id": "1879",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -713,9 +713,9 @@
 		},
 		{
 			"type": "static-image",
-			"x": 74,
-			"y": -112,
-			"id": "1592",
+			"x": 93,
+			"y": -96,
+			"id": "1880",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -753,9 +753,9 @@
 		},
 		{
 			"type": "static-image",
-			"x": 462,
-			"y": -137,
-			"id": "1593",
+			"x": 481,
+			"y": -121,
+			"id": "1881",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -798,9 +798,9 @@
 		},
 		{
 			"type": "static-image",
-			"x": 596,
-			"y": -121,
-			"id": "1594",
+			"x": 615,
+			"y": -105,
+			"id": "1882",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -834,9 +834,9 @@
 		},
 		{
 			"type": "text",
-			"id": "1595",
-			"x": -6,
-			"y": -214,
+			"id": "1883",
+			"x": 13,
+			"y": -198,
 			"textColor": "#000000ff",
 			"textFontFamily": "Helvetica, Arial, sans-serif",
 			"textLineHeight": 1,
@@ -856,9 +856,9 @@
 		},
 		{
 			"type": "text",
-			"id": "1596",
-			"x": -7,
-			"y": -185,
+			"id": "1884",
+			"x": 12,
+			"y": -169,
 			"textColor": "#000000ff",
 			"textFontFamily": "Helvetica, Arial, sans-serif",
 			"textLineHeight": 1,
@@ -877,9 +877,9 @@
 		},
 		{
 			"type": "text",
-			"id": "1597",
-			"x": 142,
-			"y": -186,
+			"id": "1885",
+			"x": 161,
+			"y": -170,
 			"textColor": "#000000ff",
 			"textFontFamily": "Helvetica, Arial, sans-serif",
 			"textLineHeight": 1,
@@ -899,15 +899,15 @@
 		},
 		{
 			"type": "text",
-			"id": "1598",
-			"x": 162,
-			"y": -223,
+			"id": "1886",
+			"x": 176,
+			"y": -225,
 			"textColor": "#000000ff",
 			"textFontFamily": "Helvetica, Arial, sans-serif",
 			"textLineHeight": 1,
 			"textLineWidth": 512,
 			"textSize": 18,
-			"textText": "zombie spawner",
+			"textText": "Zombie spawner",
 			"components": {
 				"arcadephysics": {
 					"gravity": false
@@ -922,45 +922,9 @@
 		},
 		{
 			"type": "static-image",
-			"x": 820,
-			"y": 420,
-			"id": "1187",
-			"scaleX": 1,
-			"scaleY": 1,
-			"rotation": 0,
-			"imageId": 13,
-			"anchorPointX": 46.5,
-			"anchorPointY": 51,
-			"components": {
-				"arcadephysics": {
-					"gravity": false
-				},
-				"TextureAnimation": {
-					"idle": {
-						"cells": [
-							13,
-							8
-						],
-						"loop": true,
-						"play": true,
-						"speed": 0.1
-					}
-				},
-				"box": {
-					"x": 0,
-					"y": 0,
-					"width": 93,
-					"height": 102
-				},
-				"AButtonControl4": {}
-			},
-			"plugins": {}
-		},
-		{
-			"type": "static-image",
 			"x": 700,
 			"y": 420,
-			"id": "1188",
+			"id": "963",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -994,9 +958,45 @@
 		},
 		{
 			"type": "static-image",
+			"x": 820,
+			"y": 420,
+			"id": "964",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 13,
+			"anchorPointX": 46.5,
+			"anchorPointY": 51,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							13,
+							8
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 0,
+					"y": 0,
+					"width": 93,
+					"height": 102
+				},
+				"AButtonControl4": {}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "static-image",
 			"x": 60,
 			"y": 430,
-			"id": "1189",
+			"id": "965",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -1032,7 +1032,7 @@
 			"type": "static-image",
 			"x": 170,
 			"y": 430,
-			"id": "1190",
+			"id": "966",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,

@@ -14,6 +14,7 @@ Phaserfroot.PluginManager.register(
 
       // Attach custom event listeners.
       this.owner.on( this.owner.EVENTS.LEVEL_START, this.onLevelStart2, this );
+      this.owner.properties.onUpdate( this.onMessageReceived, this, "_messaging_");
       this.onTick_ = this.scene.time.addEvent( {
         delay: this.math_random_int( 700, 1200 ),
         loop: true,
@@ -29,10 +30,10 @@ Phaserfroot.PluginManager.register(
 
 
       // Initialize properties from parameters.
+      this.health = instanceProperties[ "health" ];
       this.toucher = ( typeof instanceProperties[ "toucher" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "toucher" ], true ) : null;
       this.player = ( typeof instanceProperties[ "player" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "player" ], true ) : null;
       this.fading = instanceProperties[ "fading" ];
-      this.health = instanceProperties[ "health" ];
 
 
       // Boot phase.
@@ -91,6 +92,12 @@ Phaserfroot.PluginManager.register(
       this.health = this.math_random_int( 40, 80 );
       this.owner.body.bounce.set( (this.math_random_int( 20, 50 ) / 100) );
       this.fading = false;
+    }
+
+    executeMessagedestroy_zombie () {
+      // Executed when the message 'destroy zombie' is received.
+      this.health = 0;
+      this.get_hurt(  );
     }
 
     EVENTS_UPDATE () {
@@ -161,6 +168,14 @@ Phaserfroot.PluginManager.register(
     onLevelStart2() {
       if (( this.scene.getChildrenByTag( 'player' )[ 0 ] && this.scene.getChildrenByTag( 'player' )[ 0 ].exists )) {
         this.player = this.scene.getChildrenByTag( 'player' )[ 0 ];
+      }
+
+    }
+
+    onMessageReceived ( name, message ) {
+
+      if ( message === 'destroy zombie' ) {
+        this.executeMessagedestroy_zombie();
       }
 
     }

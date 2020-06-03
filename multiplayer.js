@@ -115,27 +115,3 @@ this.socket.on('sendToPlayer', ( messageName, messageValue ) => {
     game.broadcast.ingest( messageName, value );
     //console.log('Game is ingesting ' + messageName + ' with ' + value);
 });
-
-
-
-//
-
-/*
-The section below relayed messages from any client, through the server, and then back to every other client. 
-Pretty wasteful and spammy! So we've implemented rooms for sending messages to specific channels for specific clients to receive.
-
-//receiving game-in messages from the server, and then ingesting them into the game
-this.socket.on('game-in', (value) => {
-    //console.log('game-in' + value );
-    game.broadcast.ingest('game-in', value );
-});
-
-//sending game-out messages to the server!
-game.broadcast.emitter.on(game.broadcast.MESSAGE, ( message, value ) => { 
-    if ( message === 'game-out' ) {
-        //console.log('game-out' + value);
-        this.socket.emit('game-out', value );
-    }
-});
-
-*/

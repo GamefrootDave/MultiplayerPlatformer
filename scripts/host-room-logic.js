@@ -25,6 +25,7 @@ Phaserfroot.PluginManager.register(
 
       // Boot phase.
 
+      this.onCreate();
 
     }
 
@@ -51,6 +52,11 @@ Phaserfroot.PluginManager.register(
     }
 
     // CUSTOM METHODS
+
+    onCreate () {
+      // Executed when this script is initially created.
+      this.owner.visible = false;
+    }
 
     executeMessagegetRooms () {
       // Executed when the 'getRooms' is received.

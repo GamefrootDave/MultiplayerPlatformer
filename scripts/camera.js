@@ -219,14 +219,16 @@ Phaserfroot.PluginManager.register(
 
     EVENTS_UPDATE () {
       // Executed every frame.
-      if (!this.player_dead) {
-        this.camera.centerOn( this.owner.x, this.owner.y );
-        this.camera.posX = (Math.round(this.camera.posX));
-        this.camera.posY = (Math.round(this.camera.posY));
-      } else {
-        this.camera.centerOn( (this.errorCheckNotNull2( this.player, this.owner, "A `Center Camera on Instance` block could not find an instance named [player].")).x, (this.errorCheckNotNull2( this.player, this.owner, "A `Center Camera on Instance` block could not find an instance named [player].")).y );
-        this.camera.scaleX = (Math.min(Math.max(this.camera.scaleX * 100 + 0.5, 100), 300) / 100);
-        this.camera.scaleY = this.camera.scaleX;
+      if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) != 4) {
+        if (!this.player_dead) {
+          this.camera.centerOn( this.owner.x, this.owner.y );
+          this.camera.posX = (Math.round(this.camera.posX));
+          this.camera.posY = (Math.round(this.camera.posY));
+        } else {
+          this.camera.centerOn( (this.errorCheckNotNull2( this.player, this.owner, "A `Center Camera on Instance` block could not find an instance named [player].")).x, (this.errorCheckNotNull2( this.player, this.owner, "A `Center Camera on Instance` block could not find an instance named [player].")).y );
+          this.camera.scaleX = (Math.min(Math.max(this.camera.scaleX * 100 + 0.5, 100), 300) / 100);
+          this.camera.scaleY = this.camera.scaleX;
+        }
       }
       if ((this.errorCheckNotNull3( this.player, this.owner, "`Get scale of Instance` block could not find an instance named [player].")).scaleX > 0) {
         this.owner.body.velocity.x = (Math.min(Math.max((((this.errorCheckNotNull4( this.player, this.owner, "`Get Position Center of Instance` block could not find an instance named [player ].")).x + 250) - this.owner.x) * 3, -800), 800));

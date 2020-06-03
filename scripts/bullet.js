@@ -60,10 +60,12 @@ Phaserfroot.PluginManager.register(
       this.owner.setPhysics( false );
       // our bullets are physics layer 4, so we won't collide with them
       this.scene.physicsLayersManager.addToLayer( this.owner, 4 );
+      this.owner.visible = false;
     }
 
     executeMessagex_velocity () {
       // Executed when the 'x velocity' is received.
+      this.owner.visible = true;
       this.owner.setPhysics( true );
       this.owner.body.velocity.x = this.value;
       this.delayed_event = this.scene.time.delayedCall( 4000, function() {
