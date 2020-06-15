@@ -69,6 +69,7 @@ Phaserfroot.PluginManager.register(
 
     onCreate () {
       // Executed when this script is initially created.
+      this.owner.tags.add( 'camera' );
       this.owner.tags.add( 'camera text' );
       this.owner.visible = false;
 

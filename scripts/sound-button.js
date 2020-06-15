@@ -88,7 +88,9 @@ Phaserfroot.PluginManager.register(
 
     onLevelStart2() {
       this.scene.sys.displayList.bringToTop( this.owner );
-      this.scene.components.getByName( "SoundManager" )[ 0 ].playMusic( this.owner.scene.game.cache.audio.get( 'music' ) ? 'music' : null );
+      if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) >= 4) {
+        this.scene.components.getByName( "SoundManager" )[ 0 ].playMusic( this.owner.scene.game.cache.audio.get( 'music' ) ? 'music' : null );
+      }
 
     }
 

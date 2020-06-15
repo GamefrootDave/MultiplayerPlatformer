@@ -61,6 +61,7 @@ Phaserfroot.PluginManager.register(
       if ( this.delayed_event ) this.delayed_event.remove();
       this.owner.off( this.owner.EVENTS.COLLIDE, this.onTouchInstance2, this );
       if ( this.delayed_event2 ) this.delayed_event2.remove();
+      if ( this.delayed_event3 ) this.delayed_event3.remove();
 
     }
 
@@ -310,9 +311,16 @@ Phaserfroot.PluginManager.register(
         } else if (( this.owner.body.touching.left || this.owner.body.blocked.left )) {
           this.owner.body.velocity.x = (this.math_random_int( 500, 800 ));
         }
+        this.owner.setPhysics( false );
+        this.delayed_event2 = this.scene.time.delayedCall( 200, function() {
+          if ( !this.owner || this.owner.exists === false ) {
+            return;
+          }
+            this.owner.setPhysics( true );
+        }, null, this );
         if (this.health <= 0) {
           this.health = 0;
-          this.delayed_event2 = this.scene.time.delayedCall( 10000, function() {
+          this.delayed_event3 = this.scene.time.delayedCall( 10000, function() {
             if ( !this.owner || this.owner.exists === false ) {
               return;
             }

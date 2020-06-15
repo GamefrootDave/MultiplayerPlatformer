@@ -91,12 +91,12 @@ Phaserfroot.PluginManager.register(
 
     onTick () {
       // Executed after time period of time.
-      if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) != 4) {
+      if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) != 5) {
         var repeat_end = this.math_random_int( 0, 4 );
         for (var count4 = 0; count4 < repeat_end; count4++) {
           this.create_zombie(  );
         }
-      } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 4) {
+      } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 5) {
         var repeat_end2 = Math.round(this.number_of_zombies_to_spawn);
         for (var count5 = 0; count5 < repeat_end2; count5++) {
           this.create_zombie(  );
@@ -140,7 +140,7 @@ Phaserfroot.PluginManager.register(
         this.scene.getChildrenByTag( 'zombie' )[ 0 ].destroySafe();
         this.player = this.scene.getChildrenByTag( 'player' )[ 0 ];
         this.number_of_zombies_to_spawn = 1;
-        if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) != 4) {
+        if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) != 5) {
           this.delayed_event = this.scene.time.delayedCall( 2000, function() {
             if ( !this.owner || this.owner.exists === false ) {
               return;
@@ -198,7 +198,7 @@ Phaserfroot.PluginManager.register(
           return;
         }
         this.scene.addChildBefore( instance, this.player );
-        if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 3) {
+        if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 4) {
           if ( !instance ) {
             this.reportError( "`Set Instance X` block could not find the instance [instance]." );
             return;
@@ -209,7 +209,7 @@ Phaserfroot.PluginManager.register(
             return;
           }
           instance.posY = 50;
-        } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 4) {
+        } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 5) {
           if ( !instance ) {
             this.reportError( "`Set Instance X` block could not find the instance [instance]." );
             return;
@@ -220,7 +220,7 @@ Phaserfroot.PluginManager.register(
             return;
           }
           instance.posY = -50;
-        } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 5) {
+        } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 6) {
           if ( !instance ) {
             this.reportError( "`Set Instance X` block could not find the instance [instance]." );
             return;

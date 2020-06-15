@@ -27,12 +27,19 @@
 			"id": 5,
 			"name": "Level 5",
 			"url": "levels/level-5.json"
+		},
+		{
+			"id": 6,
+			"name": "Level 6",
+			"url": "levels/level-6.json"
 		}
 	],
 	"plugins": [
 		"GamefrootText",
 		"Primitives",
 		"GamefrootPrimitives",
+		"SingleplayerButton",
+		"MultiplayerButton",
 		"RoomList",
 		"HostButton",
 		"SoundButton",
@@ -57,10 +64,9 @@
 		"ClientLogic2",
 		"SpawnOtherPlayers",
 		"ZombieSpawner",
-		"AButtonControl4",
-		"BButtonControl5",
-		"LeftButtonControl",
-		"RightButtonControl",
+		"AButton",
+		"BButton",
+		"Dpad",
 		"Deadly"
 	],
 	"assets": [

@@ -1,102 +1,93 @@
 {
 	"name": "Level 1",
 	"color": {
-		"r": 141,
-		"g": 114,
-		"b": 159,
+		"r": 0,
+		"g": 0,
+		"b": 0,
 		"a": 1
 	},
 	"loader": {},
 	"systems": {},
 	"gameObjects": [
 		{
-			"type": "text",
-			"id": "1367",
-			"x": 479,
-			"y": 74,
-			"textAlignment": "center",
-			"textColor": "#ffffffff",
-			"textFontFamily": "'Arial Black', sans-serif",
-			"textLineHeight": 1,
-			"textLineWidth": 900,
-			"textSize": 36,
-			"textText": "SHOOT 'EM UP!",
-			"textWeight": "bold",
+			"type": "static-image",
+			"x": 0,
+			"y": 0,
+			"id": "378",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 11,
+			"anchorPointX": 480,
+			"anchorPointY": 270,
 			"components": {
 				"arcadephysics": {
 					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							11,
+							1
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 0,
+					"y": 0,
+					"width": 960,
+					"height": 540
 				}
 			},
 			"plugins": {}
 		},
 		{
 			"type": "text",
-			"id": "1368",
-			"x": 477,
-			"y": 167,
+			"id": "379",
+			"x": 481,
+			"y": 420,
 			"textAlignment": "center",
 			"textColor": "#ffffffff",
 			"textFontFamily": "'Arial Black', sans-serif",
 			"textLineHeight": 1,
 			"textLineWidth": 900,
-			"textSize": 24,
-			"textText": "Room name goes here | 2 players | 👉 JOIN 👈\n\nAnother cool room name | 9 players | 👉 JOIN 👈\n\nEpic room | 4 players | 👉 JOIN 👈\n\nRoom name goes here | 1 player | 👉 JOIN 👈",
+			"textSize": 30,
+			"textText": "SINGLEPLAYER",
 			"textWeight": "bold",
 			"components": {
 				"arcadephysics": {
 					"gravity": false
 				},
-				"RoomList": {
-					"music": 1,
-					"click sound effect": 2,
-					"server list button": "undefined",
-					"textfield": "undefined"
+				"SingleplayerButton": {
+					"click sound effect": null,
+					"pressed": false
 				}
 			},
 			"plugins": {}
 		},
 		{
 			"type": "text",
-			"id": "1369",
-			"x": 479,
-			"y": 432,
+			"id": "380",
+			"x": 481,
+			"y": 468,
 			"textAlignment": "center",
-			"textColor": "#fee761ff",
-			"textFontFamily": "'Arial Black', sans-serif",
-			"textLineHeight": 1,
-			"textLineWidth": 900,
-			"textSize": 36,
-			"textText": "HOST GAME",
-			"textWeight": "bold",
-			"components": {
-				"arcadephysics": {
-					"gravity": false
-				},
-				"HostButton": {
-					"click sound effect": 3,
-					"rectangle": "undefined"
-				}
-			},
-			"plugins": {}
-		},
-		{
-			"type": "text",
-			"id": "1370",
-			"x": 15,
-			"y": 16,
 			"textColor": "#ffffffff",
 			"textFontFamily": "'Arial Black', sans-serif",
 			"textLineHeight": 1,
-			"textLineWidth": 512,
-			"textSize": 18,
-			"textText": " SOUND OFF 🔈",
+			"textLineWidth": 900,
+			"textSize": 30,
+			"textText": "MULTIPLAYER",
 			"textWeight": "bold",
 			"components": {
 				"arcadephysics": {
 					"gravity": false
 				},
-				"SoundButton": {
-					"font size": 0
+				"MultiplayerButton": {
+					"click sound effect": null,
+					"pressed": false
 				}
 			},
 			"plugins": {}

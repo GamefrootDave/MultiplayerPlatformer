@@ -187,29 +187,29 @@ Phaserfroot.PluginManager.register(
       this.game.GLOBAL_VARIABLES.levelName = this.value[2];
       this.scene.messageExternal( 'joinRoom', this.game.GLOBAL_VARIABLES.hostRoomName );
       if (this.game.GLOBAL_VARIABLES.levelName == 'Level 1') {
-        if ( 1 <= 3 && 3 <= this.game.levelManager.levels.length ) {
-          this.game.levelManager.switchTo( 3 );
+        if ( 1 <= (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 2) && (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 2) <= this.game.levelManager.levels.length ) {
+          this.game.levelManager.switchTo( (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 2) );
         } else {
           ( function() {
-            var message = "`Go to level` block could not go to level number 3. Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
+            var message = "`Go to level` block could not go to level number (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 2). Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
             this.game.reportError( message, message, "SCRIPT ERROR" );
           } ).bind( this )();
         }
       } else if (this.game.GLOBAL_VARIABLES.levelName == 'Level 2') {
-        if ( 1 <= 4 && 4 <= this.game.levelManager.levels.length ) {
-          this.game.levelManager.switchTo( 4 );
+        if ( 1 <= (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 3) && (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 3) <= this.game.levelManager.levels.length ) {
+          this.game.levelManager.switchTo( (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 3) );
         } else {
           ( function() {
-            var message = "`Go to level` block could not go to level number 4. Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
+            var message = "`Go to level` block could not go to level number (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 3). Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
             this.game.reportError( message, message, "SCRIPT ERROR" );
           } ).bind( this )();
         }
       } else if (this.game.GLOBAL_VARIABLES.levelName == 'Level 3') {
-        if ( 1 <= 5 && 5 <= this.game.levelManager.levels.length ) {
-          this.game.levelManager.switchTo( 5 );
+        if ( 1 <= (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 4) && (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 4) <= this.game.levelManager.levels.length ) {
+          this.game.levelManager.switchTo( (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 4) );
         } else {
           ( function() {
-            var message = "`Go to level` block could not go to level number 5. Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
+            var message = "`Go to level` block could not go to level number (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 4). Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
             this.game.reportError( message, message, "SCRIPT ERROR" );
           } ).bind( this )();
         }
@@ -221,6 +221,12 @@ Phaserfroot.PluginManager.register(
       // and requests their individual room information
       this.scene.messageExternal( 'getRooms' );
       // Each host receives this in the host code in the next level
+      this.load_music_and_sounds(  );
+      this.play_music_once_it_loads(  );
+
+    }
+
+    load_music_and_sounds (  ) {
       this.scene.components.getByName( "SoundManager" )[ 0 ].volume = ( 10/ 100 )
       this.owner.scene.load.audio( 'music', 'Juhani-Junkala-_Retro-Game-Music-Pack_-Level-2.mp3' );
       this.owner.scene.load.start();
@@ -242,8 +248,6 @@ Phaserfroot.PluginManager.register(
       this.owner.scene.load.start();
       this.owner.scene.load.audio( 'sndExplosion', 'sndExplosion.mp3' );
       this.owner.scene.load.start();
-      this.play_music_once_it_loads(  );
-
     }
 
     onMessageReceived ( name, message ) {
@@ -273,7 +277,6 @@ Phaserfroot.PluginManager.register(
             this.play_music_once_it_loads(  );
         }, null, this );
       } else {
-        this.scene.components.getByName( "SoundManager" )[ 0 ].playMusic( this.owner.scene.game.cache.audio.get( 'music' ) ? 'music' : null );
       }
     }
 

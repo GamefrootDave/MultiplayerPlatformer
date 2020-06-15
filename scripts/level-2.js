@@ -95,11 +95,11 @@ Phaserfroot.PluginManager.register(
             return;
           }
             this.scene.messageExternal( 'hostRoom', this.game.GLOBAL_VARIABLES.myRoomName );
-          if ( 1 <= 4 && 4 <= this.game.levelManager.levels.length ) {
-            this.game.levelManager.switchTo( 4 );
+          if ( 1 <= (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 2) && (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 2) <= this.game.levelManager.levels.length ) {
+            this.game.levelManager.switchTo( (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 2) );
           } else {
             ( function() {
-              var message = "`Go to level` block could not go to level number 4. Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
+              var message = "`Go to level` block could not go to level number (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 2). Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
               this.game.reportError( message, message, "SCRIPT ERROR" );
             } ).bind( this )();
           }
