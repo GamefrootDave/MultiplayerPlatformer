@@ -38,6 +38,7 @@ Phaserfroot.PluginManager.register(
       this.bullet = instanceProperties[ "bullet" ];
       this.casing = instanceProperties[ "casing" ];
       this.sparks = instanceProperties[ "sparks" ];
+      this.camera = ( typeof instanceProperties[ "camera" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "camera" ], true ) : null;
       this.player = ( typeof instanceProperties[ "player" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "player" ], true ) : null;
       this.white_flash = ( typeof instanceProperties[ "white flash" ] !== "undefined" ) ? this.scene.getChildById( instanceProperties[ "white flash" ], true ) : null;
 
@@ -271,6 +272,7 @@ Phaserfroot.PluginManager.register(
     }
 
     onLevelStart2() {
+      this.camera = this.scene.getChildrenByTag( 'camera' )[ 0 ];
       this.player = this.scene.getChildrenByTag( 'player' )[ 0 ];
       this.muzzleflash = (this.errorCheckNotNull( this.scene.getChildrenByTag( 'muzzleflash' )[ 0 ], this.owner, "`Get Class Of Instance` block could not find an instance named [scene.getChildrenByTag( _muzzlef].")).name;
       this.bullet = (this.errorCheckNotNull2( this.scene.getChildrenByTag( 'bullet' )[ 0 ], this.owner, "`Get Class Of Instance` block could not find an instance named [scene.getChildrenByTag( _bullet_].")).name;
@@ -403,6 +405,7 @@ Phaserfroot.PluginManager.register(
         onComplete: function() {
           this.camera.offsetX = 0;}.bind( this ) } );
       this.scene.messageInstance( this.player, 'recoil' );
+      this.scene.messageInstance( this.camera, 'kick' );
       if (this.owner.scaleX > 0) {
         this.owner.posX = this.owner.posX - 25;
       } else {

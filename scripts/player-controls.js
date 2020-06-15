@@ -549,6 +549,11 @@ Phaserfroot.PluginManager.register(
       } else {
         this.owner.scene.physicsLayersManager.layers[ 3 ].setExternalCollision( 4, true );
       };
+      if ( 4 === 4 ) {
+        this.owner.scene.physicsLayersManager.layers[ 4 ].setInternalCollisions( false );
+      } else {
+        this.owner.scene.physicsLayersManager.layers[ 4 ].setExternalCollision( 4, false );
+      };
     }
 
     checkScene( message ) {

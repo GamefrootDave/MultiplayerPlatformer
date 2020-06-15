@@ -42,7 +42,7 @@
 					"idle": {
 						"cells": [
 							11,
-							26
+							23
 						],
 						"loop": true,
 						"play": true,
@@ -51,13 +51,13 @@
 					"walk": {
 						"cells": [
 							11,
-							27,
+							24,
 							11,
-							28,
+							49,
 							11,
-							29,
+							26,
 							11,
-							30
+							27
 						],
 						"loop": true,
 						"play": false,
@@ -66,7 +66,7 @@
 					"jumpUp": {
 						"cells": [
 							11,
-							31
+							28
 						],
 						"loop": true,
 						"play": false,
@@ -75,7 +75,7 @@
 					"jumpMid": {
 						"cells": [
 							11,
-							32
+							29
 						],
 						"loop": true,
 						"play": false,
@@ -84,7 +84,7 @@
 					"jumpDown": {
 						"cells": [
 							11,
-							33
+							30
 						],
 						"loop": true,
 						"play": false,
@@ -93,11 +93,11 @@
 					"dying": {
 						"cells": [
 							11,
-							34,
+							31,
 							11,
-							35,
+							21,
 							11,
-							50
+							22
 						],
 						"loop": true,
 						"play": false,
@@ -106,7 +106,7 @@
 					"dead": {
 						"cells": [
 							11,
-							50
+							22
 						],
 						"loop": true,
 						"play": false,
@@ -185,7 +185,9 @@
 					"player": "undefined",
 					"trigger held": false,
 					"player dead": false,
-					"white flash": "null"
+					"white flash": "null",
+					"Object": "null",
+					"camera": "null"
 				}
 			},
 			"plugins": {}
@@ -231,7 +233,7 @@
 					"idle": {
 						"cells": [
 							11,
-							26
+							23
 						],
 						"loop": true,
 						"play": true,
@@ -240,13 +242,13 @@
 					"walk": {
 						"cells": [
 							11,
-							27,
+							24,
 							11,
-							28,
+							49,
 							11,
-							29,
+							26,
 							11,
-							30
+							27
 						],
 						"loop": true,
 						"play": false,
@@ -255,7 +257,7 @@
 					"jumpUp": {
 						"cells": [
 							11,
-							31
+							28
 						],
 						"loop": true,
 						"play": false,
@@ -264,7 +266,7 @@
 					"jumpMid": {
 						"cells": [
 							11,
-							32
+							29
 						],
 						"loop": true,
 						"play": false,
@@ -273,7 +275,7 @@
 					"jumpDown": {
 						"cells": [
 							11,
-							33
+							30
 						],
 						"loop": true,
 						"play": false,
@@ -282,11 +284,11 @@
 					"dying": {
 						"cells": [
 							11,
-							34,
+							31,
 							11,
-							35,
+							21,
 							11,
-							50
+							22
 						],
 						"loop": true,
 						"play": false,
@@ -295,7 +297,7 @@
 					"dead": {
 						"cells": [
 							11,
-							50
+							22
 						],
 						"loop": true,
 						"play": false,
@@ -418,7 +420,7 @@
 					"idle": {
 						"cells": [
 							11,
-							38
+							34
 						],
 						"loop": true,
 						"play": true,
@@ -427,13 +429,13 @@
 					"walk": {
 						"cells": [
 							11,
-							39,
+							35,
 							11,
-							40,
+							36,
 							11,
-							41,
+							37,
 							11,
-							42
+							38
 						],
 						"loop": true,
 						"play": false,
@@ -442,7 +444,7 @@
 					"jumpUp": {
 						"cells": [
 							11,
-							43
+							39
 						],
 						"loop": true,
 						"play": false,
@@ -451,7 +453,7 @@
 					"jumpMid": {
 						"cells": [
 							11,
-							44
+							40
 						],
 						"loop": true,
 						"play": false,
@@ -460,7 +462,7 @@
 					"jumpDown": {
 						"cells": [
 							11,
-							45
+							41
 						],
 						"loop": true,
 						"play": false,
@@ -469,9 +471,9 @@
 					"hurt": {
 						"cells": [
 							11,
-							46,
+							42,
 							11,
-							37
+							33
 						],
 						"loop": true,
 						"play": false,
@@ -480,11 +482,11 @@
 					"dead": {
 						"cells": [
 							11,
-							47,
+							43,
 							11,
-							48,
+							44,
 							11,
-							49
+							45
 						],
 						"loop": true,
 						"play": false,
@@ -527,7 +529,7 @@
 					"idle": {
 						"cells": [
 							11,
-							4
+							3
 						],
 						"loop": true,
 						"play": true,
@@ -678,13 +680,13 @@
 					"idle": {
 						"cells": [
 							11,
-							16,
+							12,
 							11,
-							13,
+							9,
 							11,
-							15,
 							11,
-							14
+							11,
+							10
 						],
 						"loop": true,
 						"play": true,
@@ -720,7 +722,7 @@
 					"idle": {
 						"cells": [
 							11,
-							3
+							4
 						],
 						"loop": true,
 						"play": true,
@@ -768,11 +770,11 @@
 					"idle": {
 						"cells": [
 							11,
-							7,
-							11,
 							8,
 							11,
-							6
+							6,
+							11,
+							7
 						],
 						"loop": true,
 						"play": true,
@@ -808,7 +810,7 @@
 					"idle": {
 						"cells": [
 							11,
-							21
+							18
 						],
 						"loop": true,
 						"play": true,
@@ -817,7 +819,7 @@
 					"black": {
 						"cells": [
 							11,
-							22
+							17
 						],
 						"loop": true,
 						"play": false,
@@ -853,7 +855,7 @@
 					"idle": {
 						"cells": [
 							11,
-							3
+							4
 						],
 						"loop": true,
 						"play": true,
@@ -961,7 +963,7 @@
 			"type": "static-image",
 			"x": 700,
 			"y": 420,
-			"id": "12",
+			"id": "6",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -976,7 +978,7 @@
 					"idle": {
 						"cells": [
 							11,
-							17
+							13
 						],
 						"loop": true,
 						"play": true,
@@ -985,7 +987,7 @@
 					"pressed": {
 						"cells": [
 							11,
-							18
+							14
 						],
 						"loop": true,
 						"play": false,
@@ -998,15 +1000,7 @@
 					"width": 93,
 					"height": 99
 				},
-				"BButtonControl5": {
-					"button down": false,
-					"my key": 0,
-					"start x pos": 0,
-					"start y pos": 0,
-					"target": "null",
-					"target tag": "",
-					"touchscreen": false
-				}
+				"BButton": {}
 			},
 			"plugins": {}
 		},
@@ -1014,7 +1008,7 @@
 			"type": "static-image",
 			"x": 820,
 			"y": 420,
-			"id": "13",
+			"id": "7",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -1029,7 +1023,7 @@
 					"idle": {
 						"cells": [
 							11,
-							19
+							15
 						],
 						"loop": true,
 						"play": true,
@@ -1038,7 +1032,7 @@
 					"pressed": {
 						"cells": [
 							11,
-							20
+							16
 						],
 						"loop": true,
 						"play": false,
@@ -1051,29 +1045,21 @@
 					"width": 93,
 					"height": 99
 				},
-				"AButtonControl4": {
-					"button down": false,
-					"my key": 0,
-					"start x pos": 0,
-					"start y pos": 0,
-					"target": "null",
-					"target tag": "",
-					"touchscreen": false
-				}
+				"AButton": {}
 			},
 			"plugins": {}
 		},
 		{
 			"type": "static-image",
-			"x": 170,
-			"y": 430,
-			"id": "14",
+			"x": 57,
+			"y": 370,
+			"id": "10",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
 			"imageId": 11,
-			"anchorPointX": 42,
-			"anchorPointY": 45,
+			"anchorPointX": 102,
+			"anchorPointY": 102,
 			"components": {
 				"arcadephysics": {
 					"gravity": false
@@ -1082,16 +1068,25 @@
 					"idle": {
 						"cells": [
 							11,
-							9
+							46
 						],
 						"loop": true,
 						"play": true,
 						"speed": 0.1
 					},
-					"pressed": {
+					"left": {
 						"cells": [
 							11,
-							10
+							47
+						],
+						"loop": true,
+						"play": false,
+						"speed": 0.1
+					},
+					"right": {
+						"cells": [
+							11,
+							48
 						],
 						"loop": true,
 						"play": false,
@@ -1101,71 +1096,10 @@
 				"box": {
 					"x": 0,
 					"y": 0,
-					"width": 84,
-					"height": 90
+					"width": 204,
+					"height": 204
 				},
-				"RightButtonControl": {
-					"button down": false,
-					"my key": 0,
-					"start x pos": 0,
-					"start y pos": 0,
-					"target": "null",
-					"target tag": "",
-					"touchscreen": false
-				}
-			},
-			"plugins": {}
-		},
-		{
-			"type": "static-image",
-			"x": 60,
-			"y": 430,
-			"id": "15",
-			"scaleX": 1,
-			"scaleY": 1,
-			"rotation": 0,
-			"imageId": 11,
-			"anchorPointX": 42,
-			"anchorPointY": 45,
-			"components": {
-				"arcadephysics": {
-					"gravity": false
-				},
-				"TextureAnimation": {
-					"idle": {
-						"cells": [
-							11,
-							12
-						],
-						"loop": true,
-						"play": true,
-						"speed": 0.1
-					},
-					"pressed": {
-						"cells": [
-							11,
-							11
-						],
-						"loop": true,
-						"play": false,
-						"speed": 0.1
-					}
-				},
-				"box": {
-					"x": 0,
-					"y": 0,
-					"width": 84,
-					"height": 90
-				},
-				"LeftButtonControl": {
-					"button down": false,
-					"my key": 0,
-					"start x pos": 0,
-					"start y pos": 0,
-					"target": "null",
-					"target tag": "",
-					"touchscreen": false
-				}
+				"Dpad": {}
 			},
 			"plugins": {}
 		}

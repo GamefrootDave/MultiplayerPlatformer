@@ -57,10 +57,9 @@
 		"ClientLogic2",
 		"SpawnOtherPlayers",
 		"ZombieSpawner",
-		"AButtonControl4",
-		"BButtonControl5",
-		"LeftButtonControl",
-		"RightButtonControl",
+		"AButton",
+		"BButton",
+		"Dpad",
 		"Deadly"
 	],
 	"assets": [
