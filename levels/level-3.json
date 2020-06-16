@@ -70,7 +70,7 @@
 					"idle": {
 						"cells": [
 							11,
-							49
+							50
 						],
 						"loop": true,
 						"play": true,
@@ -105,7 +105,7 @@
 					"idle": {
 						"cells": [
 							11,
-							20
+							21
 						],
 						"loop": true,
 						"play": true,
@@ -141,7 +141,7 @@
 					"idle": {
 						"cells": [
 							11,
-							32
+							33
 						],
 						"loop": true,
 						"play": true,
@@ -177,7 +177,7 @@
 					"idle": {
 						"cells": [
 							11,
-							19
+							20
 						],
 						"loop": true,
 						"play": true,

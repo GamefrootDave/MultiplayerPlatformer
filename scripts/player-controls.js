@@ -431,13 +431,13 @@ Phaserfroot.PluginManager.register(
     }
 
     position_me (  ) {
-      if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 3) {
+      if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 4) {
         this.owner.posX = this.math_random_int( 300, 1200 );
         this.owner.posY = 50;
-      } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 4) {
+      } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 5) {
         this.owner.posX = this.math_random_int( 200, 700 );
         this.owner.posY = 140;
-      } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 5) {
+      } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 6) {
         this.owner.posX = this.math_random_int( 300, 1100 );
         this.owner.posY = 300;
       }

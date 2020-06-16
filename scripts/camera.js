@@ -220,7 +220,7 @@ Phaserfroot.PluginManager.register(
 
     EVENTS_UPDATE () {
       // Executed every frame.
-      if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) != 4) {
+      if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) != 5) {
         if (!this.player_dead) {
           this.camera.centerOn( this.owner.x, this.owner.y );
           this.camera.posX = (Math.round(this.camera.posX));
@@ -230,7 +230,7 @@ Phaserfroot.PluginManager.register(
           this.camera.scaleX = (Math.min(Math.max(this.camera.scaleX * 100 + 0.5, 100), 300) / 100);
           this.camera.scaleY = this.camera.scaleX;
         }
-      } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 4) {
+      } else if (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) == 5) {
         this.camera.posX = 0;
         this.camera.posY = 0;
       }

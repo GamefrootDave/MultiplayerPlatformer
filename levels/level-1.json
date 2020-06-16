@@ -13,7 +13,7 @@
 			"type": "static-image",
 			"x": 0,
 			"y": 0,
-			"id": "378",
+			"id": "685",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -46,9 +46,9 @@
 		},
 		{
 			"type": "text",
-			"id": "379",
+			"id": "686",
 			"x": 481,
-			"y": 420,
+			"y": 415,
 			"textAlignment": "center",
 			"textColor": "#ffffffff",
 			"textFontFamily": "'Arial Black', sans-serif",
@@ -62,7 +62,6 @@
 					"gravity": false
 				},
 				"SingleplayerButton": {
-					"click sound effect": null,
 					"pressed": false
 				}
 			},
@@ -70,9 +69,9 @@
 		},
 		{
 			"type": "text",
-			"id": "380",
+			"id": "687",
 			"x": 481,
-			"y": 468,
+			"y": 463,
 			"textAlignment": "center",
 			"textColor": "#ffffffff",
 			"textFontFamily": "'Arial Black', sans-serif",
@@ -86,8 +85,26 @@
 					"gravity": false
 				},
 				"MultiplayerButton": {
-					"click sound effect": null,
 					"pressed": false
+				}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "text",
+			"id": "688",
+			"x": 481,
+			"y": 519,
+			"textAlignment": "center",
+			"textColor": "#ffffffff",
+			"textFontFamily": "Helvetica, Arial, sans-serif",
+			"textLineHeight": 1,
+			"textLineWidth": 900,
+			"textSize": 12,
+			"textText": "CREDITS: GAME BY VLAMBEER, MUSIC BY JUHANI JUNKALA, TUTORIAL BY GAMEFROOT",
+			"components": {
+				"arcadephysics": {
+					"gravity": false
 				}
 			},
 			"plugins": {}

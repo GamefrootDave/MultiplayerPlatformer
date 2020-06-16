@@ -13,8 +13,8 @@
 			"id": 5,
 			"name": "Tile Map1",
 			"type": "tilemap",
-			"jsonId": 13,
-			"imageId": 14,
+			"jsonId": 17,
+			"imageId": 18,
 			"x": 0,
 			"y": 0,
 			"components": {
@@ -42,7 +42,7 @@
 					"idle": {
 						"cells": [
 							11,
-							23
+							24
 						],
 						"loop": true,
 						"play": true,
@@ -51,13 +51,13 @@
 					"walk": {
 						"cells": [
 							11,
-							24,
+							25,
 							11,
-							50,
+							51,
 							11,
-							26,
+							27,
 							11,
-							27
+							28
 						],
 						"loop": true,
 						"play": false,
@@ -66,7 +66,7 @@
 					"jumpUp": {
 						"cells": [
 							11,
-							28
+							29
 						],
 						"loop": true,
 						"play": false,
@@ -75,7 +75,7 @@
 					"jumpMid": {
 						"cells": [
 							11,
-							29
+							30
 						],
 						"loop": true,
 						"play": false,
@@ -84,7 +84,7 @@
 					"jumpDown": {
 						"cells": [
 							11,
-							30
+							31
 						],
 						"loop": true,
 						"play": false,
@@ -93,11 +93,11 @@
 					"dying": {
 						"cells": [
 							11,
-							31,
+							32,
 							11,
-							21,
+							22,
 							11,
-							22
+							23
 						],
 						"loop": true,
 						"play": false,
@@ -106,7 +106,7 @@
 					"dead": {
 						"cells": [
 							11,
-							22
+							23
 						],
 						"loop": true,
 						"play": false,
@@ -123,25 +123,28 @@
 					"music": 6,
 					"jump": 7,
 					"air time": 0,
+					"jumpcloud": null,
 					"bg colour": "#000000",
 					"able to jump": false,
-					"toucher": "undefined",
+					"toucher": "null",
 					"able to be hurt": false,
 					"health": 0,
-					"health bar": "undefined",
-					"health bar black": "undefined",
-					"health bar outline": "undefined",
-					"health bar white": "undefined",
+					"explosion": null,
+					"smoke": null,
+					"health bar": "null",
+					"health bar black": "null",
+					"health bar outline": "null",
+					"health bar white": "null",
 					"max health": 0,
 					"I am the host": false,
 					"playerID": "",
-					"player name text": "null",
+					"player name text": "undefined",
 					"playerID that shot me": "",
 					"deaths": 0,
 					"killer": "",
 					"kills": 0,
 					"victim": "",
-					"scoreboard": "undefined"
+					"scoreboard": "null"
 				}
 			},
 			"plugins": {}
@@ -165,7 +168,7 @@
 					"idle": {
 						"cells": [
 							11,
-							25
+							2
 						],
 						"loop": true,
 						"play": true,
@@ -179,16 +182,12 @@
 					"height": 15
 				},
 				"Gun": {
-					"player": "null",
-					"muzzleflash": null,
-					"bullet": null,
-					"casing": null,
-					"sparks": null,
+					"player": "undefined",
 					"trigger held": false,
 					"player dead": false,
-					"white flash": "undefined",
-					"Object": "undefined",
-					"camera": "undefined"
+					"white flash": "null",
+					"Object": "null",
+					"camera": "null"
 				}
 			},
 			"plugins": {}
@@ -234,7 +233,7 @@
 					"idle": {
 						"cells": [
 							11,
-							23
+							24
 						],
 						"loop": true,
 						"play": true,
@@ -243,13 +242,13 @@
 					"walk": {
 						"cells": [
 							11,
-							24,
+							25,
 							11,
-							50,
+							51,
 							11,
-							26,
+							27,
 							11,
-							27
+							28
 						],
 						"loop": true,
 						"play": false,
@@ -258,7 +257,7 @@
 					"jumpUp": {
 						"cells": [
 							11,
-							28
+							29
 						],
 						"loop": true,
 						"play": false,
@@ -267,7 +266,7 @@
 					"jumpMid": {
 						"cells": [
 							11,
-							29
+							30
 						],
 						"loop": true,
 						"play": false,
@@ -276,7 +275,7 @@
 					"jumpDown": {
 						"cells": [
 							11,
-							30
+							31
 						],
 						"loop": true,
 						"play": false,
@@ -285,11 +284,11 @@
 					"dying": {
 						"cells": [
 							11,
-							31,
+							32,
 							11,
-							21,
+							22,
 							11,
-							22
+							23
 						],
 						"loop": true,
 						"play": false,
@@ -298,7 +297,7 @@
 					"dead": {
 						"cells": [
 							11,
-							22
+							23
 						],
 						"loop": true,
 						"play": false,
@@ -312,21 +311,21 @@
 					"height": 63
 				},
 				"Player2": {
-					"toucher": "undefined",
+					"toucher": "null",
 					"health": 0,
 					"thisPlayerID": "",
 					"max health": 0,
-					"health bar": "null",
-					"health bar black": "null",
-					"health bar outline": "null",
-					"health bar white": "null",
-					"player": "null",
-					"player name text": "null",
+					"health bar": "undefined",
+					"health bar black": "undefined",
+					"health bar outline": "undefined",
+					"health bar white": "undefined",
+					"player": "undefined",
+					"player name text": "undefined",
 					"playerName": "",
 					"deaths": 0,
 					"kills": 0,
-					"camera text": "undefined",
-					"scoreboard": "undefined",
+					"camera text": "null",
+					"scoreboard": "null",
 					"killer": "",
 					"victim": ""
 				}
@@ -352,7 +351,7 @@
 					"idle": {
 						"cells": [
 							11,
-							25
+							2
 						],
 						"loop": true,
 						"play": true,
@@ -366,40 +365,10 @@
 					"height": 15
 				},
 				"Player2Gun": {
-					"my player": "null",
-					"bullet": null,
-					"casing": null,
-					"muzzleflash": null,
-					"sparks": null,
+					"my player": "undefined",
 					"my player ID": "",
-					"player gun": "null",
+					"player gun": "undefined",
 					"health": 0,
-					"thisPlayerID": ""
-				}
-			},
-			"plugins": {}
-		},
-		{
-			"type": "text",
-			"id": "518",
-			"x": 13,
-			"y": 19,
-			"textColor": "#ffffffff",
-			"textFontFamily": "'Arial Black', sans-serif",
-			"textLineHeight": 1,
-			"textLineWidth": 512,
-			"textSize": 18,
-			"textText": "JIM 5 kills / 8 deaths\nDAVE 8 kills / 5 deaths",
-			"components": {
-				"arcadephysics": {
-					"gravity": false
-				},
-				"Scoreboard": {
-					"font size": 0,
-					"deaths": 0,
-					"kills": 0,
-					"playerName": "",
-					"scoreboard": "undefined",
 					"thisPlayerID": ""
 				}
 			},
@@ -424,7 +393,7 @@
 					"idle": {
 						"cells": [
 							11,
-							34
+							35
 						],
 						"loop": true,
 						"play": true,
@@ -433,13 +402,13 @@
 					"walk": {
 						"cells": [
 							11,
-							35,
-							11,
 							36,
 							11,
 							37,
 							11,
-							38
+							38,
+							11,
+							39
 						],
 						"loop": true,
 						"play": false,
@@ -448,7 +417,7 @@
 					"jumpUp": {
 						"cells": [
 							11,
-							39
+							40
 						],
 						"loop": true,
 						"play": false,
@@ -457,7 +426,7 @@
 					"jumpMid": {
 						"cells": [
 							11,
-							40
+							41
 						],
 						"loop": true,
 						"play": false,
@@ -466,7 +435,7 @@
 					"jumpDown": {
 						"cells": [
 							11,
-							41
+							42
 						],
 						"loop": true,
 						"play": false,
@@ -475,9 +444,9 @@
 					"hurt": {
 						"cells": [
 							11,
-							33,
+							43,
 							11,
-							42
+							34
 						],
 						"loop": true,
 						"play": false,
@@ -486,11 +455,11 @@
 					"dead": {
 						"cells": [
 							11,
-							43,
-							11,
 							44,
 							11,
-							45
+							45,
+							11,
+							46
 						],
 						"loop": true,
 						"play": false,
@@ -504,8 +473,8 @@
 					"height": 60
 				},
 				"Zombie": {
-					"player": "null",
-					"toucher": "null",
+					"player": "undefined",
+					"toucher": "undefined",
 					"health": 0,
 					"fading": false,
 					"acceleration direction": 0,
@@ -533,7 +502,7 @@
 					"idle": {
 						"cells": [
 							11,
-							4
+							5
 						],
 						"loop": true,
 						"play": true,
@@ -569,7 +538,7 @@
 					"idle": {
 						"cells": [
 							11,
-							2
+							3
 						],
 						"loop": true,
 						"play": true,
@@ -605,7 +574,7 @@
 					"idle": {
 						"cells": [
 							11,
-							5
+							6
 						],
 						"loop": true,
 						"play": true,
@@ -619,8 +588,8 @@
 					"height": 12
 				},
 				"Bullet": {
-					"toucher": "undefined",
-					"gun": "undefined"
+					"toucher": "null",
+					"gun": "null"
 				}
 			},
 			"plugins": {}
@@ -659,7 +628,7 @@
 				},
 				"Casing": {
 					"spin amount": 0,
-					"toucher": "undefined",
+					"toucher": "null",
 					"fade": false
 				}
 			},
@@ -684,13 +653,13 @@
 					"idle": {
 						"cells": [
 							11,
+							10,
+							11,
+							13,
+							11,
 							12,
 							11,
-							9,
-							11,
-							11,
-							11,
-							10
+							11
 						],
 						"loop": true,
 						"play": true,
@@ -726,7 +695,7 @@
 					"idle": {
 						"cells": [
 							11,
-							3
+							4
 						],
 						"loop": true,
 						"play": true,
@@ -740,12 +709,12 @@
 					"height": 48
 				},
 				"Camera": {
-					"player": "null",
-					"bottom rectangle": "undefined",
-					"top rectangle": "undefined",
-					"textfield": "undefined",
+					"player": "undefined",
+					"bottom rectangle": "null",
+					"top rectangle": "null",
+					"textfield": "null",
 					"text offset": 0,
-					"fade rectangle": "undefined",
+					"fade rectangle": "null",
 					"cinematic on": false,
 					"text acceleration": 0,
 					"fade in": false,
@@ -774,11 +743,11 @@
 					"idle": {
 						"cells": [
 							11,
-							8,
+							9,
 							11,
-							6,
+							7,
 							11,
-							7
+							8
 						],
 						"loop": true,
 						"play": true,
@@ -814,7 +783,7 @@
 					"idle": {
 						"cells": [
 							11,
-							18
+							19
 						],
 						"loop": true,
 						"play": true,
@@ -823,7 +792,7 @@
 					"black": {
 						"cells": [
 							11,
-							17
+							18
 						],
 						"loop": true,
 						"play": false,
@@ -859,7 +828,7 @@
 					"idle": {
 						"cells": [
 							11,
-							3
+							4
 						],
 						"loop": true,
 						"play": true,
@@ -892,7 +861,8 @@
 					"gravity": false
 				},
 				"HostRoomLogic": {
-					"camera text": "null"
+					"list of players": null,
+					"camera text": "undefined"
 				}
 			},
 			"plugins": {}
@@ -913,7 +883,7 @@
 					"gravity": false
 				},
 				"ClientLogic2": {
-					"camera text": "null"
+					"camera text": "undefined"
 				}
 			},
 			"plugins": {}
@@ -934,8 +904,7 @@
 					"gravity": false
 				},
 				"SpawnOtherPlayers": {
-					"other player": null,
-					"other player gun": null,
+					"list of players": null,
 					"player already exists": false
 				}
 			},
@@ -957,8 +926,7 @@
 					"gravity": false
 				},
 				"ZombieSpawner": {
-					"zombie": null,
-					"player": "null",
+					"player": "undefined",
 					"number of zombies to spawn": 0
 				}
 			},
@@ -968,7 +936,7 @@
 			"type": "static-image",
 			"x": 700,
 			"y": 420,
-			"id": "6",
+			"id": "5",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -983,7 +951,7 @@
 					"idle": {
 						"cells": [
 							11,
-							13
+							16
 						],
 						"loop": true,
 						"play": true,
@@ -992,7 +960,7 @@
 					"pressed": {
 						"cells": [
 							11,
-							14
+							17
 						],
 						"loop": true,
 						"play": false,
@@ -1013,7 +981,7 @@
 			"type": "static-image",
 			"x": 820,
 			"y": 420,
-			"id": "7",
+			"id": "6",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -1028,7 +996,7 @@
 					"idle": {
 						"cells": [
 							11,
-							15
+							14
 						],
 						"loop": true,
 						"play": true,
@@ -1037,7 +1005,7 @@
 					"pressed": {
 						"cells": [
 							11,
-							16
+							15
 						],
 						"loop": true,
 						"play": false,
@@ -1058,7 +1026,7 @@
 			"type": "static-image",
 			"x": 57,
 			"y": 370,
-			"id": "10",
+			"id": "7",
 			"scaleX": 1,
 			"scaleY": 1,
 			"rotation": 0,
@@ -1073,7 +1041,7 @@
 					"idle": {
 						"cells": [
 							11,
-							46
+							47
 						],
 						"loop": true,
 						"play": true,
@@ -1082,7 +1050,7 @@
 					"left": {
 						"cells": [
 							11,
-							47
+							48
 						],
 						"loop": true,
 						"play": false,
@@ -1091,7 +1059,7 @@
 					"right": {
 						"cells": [
 							11,
-							48
+							49
 						],
 						"loop": true,
 						"play": false,
@@ -1105,6 +1073,42 @@
 					"height": 204
 				},
 				"Dpad": {}
+			},
+			"plugins": {}
+		},
+		{
+			"type": "static-image",
+			"x": 918,
+			"y": -43,
+			"id": "8",
+			"scaleX": 1,
+			"scaleY": 1,
+			"rotation": 0,
+			"imageId": 11,
+			"anchorPointX": 15,
+			"anchorPointY": 15,
+			"components": {
+				"arcadephysics": {
+					"gravity": false
+				},
+				"TextureAnimation": {
+					"idle": {
+						"cells": [
+							11,
+							26
+						],
+						"loop": true,
+						"play": true,
+						"speed": 0.1
+					}
+				},
+				"box": {
+					"x": 0,
+					"y": 0,
+					"width": 30,
+					"height": 30
+				},
+				"XButton": {}
 			},
 			"plugins": {}
 		}

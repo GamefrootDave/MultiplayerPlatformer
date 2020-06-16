@@ -50,7 +50,6 @@
 		"Gun",
 		"Player2",
 		"Player2Gun",
-		"Scoreboard",
 		"Zombie",
 		"Muzzleflash",
 		"Bullet",
@@ -67,6 +66,7 @@
 		"AButton",
 		"BButton",
 		"Dpad",
+		"XButton",
 		"Deadly"
 	],
 	"assets": [
@@ -116,28 +116,10 @@
 		{
 			"id": 13,
 			"type": "json",
-			"url": "assets/Tile Map1-map.json"
-		},
-		{
-			"id": 14,
-			"type": "spritesheet",
-			"url": "assets/Tile Map1-1.png",
-			"frameWidth": 48,
-			"frameHeight": 48,
-			"sheetOffsetX": 4,
-			"sheetOffsetY": 4,
-			"cellOffsetX": 8,
-			"cellOffsetY": 8,
-			"rows": 2,
-			"cols": 2
-		},
-		{
-			"id": 15,
-			"type": "json",
 			"url": "assets/Tile Map-map.json"
 		},
 		{
-			"id": 16,
+			"id": 14,
 			"type": "spritesheet",
 			"url": "assets/Tile Map-1.png",
 			"frameWidth": 48,
@@ -150,12 +132,12 @@
 			"cols": 2
 		},
 		{
-			"id": 17,
+			"id": 15,
 			"type": "json",
 			"url": "assets/Tile Map2-map.json"
 		},
 		{
-			"id": 18,
+			"id": 16,
 			"type": "spritesheet",
 			"url": "assets/Tile Map2-1.png",
 			"frameWidth": 48,
@@ -166,6 +148,24 @@
 			"cellOffsetY": 8,
 			"rows": 2,
 			"cols": 3
+		},
+		{
+			"id": 17,
+			"type": "json",
+			"url": "assets/Tile Map1-map.json"
+		},
+		{
+			"id": 18,
+			"type": "spritesheet",
+			"url": "assets/Tile Map1-1.png",
+			"frameWidth": 48,
+			"frameHeight": 48,
+			"sheetOffsetX": 4,
+			"sheetOffsetY": 4,
+			"cellOffsetX": 8,
+			"cellOffsetY": 8,
+			"rows": 2,
+			"cols": 2
 		}
 	],
 	"firstLevel": 1

@@ -60,6 +60,7 @@ Phaserfroot.PluginManager.register(
     onCreate () {
       // Executed when this script is initially created.
       this.owner.alpha = 1;
+      this.pressed = false;
     }
 
     EVENTS_UPDATE () {
@@ -109,46 +110,48 @@ Phaserfroot.PluginManager.register(
     onStageTouch2 ( pointer ) {
       var pointer = pointer;
       if (this.instContains( this.owner, (this.errorCheckNotNull( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).x, (this.errorCheckNotNull2( pointer, this.scene.input.manager.activePointer, "`Get X/Y of Pointer` block could not find a pointer named [pointer].")).y )) {
-        this.game.GLOBAL_VARIABLES.myPlayerID = '0';
-        this.game.GLOBAL_VARIABLES.myName = 'YOU';
-        this.game.GLOBAL_VARIABLES.myRoomName = 'SINGLEPLAYER';
-        this.game.GLOBAL_VARIABLES.hostRoomName = this.game.GLOBAL_VARIABLES.myRoomName;
-        this.game.GLOBAL_VARIABLES.hostPlayerID = this.game.GLOBAL_VARIABLES.myPlayerID;
-        this.pressed = true;
-        this.owner.alpha = 0.2;
-        var tracker = { k: 5 };
-        var base = this.camera.offsetY;
-        this.scene.tweens.add( {
-          targets: tracker,
-          props: { k : 0 },
-          ease: "Expo.easeOut",
-          duration: 0.5 * 1000,
-          onUpdate:
-            function() {
-              this.camera.offsetY = base + tracker.k * Math.sin( this.scene.time.now * 60 / 1000 );
-            }.bind( this ),
-          onComplete: function() {
-            this.camera.offsetY = 0;}.bind( this ) } );
-        this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndNext' ) ? 'sndNext' : null );
-        this.delayed_event = this.scene.time.delayedCall( 200, function() {
-          if ( !this.owner || this.owner.exists === false ) {
-            return;
-          }
-            this.owner.alpha = 1;
-        }, null, this );
-        this.delayed_event2 = this.scene.time.delayedCall( 400, function() {
-          if ( !this.owner || this.owner.exists === false ) {
-            return;
-          }
-            if ( 1 <= (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 2) && (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 2) <= this.game.levelManager.levels.length ) {
-            this.game.levelManager.switchTo( (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 2) );
-          } else {
-            ( function() {
-              var message = "`Go to level` block could not go to level number (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 2). Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
-              this.game.reportError( message, message, "SCRIPT ERROR" );
-            } ).bind( this )();
-          }
-        }, null, this );
+        if (!this.pressed) {
+          this.pressed = true;
+          this.game.GLOBAL_VARIABLES.myPlayerID = '0';
+          this.game.GLOBAL_VARIABLES.myName = 'YOU';
+          this.game.GLOBAL_VARIABLES.myRoomName = 'SINGLEPLAYER';
+          this.game.GLOBAL_VARIABLES.hostRoomName = this.game.GLOBAL_VARIABLES.myRoomName;
+          this.game.GLOBAL_VARIABLES.hostPlayerID = this.game.GLOBAL_VARIABLES.myPlayerID;
+          this.owner.alpha = 0.2;
+          var tracker = { k: 5 };
+          var base = this.camera.offsetY;
+          this.scene.tweens.add( {
+            targets: tracker,
+            props: { k : 0 },
+            ease: "Expo.easeOut",
+            duration: 0.5 * 1000,
+            onUpdate:
+              function() {
+                this.camera.offsetY = base + tracker.k * Math.sin( this.scene.time.now * 60 / 1000 );
+              }.bind( this ),
+            onComplete: function() {
+              this.camera.offsetY = 0;}.bind( this ) } );
+          this.scene.components.getByName( "SoundManager" )[ 0 ].playEffect( this.owner.scene.game.cache.audio.get( 'sndNext' ) ? 'sndNext' : null );
+          this.delayed_event = this.scene.time.delayedCall( 200, function() {
+            if ( !this.owner || this.owner.exists === false ) {
+              return;
+            }
+              this.owner.alpha = 1;
+          }, null, this );
+          this.delayed_event2 = this.scene.time.delayedCall( 400, function() {
+            if ( !this.owner || this.owner.exists === false ) {
+              return;
+            }
+              if ( 1 <= (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 2) && (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 2) <= this.game.levelManager.levels.length ) {
+              this.game.levelManager.switchTo( (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 2) );
+            } else {
+              ( function() {
+                var message = "`Go to level` block could not go to level number (( this.game.levelManager.levels.indexOf( this.scene ) + 1 ) + 2). Level numbers start at 1 and go up to the total number of levels in your game (" + this.game.levelManager.levels.length + ").";
+                this.game.reportError( message, message, "SCRIPT ERROR" );
+              } ).bind( this )();
+            }
+          }, null, this );
+        }
       }
 
     }
